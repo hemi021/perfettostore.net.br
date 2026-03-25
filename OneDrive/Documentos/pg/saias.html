@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="img/PS.png" type="image/png">
+    <title>Perfetto Store | Saias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="menu-side" class="side-panel">
+        <button class="close-panel" id="close-menu">&times;</button>
+        <nav class="side-nav">
+            <h3 class="menu-title">Categorias</h3>
+            <a href="index.html">Início</a>
+            <a href="vestidos.html">Vestidos</a>
+            <a href="calcas.html">Calças</a>
+            <a href="saias.html" class="active">Saias</a>
+            <a href="blusas.html">Blusas</a>
+            <a href="shorts.html">Shorts</a>
+            <a href="conjuntos.html">Conjuntos</a>
+            <hr>
+            <a href="https://instagram.com/sualoja" target="_blank">Instagram 📸</a>
+        </nav>
+    </div>
+
+    <div id="bg-overlay" class="dark-bg"></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="nav-left">
+                <button id="menu-toggle" class="hamburger">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="logo">Perfetto <span class="lilac">Store</span></div>
+            </div>
+
+           <div class="search-box" style="position: relative;">
+    <input type="text" placeholder="Buscar produto..." id="search-in" autocomplete="off">
+    <button type="button">🔍</button>
+    
+    <div id="search-results" class="search-suggestions"></div>
+</div>
+
+            <div class="nav-right">
+                <nav class="main-nav">
+                    <a href="index.html">Início</a>
+                    <a href="https://instagram.com/sualoja" target="_blank">Instagram</a>
+                    <a href="https://wa.me/5547996302096" target="_blank">Contato</a>
+                </nav>
+                <div class="cart-box">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main style="margin-top: 100px;">
+        <section style="padding: 40px 5% 0;">
+            <h2 class="section-title" style="text-align: left;">Saias 💜</h2>
+            <p style="margin-top: 10px; color: #888;">Versatilidade e charme em cada detalhe. Arraste para o lado para ver mais. ✨</p>
+        </section>
+
+        <section class="products-section" id="produtos">
+            <div class="product-grid">
+                
+                <article class="card">
+                    <div class="product-images">
+                        <img src="img/saia1-frente.jpg" alt="Saia Midi Canelada">
+                    </div>
+                    <h3>Saia Midi Canelada</h3>
+                    <p class="price">R$ 89,90</p>
+                    <button class="btn-buy">Comprar</button>
+                </article>
+
+                <article class="card">
+                    <div class="product-images">
+                        <img src="img/saia2-frente.jpg" alt="Saia Jeans Destroyed">
+                    </div>
+                    <h3>Saia Jeans Destroyed</h3>
+                    <p class="price">R$ 120,00</p>
+                    <button class="btn-buy">Comprar</button>
+                </article>
+
+                <article class="card">
+                    <div class="product-images">
+                        <img src="img/saia3-frente.jpg" alt="Mini Saia Alfaiataria">
+                    </div>
+                    <h3>Mini Saia Alfaiataria</h3>
+                    <p class="price">R$ 75,00</p>
+                    <button class="btn-buy">Comprar</button>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Perfetto Store — Todos os direitos reservados</p>
+    </footer>
+
+    <a href="https://wa.me/5547996302096" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50" alt="WhatsApp">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
