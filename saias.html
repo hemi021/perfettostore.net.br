@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="img/PS.png" type="image/png">
+    <title>Perfetto Store | Saias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <div id="menu-side" class="side-panel">
+    <button class="close-panel" id="close-menu">&times;</button>
+    <nav class="side-nav">
+        <h3 class="menu-title">Categorias</h3>
+        <a href="index.html">Início</a>
+        <a href="vestidos.html">Vestidos</a>
+        <a href="calcas.html">Calças</a>
+        <a href="saias.html">Saias</a>
+        <a href="blusas.html">Blusas</a>
+        <a href="conjuntos.html">Conjuntos</a>
+    </nav>
+</div>
+<div id="bg-overlay" class="dark-bg"></div>
+<header class="main-header">
+    <div class="header-container">
+        <div class="nav-left">
+            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
+            <div class="logo"><a href="index.html">Perfetto <span class="lilac">Store</span></a></div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Buscar..." id="search-in">
+        </div>
+        <div class="nav-right">
+            <div class="cart-box" id="cart-trigger">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+ <main style="margin-top: 100px;">
+    <section style="padding: 40px 0 0;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left;">Saias 💜</h2>
+            <p style="margin-top: 10px; color: #888;">Versatilidade e charme em cada detalhe. ✨</p>
+        </div>
+    </section>
+
+    <section class="products-section" id="produtos">
+        <div class="container"> 
+            <div class="product-grid">
+                
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Midi Canelada')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/saia1-frente.jpg" alt="Saia Midi Canelada" class="product-img">
+                    
+                    <div class="card-content">
+                        <h3>Saia Midi Canelada</h3>
+                        <p class="price">R$ 89,90</p>
+                        <div class="payment-methods">
+                            <div class="payment-icons">
+                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                            </div>
+                            <span>ou 3x de <strong class="parcela-valor">R$ 29,96</strong></span>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Midi Canelada', 89.90, 'img/saia1-frente.jpg')">Eu quero</button>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Jeans Destroyed')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/saia2-frente.jpg" alt="Saia Jeans Destroyed" class="product-img">
+                    
+                    <div class="card-content">
+                        <h3>Saia Jeans Destroyed</h3>
+                        <p class="price">R$ 120,00</p>
+                        <div class="payment-methods">
+                            <div class="payment-icons">
+                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                            </div>
+                            <span>ou 3x de <strong class="parcela-valor">R$ 40,00</strong></span>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Jeans Destroyed', 120.00, 'img/saia2-frente.jpg')">Eu quero</button>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Mini Saia Alfaiataria')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/saia3-frente.jpg" alt="Mini Saia Alfaiataria" class="product-img">
+                    
+                    <div class="card-content">
+                        <h3>Mini Saia Alfaiataria</h3>
+                        <p class="price">R$ 75,00</p>
+                        <div class="payment-methods">
+                            <div class="payment-icons">
+                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                            </div>
+                            <span>ou 3x de <strong class="parcela-valor">R$ 25,00</strong></span>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Mini Saia Alfaiataria', 75.00, 'img/saia3-frente.jpg')">Eu quero</button>
+                    </div>
+                </article>
+
+            </div> </div> </section>
+</main>
+
+    <footer>
+        <p>© 2026 Perfetto Store — Todos os direitos reservados</p>
+    </footer>
+
+    <a href="https://wa.me/5547996302096" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50" alt="WhatsApp">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

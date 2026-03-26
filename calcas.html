@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="img/PS/PS.png" type="image/png">
+    <title>Perfetto Store | Calças</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="menu-side" class="side-panel">
+    <button class="close-panel" id="close-menu">&times;</button>
+    <nav class="side-nav">
+        <h3 class="menu-title">Categorias</h3>
+        <a href="index.html">Início</a>
+        <a href="vestidos.html">Vestidos</a>
+        <a href="calcas.html">Calças</a>
+        <a href="saias.html">Saias</a>
+        <a href="blusas.html">Blusas</a>
+        <a href="conjuntos.html">Conjuntos</a>
+    </nav>
+</div>
+<div id="bg-overlay" class="dark-bg"></div>
+<header class="main-header">
+    <div class="header-container">
+        <div class="nav-left">
+            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
+            <div class="logo"><a href="index.html">Perfetto <span class="lilac">Store</span></a></div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Buscar..." id="search-in">
+        </div>
+        <div class="nav-right">
+            <div class="cart-box" id="cart-trigger">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+  <main style="margin-top: 100px;">
+    <section style="padding: 40px 0 0;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left;">Calças 💜</h2>
+            <p style="margin-top: 10px; color: #888;">Estilo e conforto para o seu dia a dia.</p>
+        </div>
+    </section>
+
+    <section class="products-section" id="produtos">
+        <div class="container"> 
+            <div class="product-grid">
+                
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Nome da Calça')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/sua-calca.jpg" alt="Nome da Calça" class="product-img">
+                    
+                    <div class="card-content">
+                        <h3>Nome da Calça</h3>
+                        <div class="color-options">
+                            <span class="color-dot" style="background-color: #000;"></span>
+                        </div>
+                        <p class="price">R$ 149,90</p>
+                        <div class="payment-methods">
+                            <div class="payment-icons">
+                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                            </div>
+                            <span>ou 3x de <strong class="parcela-valor">R$ 49,96</strong></span>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Nome da Calça', 149.90, 'img/sua-calca.jpg')">Eu quero</button>
+                    </div>
+                </article>
+
+            </div> 
+        </div> 
+    </section>
+</main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="legal">
+                <p>CNPJ: 59.017.606/0001-82</p>
+                <p>© 2026 Perfetto Store — Joinville/SC</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5547996302096" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50" alt="WhatsApp">
+    </a>
+
+    <div id="modal-checkout" class="checkout-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-checkout">&times;</button>
+            <div id="camada-carrinho">
+                <div class="checkout-header">
+                    <h2>Seu Carrinho 💜</h2>
+                    <div id="resumo-carrinho" style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #957DAD;"></div>
+                </div>
+                <button type="button" id="ir-para-dados" class="btn-buy" style="width: 100%;">CONTINUAR PARA ENTREGA ➔</button>
+            </div>
+
+            <div id="camada-formulario" style="display: none;">
+                <div class="checkout-header"><h2>Finalizar Pedido 💜</h2></div>
+                <form id="form-final">
+                    <input type="text" id="c-nome" placeholder="Seu Nome Completo" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
+                    <input type="text" id="c-end" placeholder="Endereço (Rua, Nº, Bairro)" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
+                    <button type="button" id="btn-finish" class="btn-whatsapp-final" style="width: 100%; background: #957DAD; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                        PAGAR COM MERCADO PAGO ➔
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://sdk.mercadopago.com.br/js/v2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
