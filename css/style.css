@@ -125,29 +125,64 @@ body {
 /* ==========================================
    4. CARROSSEL E HERO
    ========================================== */
+/* --- Ajustes de Responsividade --- */
+
 .carousel {
-    position: relative; width: 100%; height: 450px; overflow: hidden;
+    position: relative; 
+    width: 100%; 
+    height: 450px; /* Altura para Computador */
+    overflow: hidden;
 }
 
-.carousel-inner { display: flex; height: 100%; transition: 0.6s ease-in-out; }
-
-.slide { min-width: 100%; height: 100%; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
-
-.arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.5); border: none; padding: 15px;
-    cursor: pointer; z-index: 10; border-radius: 50%; transition: 0.3s;
+.carousel-inner { 
+    display: flex; 
+    height: 100%; 
+    transition: 0.6s ease-in-out; 
 }
-.arrow:hover { background: var(--roxo-principal); color: white; }
-.prev { left: 20px; }
-.next { right: 20px; }
 
-.hero { padding: 60px 8%; background: var(--fundo-suave); }
-.hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-.hero-text h1 { font-size: 3rem; color: var(--texto-escuro); line-height: 1.1; margin-bottom: 20px; }
-.hero-img img { width: 350px; border-radius: 20px; box-shadow: 15px 15px 0 var(--roxo-principal); }
+.slide { 
+    min-width: 100%; 
+    height: 100%; 
+}
 
+.slide img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; /* Garante que o meio da foto sempre apareça */
+}
+
+/* MOBILE: Ajustes para Celular (Telas até 768px) */
+@media (max-width: 768px) {
+    .carousel {
+        height: 300px; /* Reduzimos a altura no celular para não sumir com o resto do site */
+    }
+
+    .arrow {
+        padding: 10px; /* Setas menores no celular para não atrapalhar o clique */
+        font-size: 0.8rem;
+    }
+
+    /* Ajuste do Hero (se estiver usando no mobile) */
+    .hero {
+        padding: 40px 5%;
+    }
+    
+    .hero-container {
+        flex-direction: column; /* Joga a imagem para baixo do texto no celular */
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem; /* Diminui o título para caber na tela */
+    }
+
+    .hero-img img {
+        width: 100%; /* Imagem do hero ocupa a largura toda no celular */
+        max-width: 300px;
+        box-shadow: 10px 10px 0 var(--roxo-principal);
+    }
+}
 /* ==========================================
    5. VITRINE E PADRONIZAÇÃO (CENTRALIZADO)
    ========================================== */
