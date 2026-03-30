@@ -17,15 +17,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
     background-color: var(--branco);
     color: var(--texto-escuro);
     line-height: 1.6;
-    padding-top: 80px; /* Respiro para o header fixo */
+    padding-top: 80px;
 }
 
 /* ==========================================
-   2. CABEÇALHO (HEADER FIXO)
+   2. HEADER E BUSCA
    ========================================== */
 .main-header {
     position: fixed;
@@ -55,586 +57,231 @@ body {
     border-radius: 2px;
 }
 
-.logo { font-size: 24px; font-weight: 700; white-space: nowrap; }
+.logo { font-size: 22px; font-weight: 700; }
+.logo a {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+.logo a:hover { opacity: 0.8; text-decoration: none !important; }
 .lilac { color: var(--roxo-principal); }
 
 .search-box { 
-    display: flex; align-items: center; 
     background: var(--cinza-claro); padding: 8px 15px; border-radius: 25px;
     flex: 1; max-width: 300px; margin: 0 20px;
 }
 
-.search-box input { border: none; background: transparent; outline: none; width: 100%; }
+.search-box input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; }
 
-.nav-right { display: flex; align-items: center; gap: 25px; }
-.main-nav a { text-decoration: none; color: var(--texto-escuro); font-weight: 500; transition: 0.3s; margin-left: 15px; }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.main-nav a { text-decoration: none; color: var(--texto-escuro); font-weight: 500; margin-left: 15px; transition: 0.3s; }
 .main-nav a:hover { color: var(--roxo-principal); }
 
 /* ==========================================
-   3. MENU LATERAL (SIDE-PANEL)
+   3. MENU LATERAL E FAVORITOS
    ========================================== */
 .side-panel {
     position: fixed;
-    left: -300px; /* Escondido */
-    top: 0; width: 280px; height: 100%;
+    left: -320px;
+    top: 0; width: 300px; height: 100%;
     background: var(--branco);
-    z-index: 5000;
-    transition: 0.4s ease;
+    z-index: 9000;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 60px 20px;
-    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+    display: flex; flex-direction: column;
 }
 
 .side-panel.active { left: 0; }
-/* ==========================================
-   MENU LATERAL - PALETA PERFETTO STORE
-   ========================================== */
-.side-panel {
-    position: fixed;
-    left: -300px;
-    top: 0;
-    width: 280px;
-    height: 100%;
-    background: var(--branco); /* Fundo branco limpo */
-    z-index: 5000;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 80px 20px 40px;
-    box-shadow: 5px 0 25px rgba(149, 125, 173, 0.1); /* Sombra leve em tom lilás */
-    border-right: 1px solid rgba(149, 125, 173, 0.1);
+
+.dark-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 8000; display: none;
+}
+.dark-bg.active { display: block; }
+
+.close-panel {
+    position: absolute; top: 20px; right: 20px;
+    background: none; border: none; font-size: 30px; color: var(--roxo-principal); cursor: pointer;
 }
 
-.menu-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--roxo-principal); /* Lilás da marca no título */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    padding-left: 10px;
-    border-left: 3px solid var(--roxo-principal); /* Barrinha lateral charmosa */
-}
-
-.side-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.menu-title, .wishlist-title {
+    font-size: 14px; font-weight: 600; color: var(--roxo-principal);
+    text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 15px;
+    border-left: 3px solid var(--roxo-principal); padding-left: 10px;
 }
 
 .side-nav a {
-    text-decoration: none;
-    color: var(--texto-escuro);
-    font-size: 16px;
-    font-weight: 500;
-    padding: 14px 18px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background-color: transparent;
+    display: block; text-decoration: none; color: var(--texto-escuro);
+    padding: 12px; border-radius: 8px; transition: 0.3s;
 }
+.side-nav a:hover { background: var(--fundo-suave); color: var(--roxo-principal); transform: translateX(5px); }
 
-/* EFEITO HOVER COM A COR DA PALETA */
-.side-nav a:hover {
-    background-color: var(--fundo-suave); /* Rosa/Lilás clarinho de fundo */
-    color: var(--roxo-principal); /* Texto vira o Lilás principal */
-    transform: translateX(8px); /* Desliza suavemente */
-}
-
-/* ITEM ATIVO OU SELECIONADO */
-.side-nav a.active {
-    background-color: var(--roxo-principal);
-    color: var(--branco);
-}
-
-/* BOTÃO DE FECHAR (X) */
-.close-panel {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: var(--fundo-suave);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: var(--roxo-principal);
-    font-size: 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-.close-panel:hover {
-    background-color: var(--roxo-principal);
-    color: var(--branco);
-    transform: rotate(90deg);
-}
 /* ==========================================
-   4. CARROSSEL (TRAVADO)
+   4. CARROSSEL E HERO (ESTRUTURA BASE)
    ========================================== */
 .carousel {
-    position: relative;
-    width: 100%; height: 450px;
+    position: relative; 
+    width: 100%; 
+    height: 450px;
     overflow: hidden;
+    margin: 0 auto;
 }
 
-.carousel-inner {
-    display: flex; height: 100%;
-    transition: transform 0.6s ease-in-out;
+.carousel-inner { 
+    display: flex; 
+    height: 100%; 
+    transition: 0.6s ease-in-out; 
 }
 
 .slide { min-width: 100%; height: 100%; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-.arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(0,0,0,0.2); color: white; border: none;
-    padding: 15px; cursor: pointer; z-index: 10;
-}
-.next { right: 0; }
-
-/* ==========================================
-   5. SEÇÃO HERO (AJUSTADA PARA IMAGEM NÃO FICAR GIGANTE)
-   ========================================== */
 .hero {
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    padding: 60px 8%; 
-    background-color: var(--fundo-suave);
-    overflow: hidden; /* Garante que nada escape */
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 8%; background-color: var(--fundo-suave);
 }
 
 .hero-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1100px; /* Reduzi um pouco para ficar mais centralizado */
-    width: 100%;
-    gap: 40px;
+    display: flex; align-items: center; justify-content: center;
+    max-width: 1200px; width: 100%; gap: 40px; text-align: center;
 }
 
-.hero-text {
-    flex: 1;
-    max-width: 500px;
-    z-index: 2;
-}
-
-.hero-text h1 { 
-    font-size: 3rem; 
-    line-height: 1.1; 
-    margin-bottom: 20px; 
-    color: var(--texto-escuro);
-}
-
-/* CONTAINER DA IMAGEM PARA TRAVAR O TAMANHO */
-.hero-img {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+.hero-text { flex: 1; max-width: 500px; z-index: 2; }
+.hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--texto-escuro); }
 
 .hero-img img {
-    /* AQUI ESTÁ A MÁGICA: */
-    width: 380px; /* Largura fixa para não explodir */
-    height: 500px; /* Altura fixa para manter o padrão boutique */
-    object-fit: cover; /* Corta a imagem sem distorcer */
-    border-radius: 20px;
-    box-shadow: 20px 20px 0 var(--roxo-principal); /* Sua moldura */
-    display: block;
+    width: 380px; height: 500px; object-fit: cover;
+    border-radius: 20px; box-shadow: 20px 20px 0 var(--roxo-principal);
 }
 
-
 /* ==========================================
-   6. VITRINE DE PRODUTOS
+   5. VITRINE E PRODUTOS
    ========================================== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
 .product-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; padding: 40px 8%;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 25px; padding: 40px 0;
 }
 
 .card {
-    background: var(--branco); border: 1px solid #f0f0f0;
-    padding: 20px; border-radius: 15px; text-align: center;
+    background: var(--branco); border: 1px solid #eee; border-radius: 15px;
+    padding: 15px; position: relative; transition: 0.3s ease;
+    display: flex; flex-direction: column; justify-content: space-between;
 }
 
-.card img { width: 100%; height: 380px; object-fit: cover; border-radius: 10px; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
+
+.product-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; }
+
+.btn-fav {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--branco); border: none; width: 35px; height: 35px;
+    border-radius: 50%; color: #ddd; cursor: pointer; z-index: 5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center; justify-content: center;
+}
+
+.btn-share {
+    position: absolute; top: 20px; left: 20px;
+    background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%;
+    width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--roxo-principal); z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;
+}
+.btn-share:hover { background: var(--roxo-principal); color: white; transform: scale(1.1); }
+
+.price { color: var(--roxo-principal); font-weight: 700; font-size: 18px; display: block; margin-bottom: 10px; text-align: center; }
 
 .btn-buy {
-    background-color: var(--roxo-principal); color: var(--branco);
-    border: none; width: 100%; padding: 14px; border-radius: 8px;
-    cursor: pointer; font-weight: 600; margin-top: 15px;
+    width: 100%; background: var(--roxo-principal); color: var(--branco);
+    border: none; padding: 12px; border-radius: 8px; font-weight: 600;
+    cursor: pointer; transition: 0.3s;
 }
+.btn-buy:hover { background: var(--roxo-escuro); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(149, 125, 173, 0.3); }
 
 /* ==========================================
-   7. MODAL DE CHECKOUT (O POP-UP)
+   6. RODAPÉ E MODAL
    ========================================== */
+.main-footer { background: #f9f9f9; padding: 40px 5%; border-top: 1px solid #eee; margin-top: 50px; }
+.footer-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.pay-img { height: 25px; filter: grayscale(100%); opacity: 0.5; transition: 0.3s; }
+.pay-img:hover { filter: grayscale(0%); opacity: 1; }
+.legal { text-align: center; font-size: 12px; color: #999; }
+
 .checkout-modal {
-    display: none; position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(15px);
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
     z-index: 9999; align-items: center; justify-content: center;
 }
-
 .checkout-modal.active { display: flex; }
+.modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; }
 
-.modal-content {
-    background: white; padding: 40px; border-radius: 30px;
-    max-width: 400px; width: 90%; position: relative;
-    box-shadow: 0 20px 50px rgba(149, 125, 173, 0.2);
-}
-
-.close-modal { 
-    position: absolute; right: 20px; top: 15px; 
-    background: none; border: none; font-size: 30px; cursor: pointer; 
-}
-
-#form-final input {
-    width: 100%; padding: 15px; margin-bottom: 15px;
-    border: 1px solid #eee; border-radius: 10px;
-}
-
-.btn-whatsapp-final {
-    width: 100%; padding: 18px; background: #25d366;
-    color: white; border: none; border-radius: 15px;
-    font-weight: 700; cursor: pointer;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-    .main-nav, .search-box { display: none; }
-    .hero { flex-direction: column; text-align: center; }
-    .hero-img img { box-shadow: 10px 10px 0 var(--roxo-principal); }
-}
 /* ==========================================
-   8. RODAPÉ (FOOTER ÚNICO E ORGANIZADO)
+   7. LISTA DE FAVORITOS (SIDE PANEL)
    ========================================== */
-footer {
-    background-color: #fcfcfc;
-    padding: 50px 5% 30px;
-    border-top: 1px solid #f0f0f0;
-    margin-top: 50px;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.pay-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.pay-img {
-    height: 20px; /* Bandeiras pequenas e elegantes */
-    width: auto;
-    filter: grayscale(100%);
-    opacity: 0.5;
-    transition: 0.3s;
-}
-
-.pay-img:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-}
-
-.legal {
-    text-align: center;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-    width: 100%;
-    font-size: 12px;
-    color: #999;
-}
-
-/* RESPONSIVIDADE PARA O HERO */
-@media (max-width: 900px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .hero-img img {
-        width: 280px; /* Menor no celular */
-        height: 380px;
-        box-shadow: 15px 15px 0 var(--roxo-principal);
-    }
-}
-/* ==========================================
-   AJUSTE DE HOVER - BOTÃO COMPRAR
-   ========================================== */
-.btn-buy {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição suave */
-    position: relative;
-    overflow: hidden;
-}
-
-/* Efeito ao passar o mouse */
-.btn-buy:hover {
-    background-color: var(--roxo-escuro); /* Usa a cor escura que já está no seu :root */
-    transform: translateY(-3px); /* Faz o botão subir levemente */
-    box-shadow: 0 8px 15px rgba(149, 125, 173, 0.3); /* Sombra lilás suave */
-}
-
-/* Efeito de clique (pressionar) */
-.btn-buy:active {
-    transform: translateY(-1px);
-    transform: scale(0.98); /* Dá a sensação de apertar o botão */
-}
-/* ==========================================
-   EFEITO HOVER NO ÍCONE DO CARRINHO (HEADER)
-   ========================================== */
-#cart-trigger {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 8px 12px;
-    border-radius: 20px;
-}
-
-/* Quando passa o mouse no carrinho */
-#cart-trigger:hover {
-    background-color: var(--fundo-suave); /* Aquele lilás bem clarinho */
-    transform: translateY(-3px); /* Efeito de flutuar */
-}
-
-/* Muda a cor do ícone ou do texto do carrinho no hover */
-#cart-trigger:hover i, 
-#cart-trigger:hover svg,
-#cart-trigger:hover .cart-count {
-    color: var(--roxo-escuro);
-}
-
-/* Efeito de clique no carrinho */
-#cart-trigger:active {
-    transform: scale(0.95);
-}
-/* ==========================================
-   VISUAL MODERNO E TRANSLÚCIDO (GLASS) DA BUSCA
-   ========================================== */
-.search-suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    margin-top: 8px; /* Pequeno respiro entre a barra e a lista */
-    
-    /* A MÁGICA DO EFEITO VIDRO */
-    background: rgba(255, 255, 255, 0.7); /* Fundo branco com 70% de opacidade */
-    backdrop-filter: blur(15px); /* Embaça o que estiver atrás da caixa (banners, etc.) */
-    -webkit-backdrop-filter: blur(15px); /* Suporte para Safari/iOS */
-    
-    border-radius: 16px; /* Bordas mais arredondadas e modernas */
-    border: 1px solid rgba(149, 125, 173, 0.15); /* Borda lilás beeem clarinha e translúcida */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra suave para dar profundidade */
-    
-    z-index: 9999;
-    max-height: 350px; /* Altura máxima da lista */
-    overflow-y: auto; /* Adiciona rolagem se tiver muitos itens */
-    display: none; /* Começa escondido */
-    
-    /* Transição suave ao aparecer (opcional, se usar JS para toggle) */
-    transition: all 0.3s ease;
-}
-
-/* ESTILO DE CADA ITEM DA SUGESTÃO (FOTO + TÍTULO) */
-.suggestion-item {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Espaço entre a foto e o texto */
-    padding: 12px 18px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    border-bottom: 1px solid rgba(149, 125, 173, 0.06); /* Linha divisória quase invisível */
-}
-
-/* Remove a linha do último item */
-.suggestion-item:last-child {
-    border-bottom: none;
-}
-
-/* Efeito ao passar o mouse em um item da lista */
-.suggestion-item:hover {
-    background-color: rgba(149, 125, 173, 0.1); /* Fundo lilás muito sutil e translúcido */
-}
-
-/* Estilo da miniatura da foto */
-.suggestion-item img {
-    width: 45px; /* Tamanho da miniatura */
-    height: 60px;
-    object-fit: cover; /* Corta a imagem sem distorcer */
-    border-radius: 8px; /* Bordas arredondadas na fotinho */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra bem leve na foto */
-}
-
-/* Estilo do título do produto */
-.suggestion-item span {
-    font-size: 14px;
-    color: var(--texto-escuro); /* Usa a cor do seu :root */
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif; /* Mesma fonte do site */
-}
-
-.suggestion-item:hover {
-    background-color: var(--fundo-suave);
-}
-
-.suggestion-item img {
-    width: 45px;
-    height: 55px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.suggestion-item span {
-    font-size: 14px;
-    color: var(--texto-escuro);
-    font-weight: 500;
-}
-/*teste frete*/
-.shipping-calculator {
-    margin-top: 15px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-    text-align: left;
-}
-
-.cep-input {
-    width: 60%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 13px;
-}
-
-.btn-calc {
-    background: #f0f0f0;
-    border: none;
-    padding: 8px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: 0.3s;
-}
-
-.btn-calc:hover {
-    background: #957DAD;
-    color: white;
-}
-
-.shipping-result {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #555;
-    background: rgba(149, 125, 173, 0.05);
-    padding: 8px;
-    border-radius: 5px;
-}
-
-.shipping-option {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-/* Estilo da Calculadora de Frete nos Cards */
-.shipping-calculator {
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px dashed #eee;
-}
-
-.cep-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 13px;
-    outline: none;
-}
-
-.cep-input:focus {
-    border-color: #957DAD;
-}
-
-.btn-calc {
-    background: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: 0 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 11px;
-    white-space: nowrap;
-    transition: 0.3s;
-}
-
-.btn-calc:hover {
-    background: #957DAD;
-    color: white;
-    border-color: #957DAD;
-}
-
-.shipping-result {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #444;
-    line-height: 1.4;
-    background: #fdfbff;
-    padding: 5px;
-    border-radius: 4px;
-}
+.fav-item { display: flex; align-items: center; gap: 12px; padding: 10px; background: #fff; border-radius: 10px; border: 1px solid #f0f0f0; margin-bottom: 10px; }
+.fav-item img { width: 60px; height: 75px; object-fit: cover; border-radius: 5px; }
+#lista-favoritos { max-height: 70vh; overflow-y: auto; scrollbar-width: thin; }
+.btn-limpar-fav { width: 100%; margin-top: 20px; padding: 12px; background: transparent; color: #ff4d4d; border: 1px dashed #ff4d4d; border-radius: 8px; cursor: pointer; }
 
 /* ==========================================
-    9. AJUSTE FINAL PARA CELULAR (2 COLUNAS)
+   8. RESPONSIVIDADE E CORREÇÕES (CELULAR)
    ========================================== */
 @media screen and (max-width: 768px) {
-    /* Força a vitrine a ter 2 colunas */
-    .product-grid {
+    /* 1. Header e Ajustes de Respiro */
+    body { padding-top: 70px; }
+    .main-nav, .search-box { display: none; }
+
+    /* 2. Carrossel Ajustado */
+    .carousel { 
+        height: 300px !important; 
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* 3. Hero e "Coleção Perfetto" Centralizado */
+    .hero { padding: 40px 5% !important; }
+    .hero-container { 
+        flex-direction: column !important; 
+        text-align: center !important; 
+        gap: 20px !important;
+    }
+    .hero-text h1 { font-size: 2.2rem !important; }
+    .hero-img img { width: 100% !important; max-width: 280px !important; height: auto !important; box-shadow: 10px 10px 0 var(--roxo-principal) !important; }
+
+    /* 4. Vitrine de 2 Colunas (O Coração do Projeto) */
+    section#produtos .product-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important; 
         gap: 10px !important;
-        padding: 15px 10px !important;
+        padding: 20px 10px !important;
     }
 
-    /* Ajusta o tamanho dos cards para caberem lado a lado */
-    .card {
-        padding: 10px !important;
+    .product-grid .card {
+        width: 100% !important;
         min-width: 0 !important;
+        margin: 0 !important;
+        padding: 8px !important;
     }
 
-    /* Reduz a altura da imagem para não esticar o card */
-    .card img, .product-img {
-        height: 180px !important;
-        object-fit: cover !important;
-    }
+    .product-img { height: 180px !important; }
 
-    /* Ajusta os textos para não encavalarem */
-    .card h3, .card-content h3 {
-        font-size: 13px !important;
-        min-height: 32px !important;
-        margin: 5px 0 !important;
-    }
-
-    .price {
-        font-size: 15px !important;
-    }
-
-    /* Esconde a calculadora de frete nos cards apenas no mobile para limpar o visual */
-    .shipping-calculator {
-        display: none !important;
-    }
-
-    /* Ajusta o botão comprar */
-    .btn-buy {
-        padding: 10px 5px !important;
-        font-size: 11px !important;
-    }
+    .card-content h3 { font-size: 13px !important; min-height: 34px !important; margin: 5px 0 !important; }
+    .price { font-size: 15px !important; }
+    .btn-buy { padding: 10px 5px !important; font-size: 11px !important; }
+    
+    /* 5. Ajustes de Ícones Mobile */
+    .payment-methods { font-size: 9px !important; }
+    .icon-pix, .icon-cartao { height: 14px !important; }
+    .btn-fav, .btn-share { width: 30px !important; height: 30px !important; top: 10px !important; }
+    .btn-fav { right: 10px !important; }
+    .btn-share { left: 10px !important; }
 }
+
+/* Estilo das bolinhas de cores (Geral) */
+.color-options { display: flex; justify-content: center; gap: 8px; margin: 10px 0; }
+.color-dot { width: 15px; height: 15px; border-radius: 50%; cursor: pointer; border: 1px solid #eee; transition: 0.3s; }
+.color-dot:hover { transform: scale(1.3); border-color: var(--roxo-principal); }
