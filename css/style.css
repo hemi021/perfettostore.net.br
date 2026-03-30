@@ -382,13 +382,70 @@ body {
     width: 90%; max-width: 400px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
 
-/* RESPONSIVIDADE */
+/* ==========================================
+   8. RESPONSIVIDADE FINAL (MOBILE 2 COLUNAS)
+   ========================================== */
 @media (max-width: 768px) {
+    /* Esconde elementos grandes da Home */
     .main-nav, .hero-img { display: none; }
     .hero-text h1 { font-size: 2rem; }
     .hero { text-align: center; }
+
+    /* FORÇA 2 COLUNAS NA VITRINE */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;           /* Espaçamento menor entre cards */
+        padding: 20px 10px;  /* Respiro nas laterais da tela */
+    }
+
+    /* AJUSTE DO CARD E IMAGEM */
+    .card {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .product-img {
+        height: 180px;       /* Altura menor para as fotos caberem lado a lado */
+    }
+
+    /* AJUSTE DOS TEXTOS E BOTÕES */
+    .card-content h3 {
+        font-size: 13px;     /* Título menor */
+        min-height: 34px;    /* Alinha os botões horizontalmente */
+        margin: 5px 0;
+    }
+
+    .price {
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    /* MANTÉM PAGAMENTO E CORES (REDUZIDOS) */
+    .color-dot {
+        width: 12px; height: 12px;
+    }
+
+    .payment-methods {
+        font-size: 9px;      /* Texto de parcelas menor */
+        margin-bottom: 8px;
+    }
+
+    .icon-pix, .icon-cartao {
+        height: 14px;        /* Ícones pequenos */
+    }
+
+    .btn-buy {
+        padding: 10px 5px;
+        font-size: 11px;
+    }
+
+    /* CORAÇÃO FAVORITO */
+    .btn-fav {
+        width: 28px; height: 28px;
+        top: 10px; right: 10px;
+    }
 }
-/* ==========================================
+/*================================
    AJUSTE DOS FAVORITOS (MINIATURAS)
    ========================================== */
 
