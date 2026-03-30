@@ -591,3 +591,50 @@ footer {
     padding: 5px;
     border-radius: 4px;
 }
+
+/* ==========================================
+    9. AJUSTE FINAL PARA CELULAR (2 COLUNAS)
+   ========================================== */
+@media screen and (max-width: 768px) {
+    /* Força a vitrine a ter 2 colunas */
+    .product-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important;
+        padding: 15px 10px !important;
+    }
+
+    /* Ajusta o tamanho dos cards para caberem lado a lado */
+    .card {
+        padding: 10px !important;
+        min-width: 0 !important;
+    }
+
+    /* Reduz a altura da imagem para não esticar o card */
+    .card img, .product-img {
+        height: 180px !important;
+        object-fit: cover !important;
+    }
+
+    /* Ajusta os textos para não encavalarem */
+    .card h3, .card-content h3 {
+        font-size: 13px !important;
+        min-height: 32px !important;
+        margin: 5px 0 !important;
+    }
+
+    .price {
+        font-size: 15px !important;
+    }
+
+    /* Esconde a calculadora de frete nos cards apenas no mobile para limpar o visual */
+    .shipping-calculator {
+        display: none !important;
+    }
+
+    /* Ajusta o botão comprar */
+    .btn-buy {
+        padding: 10px 5px !important;
+        font-size: 11px !important;
+    }
+}
