@@ -123,64 +123,105 @@ body {
 .dark-bg.active { display: block; }
 
 /* ==========================================
-   4. CARROSSEL E HERO
+   4. HERO - AJUSTE PARA COMPUTADOR E MOBILE
    ========================================== */
-/* --- Ajustes de Responsividade --- */
 
-.carousel {
-    position: relative; 
-    width: 100%; 
-    height: 450px; /* Altura para Computador */
+.hero {
+    background-color: var(--fundo-suave);
+    padding: 60px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
-.carousel-inner { 
-    display: flex; 
-    height: 100%; 
-    transition: 0.6s ease-in-out; 
+.hero-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Texto na esquerda, imagem na direita */
+    gap: 50px;
 }
 
-.slide { 
-    min-width: 100%; 
-    height: 100%; 
+/* Lado do Texto */
+.hero-text {
+    flex: 1;
+    text-align: left;
 }
 
-.slide img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    object-position: center; /* Garante que o meio da foto sempre apareça */
+.hero-text h1 {
+    font-size: 3.5rem; /* Título grande no PC */
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--texto-escuro);
 }
 
-/* MOBILE: Ajustes para Celular (Telas até 768px) */
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #666;
+    max-width: 450px;
+}
+
+/* Botão Chamada para Ação (CTA) */
+.btn-cta {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: var(--roxo-principal);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(149, 125, 173, 0.3);
+}
+
+.btn-cta:hover {
+    background-color: var(--roxo-escuro);
+    transform: translateY(-3px);
+}
+
+/* Lado da Imagem */
+.hero-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-img img {
+    width: 100%;
+    max-width: 450px; /* Não deixa a imagem ficar gigante */
+    border-radius: 20px;
+    box-shadow: 20px 20px 0px var(--roxo-principal); /* Aquele detalhe charmoso atrás da foto */
+    object-fit: cover;
+}
+
+/* --- Responsividade (Ajuste para Celular) --- */
 @media (max-width: 768px) {
-    .carousel {
-        height: 300px; /* Reduzimos a altura no celular para não sumir com o resto do site */
-    }
-
-    .arrow {
-        padding: 10px; /* Setas menores no celular para não atrapalhar o clique */
-        font-size: 0.8rem;
-    }
-
-    /* Ajuste do Hero (se estiver usando no mobile) */
-    .hero {
-        padding: 40px 5%;
-    }
-    
     .hero-container {
-        flex-direction: column; /* Joga a imagem para baixo do texto no celular */
+        flex-direction: column; /* Empilha no celular */
         text-align: center;
+        gap: 30px;
+    }
+
+    .hero-text {
+        text-align: center;
+        order: 1; /* Texto em cima */
     }
 
     .hero-text h1 {
-        font-size: 2rem; /* Diminui o título para caber na tela */
+        font-size: 2.2rem;
+    }
+
+    .hero-img {
+        order: 2; /* Imagem embaixo */
     }
 
     .hero-img img {
-        width: 100%; /* Imagem do hero ocupa a largura toda no celular */
         max-width: 300px;
-        box-shadow: 10px 10px 0 var(--roxo-principal);
+        box-shadow: 10px 10px 0px var(--roxo-principal); /* Sombra menor no mobile */
     }
 }
 /* ==========================================
@@ -385,17 +426,50 @@ body {
 /* ==========================================
    8. RESPONSIVIDADE FINAL (MOBILE 2 COLUNAS)
    ========================================== */
-@media (max-width: 768px) {
-    /* Esconde elementos grandes da Home */
-    .main-nav, .hero-img { display: none; }
-    .hero-text h1 { font-size: 2rem; }
-    .hero { text-align: center; }
+   /* ==========================================
+   CORREÇÕES DE ESTABILIDADE (PÓS-GRID)
+   ========================================== */
 
-    /* FORÇA 2 COLUNAS NA VITRINE */
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 10px;           /* Espaçamento menor entre cards */
-        padding: 20px 10px;  /* Respiro nas laterais da tela */
+/* Garante que o carrossel ocupe a largura total sem margens estranhas */
+.carousel {
+    width: 100% !important;
+    max-width: 100vw;
+    margin: 0 !important;
+}
+
+/* Centraliza o Hero (Coleção Perfetto) independente do grid abaixo */
+.hero-container {
+    display: flex !important;
+    flex-direction: column !important; /* No mobile, empilha o texto */
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.hero-text {
+    max-width: 100% !important;
+    padding: 0 20px;
+}
+
+.hero-text h1 {
+    font-size: 2.2rem !important; /* Ajuste para não quebrar linha feio no celular */
+    text-align: center !important;
+}
+@media screen and (max-width: 768px) {
+    /* Forçamos o container de produtos a ser um Grid de 2 colunas */
+    section#produtos .product-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important;
+        padding: 15px 5px !important;
+    }
+
+    /* Garantimos que o card não tente ser mais largo que a coluna */
+    .product-grid .card {
+        width: 100% !important;
+        min-width: 0 !important; /* Remove qualquer trava de largura mínima */
+        margin: 0 !important;
     }
 
     /* AJUSTE DO CARD E IMAGEM */
@@ -443,6 +517,37 @@ body {
     .btn-fav {
         width: 28px; height: 28px;
         top: 10px; right: 10px;
+    }
+}
+/* ==========================================
+   8. RESPONSIVIDADE FINAL (MOBILE 2 COLUNAS)
+   ========================================== */
+@media screen and (max-width: 768px) {
+    .product-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important;
+        padding: 15px 5px !important;
+    }
+
+    .product-grid .card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 8px !important;
+    }
+
+    .product-img {
+        height: 180px !important;
+    }
+
+    .card-content h3 {
+        font-size: 13px !important;
+        min-height: 34px !important;
+    }
+
+    .payment-methods {
+        font-size: 9px !important;
     }
 }
 /*================================
