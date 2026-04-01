@@ -65,38 +65,26 @@ function iniciarCarrossel() {
 /* ==========================================
    3. SISTEMA DE CARRINHO
    ========================================== */
-function atualizarContadorTotal() {
-    const cartCountElement = document.getElementById('cart-count');
-    const totalItens = listaDeProdutos.reduce((soma, item) => soma + item.qtd, 0);
-    if (cartCountElement) cartCountElement.innerText = totalItens;
-}
-
-// Configura botões de compra da vitrine
-function configurarBotoesCompra() {
-    const buyButtons = document.querySelectorAll('.btn-buy');
-    buyButtons.forEach(btn => {
-        btn.onclick = () => {
-            const card = btn.closest('.card');
-            if (card) {
-                const nome = card.querySelector('h3').innerText;
-                const preco = card.querySelector('.price').innerText;
-                adicionarAoCarrinho(nome, preco);
-                
-                btn.innerHTML = "Adicionado! ✓";
-                setTimeout(() => { btn.innerHTML = "Eu quero"; }, 800);
-            }
-        };
-    });
-}
-
-function adicionarAoCarrinho(nome, preco) {
+function adicionarAoCarrinho(nome, preco, imagem, botao) {
     const itemExistente = listaDeProdutos.find(item => item.nome === nome);
     if (itemExistente) {
         itemExistente.qtd += 1;
     } else {
-        listaDeProdutos.push({ nome: nome, preco: preco, qtd: 1 });
+        listaDeProdutos.push({ nome: nome, preco: preco, img: imagem, qtd: 1 });
     }
+    
     atualizarContadorTotal();
+
+    // Feedback visual no botão
+    if (botao) {
+        const textoOriginal = botao.innerHTML;
+        botao.innerHTML = "Adicionado! ✓";
+        botao.style.background = "#28a745"; // Verde de sucesso
+        setTimeout(() => { 
+            botao.innerHTML = textoOriginal; 
+            botao.style.background = ""; // Volta ao original
+        }, 800);
+    }
 }
 
 /* ==========================================
@@ -190,7 +178,7 @@ window.compartilharProduto = function(nome) {
 document.addEventListener('DOMContentLoaded', () => {
     inicializarMenu();
     iniciarCarrossel();
-    configurarBotoesCompra();
+    
     renderizarFavoritos();
 });
 
