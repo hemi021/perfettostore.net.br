@@ -983,3 +983,29 @@ body {
         flex-direction: column;
     }
 }
+/* Remove a cor azul padrão e o sublinhado dos links nos títulos */
+.card-content a {
+    text-decoration: none;
+    color: inherit; /* Faz o link herdar a cor preta/cinza que já estava no h3 */
+    display: block; /* Garante que a área do clique seja boa */
+}
+
+/* Efeito Hover (passar o mouse) no Título */
+.card-content h3 {
+    transition: color 0.3s ease; /* Deixa a mudança de cor suave */
+    cursor: pointer;
+}
+
+.card-content a:hover h3 {
+    color: #957DAD; /* Muda para o lilás da sua marca ao passar o mouse */
+}
+
+/* Efeito Hover na Imagem (Opcional, mas fica muito profissional) */
+.card a .product-img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card a:hover .product-img {
+    transform: scale(1.02); /* Dá um leve zoom na foto */
+    opacity: 0.9; /* Deixa um pouquinho transparente */
+}
