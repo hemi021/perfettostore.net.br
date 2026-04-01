@@ -123,52 +123,42 @@ body {
 .dark-bg.active { display: block; }
 
 /* ==========================================
-   4. CARROSSEL DE BANNERS - AJUSTE DE TAMANHO
+   4. CARROSSEL DE BANNERS - AJUSTE DE PROPORÇÃO
    ========================================== */
 .carousel {
-    width: 100%;
-    max-height: 500px; /* Define uma altura máxima para o banner não ocupar a tela toda */
-    overflow: hidden;
+    width: 100% !important;
+    height: 450px !important; /* ALTURA FIXA PARA O PC */
+    overflow: hidden;         /* Esconde o que sobra das imagens gigantes */
     position: relative;
-    background: #fff;
+    background: #eee;
 }
 
-.carousel-inner, #carousel-container {
+#carousel-container {
     display: flex !important;
+    height: 100% !important;
     transition: transform 0.5s ease-in-out;
-    width: 100%;
-    height: 100%;
 }
 
 .slide {
     min-width: 100% !important;
+    height: 100% !important;
     flex-shrink: 0;
-    height: 100%;
 }
 
 .slide img {
     width: 100% !important;
-    height: 500px !important; /* Força a mesma altura do container */
-    object-fit: cover !important; /* Corta a imagem para caber sem achatar */
+    height: 100% !important;
+    object-fit: cover !important; /* CORTA A IMAGEM PARA CABER NO RETÂNGULO SEM ESTICAR */
+    object-position: center;     /* Mantém o centro da foto visível */
     display: block;
 }
 
-/* Setas */
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.7);
-    border: none;
-    font-size: 24px;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    z-index: 100; /* Garante que as setas fiquem na frente de tudo */
-    color: var(--roxo-principal);
+/* --- AJUSTE PARA CELULAR --- */
+@media (max-width: 768px) {
+    .carousel {
+        height: 250px !important; /* ALTURA MENOR NO CELULAR */
+    }
 }
-.prev { left: 20px; }
-.next { right: 20px; }
 /* ==========================================
    5. VITRINE E PADRONIZAÇÃO (CENTRALIZADO)
    ========================================== */
