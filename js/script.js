@@ -193,3 +193,38 @@ document.addEventListener('DOMContentLoaded', () => {
     configurarBotoesCompra();
     renderizarFavoritos();
 });
+
+// ==========================================
+// FUNÇÕES DA PÁGINA DE PRODUTO
+// ==========================================
+
+// 1. Trocar Imagem Principal ao clicar na miniatura
+function changeImage(element) {
+    const mainImg = document.getElementById('mainImg');
+    if (mainImg) {
+        mainImg.src = element.src;
+        
+        // Atualiza a borda das miniaturas
+        const thumbs = document.querySelectorAll('.thumb-item');
+        thumbs.forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+    }
+}
+
+// 2. Selecionar Tamanho (P, M, G)
+function selectSize(btn) {
+    const btns = document.querySelectorAll('.size-option');
+    btns.forEach(b => b.classList.remove('selected'));
+    
+    btn.classList.add('selected');
+}
+
+// 3. Função para garantir que o Guia de Medidas role suavemente
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
