@@ -1023,3 +1023,28 @@ body {
     transform: scale(1.02); /* Dá um leve zoom na foto */
     opacity: 0.9; /* Deixa um pouquinho transparente */
 }
+/* Mata o texto que vaza em cima das imagens dos cards */
+.product-img::before, 
+.product-img::after,
+.card a::before,
+.card a::after,
+.card::before,
+.card::after {
+    content: none !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Garante que o link da imagem não tenha textos fantasmas */
+.card a {
+    text-decoration: none !important;
+    font-size: 0 !important; /* Remove qualquer espaço de texto residual */
+    color: transparent !important;
+}
+
+/* Restaura o tamanho dos textos reais dentro do card-content */
+.card-content * {
+    font-size: initial !important;
+    color: inherit !important;
+}

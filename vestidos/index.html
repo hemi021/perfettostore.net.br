@@ -53,74 +53,66 @@
     </section>
 
     <section class="products-section" id="produtos">
-    <div class="container"> 
-        <div class="product-grid">
-            
-            <article class="card">
-                <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin Soft')">
-                    <i class="far fa-heart"></i>
-                </button>
+        <div class="container"> 
+            <div class="product-grid">
                 
-                <a href="../produto.html">
-                    <img src="../img/roupa2.jpg" alt="Vestido Satin Soft" class="product-img">
-                </a>
-                
-                <div class="card-content">
-                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
-                        <h3>Vestido Satin Soft</h3>
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin Soft')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="../produto.html">
+                        <img src="../img/roupa2.jpg" alt="Vestido Satin Soft" class="product-img">
                     </a>
-
-                    <div class="color-options">
-                        <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
-                        <span class="color-dot" style="background-color: #000;" title="Preto"></span>
-                    </div>
-
-                    <p class="price">R$ 189,90</p>
-                    <div class="payment-methods">
-                        <div class="payment-icons">
-                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                    <div class="card-content">
+                        <a href="../produto.html" style="text-decoration: none; color: inherit;">
+                            <h3>Vestido Satin Soft</h3>
+                        </a>
+                        <div class="color-options">
+                            <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
+                            <span class="color-dot" style="background-color: #000;" title="Preto"></span>
                         </div>
-                        <span>ou 3x de <strong class="parcela-valor">R$ 63,30</strong></span>
+                        <p class="price">R$ 189,90</p>
+                        <div class="payment-methods">
+                            <div class="payment-icons">
+                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                            </div>
+                            <span>ou 3x de <strong class="parcela-valor">R$ 63,30</strong></span>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin Soft', 189.90, '../img/roupa2.jpg')">Eu quero</button>
                     </div>
-                    <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin Soft', 189.90, '../img/roupa2.jpg')">Eu quero</button>
-                </div>
-            </article>
+                </article>
 
-            <article class="card">
-                <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Floral Midi')">
-                    <i class="far fa-heart"></i>
-                </button>
-                
-                <a href="../produto.html">
-                    <img src="../img/vestido2-frente.jpg" alt="Vestido Floral Midi" class="product-img">
-                </a>
-                
-                <div class="card-content">
-                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
-                        <h3>Vestido Floral Midi</h3>
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Floral Midi')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="../produto.html">
+                        <img src="../img/vestido2-frente.jpg" alt="Vestido Floral Midi" class="product-img">
                     </a>
-
-                    <div class="color-options">
-                        <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
-                        <span class="color-dot" style="background-color: #ffb6c1;" title="Rosa"></span>
-                    </div>
-
-                    <p class="price">R$ 210,00</p>
-                    <div class="payment-methods">
-                        <div class="payment-icons">
-                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                    <div class="card-content">
+                        <a href="../produto.html" style="text-decoration: none; color: inherit;">
+                            <h3>Vestido Floral Midi</h3>
+                        </a>
+                        <div class="color-options">
+                            <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
+                            <span class="color-dot" style="background-color: #ffb6c1;" title="Rosa"></span>
                         </div>
-                        <span>ou 3x de <strong class="parcela-valor">R$ 70,00</strong></span>
+                        <p class="price">R$ 210,00</p>
+                        <div class="payment-methods">
+                            <div class="payment-icons">
+                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                            </div>
+                            <span>ou 3x de <strong class="parcela-valor">R$ 70,00</strong></span>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Floral Midi', 210.00, '../img/vestido2-frente.jpg')">Eu quero</button>
                     </div>
-                    <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Floral Midi', 210.00, '../img/vestido2-frente.jpg')">Eu quero</button>
-                </div>
-            </article>
+                </article>
 
+            </div> 
         </div> 
-    </div> 
-</section>
+    </section>
 </main>
 
 <footer class="main-footer">
@@ -144,7 +136,6 @@
             <div id="resumo-carrinho" style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #957DAD;"></div>
             <button type="button" id="ir-para-dados" class="btn-buy" style="width: 100%;">CONTINUAR PARA ENTREGA ➔</button>
         </div>
-
         <div id="camada-formulario" style="display: none;">
             <div class="checkout-header"><h2>Finalizar Pedido 💜</h2></div>
             <form id="form-final">
