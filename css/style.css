@@ -123,105 +123,83 @@ body {
 .dark-bg.active { display: block; }
 
 /* ==========================================
-   4. HERO - AJUSTE PARA COMPUTADOR E MOBILE
+   4. CARROSSEL DE BANNERS - CORREÇÃO CIRÚRGICA
    ========================================== */
+.carousel-wrapper {
+    width: 100% !important;
+    overflow: hidden !important; /* ISSO impede que os outros banners apareçam embaixo */
+    position: relative;
+    display: block !important;
+}
 
-.hero {
-    background-color: var(--fundo-suave);
-    padding: 60px 5%;
+#carousel-container {
+    display: flex !important; /* ISSO coloca os banners um ao lado do outro */
+    flex-direction: row !important;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.slide {
+    min-width: 100% !important; /* Garante que cada banner ocupe a tela toda */
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ==========================================
+   5. SEÇÃO COLEÇÃO (HERO - TEXTO + IMAGEM)
+   ========================================== */
+.hero-section {
+    background-color: #FDF7FA;
+    padding: 60px 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
 }
 
-.hero-container {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Texto na esquerda, imagem na direita */
-    gap: 50px;
-}
 
-/* Lado do Texto */
+
 .hero-text {
     flex: 1;
     text-align: left;
 }
 
 .hero-text h1 {
-    font-size: 3.5rem; /* Título grande no PC */
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Fonte que se ajusta ao tamanho da tela */
     line-height: 1.1;
     margin-bottom: 20px;
-    color: var(--texto-escuro);
 }
 
-.hero-text p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-    color: #666;
-    max-width: 450px;
-}
-
-/* Botão Chamada para Ação (CTA) */
-.btn-cta {
-    display: inline-block;
-    padding: 15px 35px;
-    background-color: var(--roxo-principal);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(149, 125, 173, 0.3);
-}
-
-.btn-cta:hover {
-    background-color: var(--roxo-escuro);
-    transform: translateY(-3px);
-}
-
-/* Lado da Imagem */
 .hero-img {
     flex: 1;
     display: flex;
-    justify-content: center;
-    position: relative;
+    justify-content: flex-end;
 }
 
 .hero-img img {
     width: 100%;
-    max-width: 450px; /* Não deixa a imagem ficar gigante */
+    max-width: 450px;
     border-radius: 20px;
-    box-shadow: 20px 20px 0px var(--roxo-principal); /* Aquele detalhe charmoso atrás da foto */
-    object-fit: cover;
+    box-shadow: 15px 15px 0px #957DAD;
 }
 
-/* --- Responsividade (Ajuste para Celular) --- */
+/* --- RESPONSIVIDADE (MOBILE) --- */
 @media (max-width: 768px) {
     .hero-container {
-        flex-direction: column; /* Empilha no celular */
+        flex-direction: column !important; /* Empilha no celular */
         text-align: center;
-        gap: 30px;
     }
-
-    .hero-text {
-        text-align: center;
-        order: 1; /* Texto em cima */
-    }
-
-    .hero-text h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero-img {
-        order: 2; /* Imagem embaixo */
-    }
-
+    
+    .hero-text { text-align: center; order: 1; }
+    .hero-img { order: 2; justify-content: center; }
+    
     .hero-img img {
-        max-width: 300px;
-        box-shadow: 10px 10px 0px var(--roxo-principal); /* Sombra menor no mobile */
+        max-width: 280px;
+        box-shadow: 10px 10px 0px #957DAD;
     }
 }
 /* ==========================================
