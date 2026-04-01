@@ -160,6 +160,78 @@ body {
     }
 }
 /* ==========================================
+   5. SEÇÃO COLEÇÃO (HERO) - ADICIONADO AGORA
+   ========================================== */
+.hero {
+    background-color: #FDF7FA;
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-container {
+    display: flex !important;      
+    flex-direction: row !important; /* FORÇA LADO A LADO NO PC */
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    gap: 50px;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 800;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+/* Estilo do Botão "Ver Looks" */
+.btn-cta {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #957DAD; /* Roxo da Perfetto */
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-cta:hover {
+    background-color: #7a6391;
+    transform: translateY(-3px);
+}
+
+.hero-img {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-img img {
+    width: 100%;
+    max-width: 450px; /* ISSO LIMITA O TAMANHO DA FOTO */
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 20px 20px 0px #957DAD;
+    object-fit: cover;
+}
+/* ==========================================
    5. VITRINE E PADRONIZAÇÃO (CENTRALIZADO)
    ========================================== */
 
