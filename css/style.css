@@ -123,36 +123,34 @@ body {
 .dark-bg.active { display: block; }
 
 /* ==========================================
-   4. CARROSSEL DE BANNERS - VERSÃO CORRIGIDA
+   4. CARROSSEL DE BANNERS - AJUSTE DE TAMANHO
    ========================================== */
 .carousel {
     width: 100%;
-    overflow: hidden; /* ESSENCIAL: Esconde os banners que estão fora da janela */
+    max-height: 500px; /* Define uma altura máxima para o banner não ocupar a tela toda */
+    overflow: hidden;
     position: relative;
     background: #fff;
-    margin: 0;
-    padding: 0;
 }
 
-/* Este é o "Trilho" que o JavaScript move */
 .carousel-inner, #carousel-container {
-    display: flex !important;    /* Obriga a ficar um ao lado do outro */
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    transition: transform 0.5s ease-in-out !important;
+    display: flex !important;
+    transition: transform 0.5s ease-in-out;
     width: 100%;
+    height: 100%;
 }
 
 .slide {
-    min-width: 100% !important; /* Cada banner ocupa exatamente a tela toda */
-    flex-shrink: 0 !important;   /* Impede os banners de "encolherem" */
+    min-width: 100% !important;
+    flex-shrink: 0;
+    height: 100%;
 }
 
 .slide img {
-    width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: 500px !important; /* Força a mesma altura do container */
+    object-fit: cover !important; /* Corta a imagem para caber sem achatar */
     display: block;
-    object-fit: cover;
 }
 
 /* Setas */
@@ -786,4 +784,9 @@ body {
 /* Garante que o Card tenha posição relativa para o botão não "fugir" */
 .card {
     position: relative;
+}
+@media (max-width: 768px) {
+    .carousel, .slide img {
+        height: 250px !important; /* No celular o banner fica menor e mais delicado */
+    }
 }
