@@ -133,26 +133,35 @@
                     <img src="img/bata.jpg" alt="Cropped Amarração" class="product-img">
                 </a>
 
-                <div class="card-content">
-                    <a href="produto.html" style="text-decoration: none; color: inherit;">
-                        <h3>Cropped Amarração</h3>
-                    </a>
+               <article class="card">
+    <button class="btn-share" onclick="compartilharProduto('Cropped Amarração')"><i class="fa-solid fa-share-nodes"></i></button>
+    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração')"><i class="far fa-heart"></i></button>
+    
+    <a href="produto.html">
+        <img src="img/bata.jpg" alt="Cropped Amarração" class="product-img">
+    </a>
 
-                    <div class="color-options">
-                        <span class="color-dot" style="background-color: #000;"></span>
-                        <span class="color-dot" style="background-color: #957DAD;"></span>
-                    </div>
+    <div class="card-content">
+        <a href="produto.html" style="text-decoration: none; color: inherit;">
+            <h3>Cropped Amarração</h3>
+        </a>
 
-                    <p class="price">R$ 59,90</p>
-                    <div class="payment-methods">
-                        <div class="payment-icons">
-                            <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                            <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                        </div>
-                    </div>
-                    <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, 'img/bata.jpg')">Eu quero!</button>
-                </div>
-            </article>
+        <div class="color-options">
+            <span class="color-dot" style="background-color: #000;"></span>
+            <span class="color-dot" style="background-color: #957DAD;"></span>
+        </div>
+
+        <p class="price">R$ 59,90</p>
+        <div class="payment-methods">
+            <div class="payment-icons">
+                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+            </div>
+        </div>
+        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, 'img/bata.jpg')">Eu quero!</button>
+    </div>
+</article>
+
 
             <article class="card">
                 <button class="btn-share" onclick="compartilharProduto('Bata Sonia')"><i class="fa-solid fa-share-nodes"></i></button>
