@@ -53,72 +53,104 @@
     </section>
 
     <section class="products-section" id="produtos">
-        <div class="container"> 
-            <div class="product-grid">
+    <div class="container"> 
+        <div class="product-grid">
+            
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Midi Canelada')">
+                    <i class="far fa-heart"></i>
+                </button>
                 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Midi Canelada')">
-                        <i class="far fa-heart"></i>
-                    </button>
+                <a href="../produto.html">
                     <img src="../img/saia1-frente.jpg" alt="Saia Midi Canelada" class="product-img">
-                    
-                    <div class="card-content">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Saia Midi Canelada</h3>
-                        <p class="price">R$ 89,90</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 29,96</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Midi Canelada', 89.90, '../img/saia1-frente.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                    </a>
 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Jeans Destroyed')">
-                        <i class="far fa-heart"></i>
-                    </button>
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #000;"></span>
+                        <span class="color-dot" style="background-color: #555;"></span>
+                    </div>
+
+                    <p class="price">R$ 89,90</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 29,96</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Midi Canelada', 89.90, '../img/saia1-frente.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Jeans Destroyed')">
+                    <i class="far fa-heart"></i>
+                </button>
+
+                <a href="../produto.html">
                     <img src="../img/saia2-frente.jpg" alt="Saia Jeans Destroyed" class="product-img">
-                    
-                    <div class="card-content">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Saia Jeans Destroyed</h3>
-                        <p class="price">R$ 120,00</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 40,00</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Jeans Destroyed', 120.00, '../img/saia2-frente.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                    </a>
 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Mini Saia Alfaiataria')">
-                        <i class="far fa-heart"></i>
-                    </button>
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #4a90e2;"></span>
+                    </div>
+
+                    <p class="price">R$ 120,00</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 40,00</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Jeans Destroyed', 120.00, '../img/saia2-frente.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Mini Saia Alfaiataria')">
+                    <i class="far fa-heart"></i>
+                </button>
+
+                <a href="../produto.html">
                     <img src="../img/saia3-frente.jpg" alt="Mini Saia Alfaiataria" class="product-img">
-                    
-                    <div class="card-content">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Mini Saia Alfaiataria</h3>
-                        <p class="price">R$ 75,00</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 25,00</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Mini Saia Alfaiataria', 75.00, '../img/saia3-frente.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                    </a>
 
-            </div> 
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #957DAD;"></span>
+                        <span class="color-dot" style="background-color: #000;"></span>
+                    </div>
+
+                    <p class="price">R$ 75,00</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 25,00</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Mini Saia Alfaiataria', 75.00, '../img/saia3-frente.jpg')">Eu quero</button>
+                </div>
+            </article>
+
         </div> 
-    </section>
+    </div> 
+</section>
 </main>
 
 <footer class="main-footer">

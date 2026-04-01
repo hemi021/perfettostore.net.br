@@ -50,90 +50,131 @@
     </section>
 
     <section class="products-section" id="produtos">
-        <div class="container"> 
-            <div class="product-grid">
+    <div class="container"> 
+        <div class="product-grid">
+            
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Spring Duo')">
+                    <i class="far fa-heart"></i>
+                </button>
+                <a href="../produto.html">
+                    <img src="../img/roupa5.jpg" alt="Conjunto Spring Duo" class="product-img">
+                </a>
                 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Spring Duo')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/roupa5.jpg" alt="Conjunto Spring Duo" class="product-img">
-                    
-                    <div class="card-content">
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Conjunto Spring Duo</h3>
-                        <p class="price">R$ 210,00</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 70,00</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Spring Duo', 210.00, 'img/roupa5.jpg')">Eu quero</button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Alfaiataria Classy')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/conjunto1.jpg" alt="Conjunto Alfaiataria Classy" class="product-img">
+                    </a>
                     
-                    <div class="card-content">
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #f3e5f5;"></span>
+                        <span class="color-dot" style="background-color: #fff;"></span>
+                    </div>
+
+                    <p class="price">R$ 210,00</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 70,00</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Spring Duo', 210.00, '../img/roupa5.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Alfaiataria Classy')">
+                    <i class="far fa-heart"></i>
+                </button>
+                <a href="../produto.html">
+                    <img src="../img/conjunto1.jpg" alt="Conjunto Alfaiataria Classy" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Conjunto Alfaiataria Classy</h3>
-                        <p class="price">R$ 249,90</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 83,30</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Alfaiataria Classy', 249.90, 'img/conjunto1.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                    </a>
 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Comfy Lilás')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/conjunto2.jpg" alt="Conjunto Comfy Lilás" class="product-img">
-                    
-                    <div class="card-content">
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #000;"></span>
+                        <span class="color-dot" style="background-color: #be9ec9;"></span>
+                    </div>
+
+                    <p class="price">R$ 249,90</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 83,30</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Alfaiataria Classy', 249.90, '../img/conjunto1.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Comfy Lilás')">
+                    <i class="far fa-heart"></i>
+                </button>
+                <a href="../produto.html">
+                    <img src="../img/conjunto2.jpg" alt="Conjunto Comfy Lilás" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Conjunto Comfy Lilás</h3>
-                        <p class="price">R$ 159,90</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 53,30</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Comfy Lilás', 159.90, 'img/conjunto2.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                    </a>
 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Summer Vibes')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/conjunto3.jpg" alt="Conjunto Summer Vibes" class="product-img">
-                    
-                    <div class="card-content">
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #957DAD;"></span>
+                    </div>
+
+                    <p class="price">R$ 159,90</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 53,30</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Comfy Lilás', 159.90, '../img/conjunto2.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Summer Vibes')">
+                    <i class="far fa-heart"></i>
+                </button>
+                <a href="../produto.html">
+                    <img src="../img/conjunto3.jpg" alt="Conjunto Summer Vibes" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
                         <h3>Conjunto Summer Vibes</h3>
-                        <p class="price">R$ 185,00</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 61,66</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Summer Vibes', 185.00, 'img/conjunto3.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                    </a>
 
-            </div> </div> </section>
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #fff;"></span>
+                        <span class="color-dot" style="background-color: #333;"></span>
+                    </div>
+
+                    <p class="price">R$ 185,00</p>
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 61,66</strong></span>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Summer Vibes', 185.00, '../img/conjunto3.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+        </div> 
+    </div> 
+</section>
 </main>
 
     <footer class="main-footer">

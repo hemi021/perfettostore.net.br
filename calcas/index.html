@@ -50,36 +50,48 @@
         </div>
     </section>
 
-    <section class="products-section" id="produtos">
-        <div class="container"> 
-            <div class="product-grid">
+   <section class="products-section" id="produtos">
+    <div class="container"> 
+        <div class="product-grid">
+            
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Calça Pantalona Soft')">
+                    <i class="far fa-heart"></i>
+                </button>
                 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Nome da Calça')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/sua-calca.jpg" alt="Nome da Calça" class="product-img">
-                    
-                    <div class="card-content">
-                        <h3>Nome da Calça</h3>
-                        <div class="color-options">
-                            <span class="color-dot" style="background-color: #000;"></span>
-                        </div>
-                        <p class="price">R$ 149,90</p>
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                            <span>ou 3x de <strong class="parcela-valor">R$ 49,96</strong></span>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Nome da Calça', 149.90, 'img/sua-calca.jpg')">Eu quero</button>
-                    </div>
-                </article>
+                <a href="../produto.html">
+                    <img src="../img/sua-calca.jpg" alt="Calça Pantalona Soft" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
+                        <h3>Calça Pantalona Soft</h3>
+                    </a>
 
-            </div> 
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #000;"></span>
+                        <span class="color-dot" style="background-color: #957DAD;"></span>
+                    </div>
+
+                    <p class="price">R$ 149,90</p>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                        <span>ou 3x de <strong class="parcela-valor">R$ 49,96</strong></span>
+                    </div>
+
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Calça Pantalona Soft', 149.90, '../img/sua-calca.jpg')">
+                        Eu quero
+                    </button>
+                </div>
+            </article>
+
         </div> 
-    </section>
+    </div> 
+</section>
 </main>
 
     <footer class="main-footer">
