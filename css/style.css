@@ -123,24 +123,26 @@ body {
 .dark-bg.active { display: block; }
 
 /* ==========================================
-   4. CARROSSEL DE BANNERS - CORREÇÃO CIRÚRGICA
+   4. CARROSSEL DE BANNERS - AJUSTE FINAL
    ========================================== */
-.carousel-wrapper {
-    width: 100% !important;
-    overflow: hidden !important; /* ISSO impede que os outros banners apareçam embaixo */
+.carousel {
+    width: 100%;
+    overflow: hidden; /* Esconde os banners que estão fora da tela */
     position: relative;
-    display: block !important;
+    background: #fff;
+    margin: 0;
+    padding: 0;
 }
 
-#carousel-container {
-    display: flex !important; /* ISSO coloca os banners um ao lado do outro */
+.carousel-inner {
+    display: flex !important; /* Coloca os banners lado a lado */
     flex-direction: row !important;
     transition: transform 0.5s ease-in-out;
     width: 100%;
 }
 
 .slide {
-    min-width: 100% !important; /* Garante que cada banner ocupe a tela toda */
+    min-width: 100% !important; /* Cada banner ocupa 100% da largura da tela */
     flex-shrink: 0;
 }
 
@@ -150,6 +152,30 @@ body {
     display: block;
     object-fit: cover;
 }
+
+/* Ajuste das Setas (Arrows) */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: 0.3s;
+    color: var(--roxo-principal);
+}
+
+.arrow:hover {
+    background: var(--roxo-principal);
+    color: #fff;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
 
 /* ==========================================
    5. SEÇÃO COLEÇÃO (HERO - TEXTO + IMAGEM)
