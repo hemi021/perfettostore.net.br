@@ -52,104 +52,107 @@
         </div>
     </section>
 
-    <section class="products-section" id="produtos">
-        <div class="container"> 
-            <div class="product-grid">
+<section class="products-section" id="produtos">
+    <div class="container"> 
+        <div class="product-grid">
+            
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração')">
+                    <i class="far fa-heart"></i>
+                </button>
                 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    
-                    <a href="../produto.html">
-                        <img src="../img/bata.jpg" alt="Cropped Amarração" class="product-img">
+                <a href="../produto.html">
+                    <img src="../img/bata.jpg" alt="Cropped Amarração" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
+                        <h3>Cropped Amarração</h3>
                     </a>
                     
-                    <div class="card-content">
-                        <a href="../produto.html" style="text-decoration: none; color: inherit;">
-                            <h3>Cropped Amarração</h3>
-                        </a>
-                        <p class="price">R$ 59,90</p>
-                        
-                        <div class="color-options">
-                            <div class="color-dot" style="background-color: #957DAD;"></div>
-                            <div class="color-dot" style="background-color: #fff;"></div>
-                            <div class="color-dot" style="background-color: #000;"></div>
-                        </div>
-
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, '../img/bata.jpg')">Eu quero</button>
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
+                        <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
+                        <span class="color-dot" style="background-color: #000;" title="Preto"></span>
                     </div>
-                </article>
 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Blusa Gola Alta Satin')">
-                        <i class="far fa-heart"></i>
-                    </button>
+                    <p class="price">R$ 59,90</p>
                     
-                    <a href="../produto.html">
-                        <img src="../img/blusa2-frente.jpg" alt="Blusa Gola Alta Satin" class="product-img">
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, '../img/bata.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'Blusa Gola Alta Satin')">
+                    <i class="far fa-heart"></i>
+                </button>
+                
+                <a href="../produto.html">
+                    <img src="../img/blusa2-frente.jpg" alt="Blusa Gola Alta Satin" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
+                        <h3>Blusa Gola Alta Satin</h3>
                     </a>
                     
-                    <div class="card-content">
-                        <a href="../produto.html" style="text-decoration: none; color: inherit;">
-                            <h3>Blusa Gola Alta Satin</h3>
-                        </a>
-                        <p class="price">R$ 89,90</p>
-
-                        <div class="color-options">
-                            <div class="color-dot" style="background-color: #7a6391;"></div>
-                            <div class="color-dot" style="background-color: #333;"></div>
-                        </div>
-
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Blusa Gola Alta Satin', 89.90, '../img/blusa2-frente.jpg')">Eu quero</button>
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #7a6391;" title="Uva"></span>
+                        <span class="color-dot" style="background-color: #333;" title="Grafite"></span>
                     </div>
-                </article>
 
-                <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'T-shirt Basic Soft')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    
-                    <a href="../produto.html">
-                        <img src="../img/blusa3-frente.jpg" alt="T-shirt Basic Soft" class="product-img">
+                    <p class="price">R$ 89,90</p>
+
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('Blusa Gola Alta Satin', 89.90, '../img/blusa2-frente.jpg')">Eu quero</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="btn-fav" onclick="toggleFavorito(this, 'T-shirt Basic Soft')">
+                    <i class="far fa-heart"></i>
+                </button>
+                
+                <a href="../produto.html">
+                    <img src="../img/blusa3-frente.jpg" alt="T-shirt Basic Soft" class="product-img">
+                </a>
+                
+                <div class="card-content">
+                    <a href="../produto.html" style="text-decoration: none; color: inherit;">
+                        <h3>T-shirt Basic Soft</h3>
                     </a>
                     
-                    <div class="card-content">
-                        <a href="../produto.html" style="text-decoration: none; color: inherit;">
-                            <h3>T-shirt Basic Soft</h3>
-                        </a>
-                        <p class="price">R$ 45,00</p>
-
-                        <div class="color-options">
-                            <div class="color-dot" style="background-color: #fff;"></div>
-                            <div class="color-dot" style="background-color: #957DAD;"></div>
-                        </div>
-
-                        <div class="payment-methods">
-                            <div class="payment-icons">
-                                <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
-                                <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
-                            </div>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('T-shirt Basic Soft', 45.00, '../img/blusa3-frente.jpg')">Eu quero</button>
+                    <div class="color-options">
+                        <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
+                        <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
                     </div>
-                </article>
 
-            </div> 
+                    <p class="price">R$ 45,00</p>
+
+                    <div class="payment-methods">
+                        <div class="payment-icons">
+                            <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
+                            <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
+                        </div>
+                    </div>
+                    <button class="btn-buy" onclick="adicionarAoCarrinho('T-shirt Basic Soft', 45.00, '../img/blusa3-frente.jpg')">Eu quero</button>
+                </div>
+            </article>
+
         </div> 
-    </section>
+    </div> 
+</section>
 </main>
 
 <footer class="main-footer">
