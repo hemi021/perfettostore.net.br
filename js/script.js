@@ -1,7 +1,8 @@
 /* ==========================================
-   1. CONFIGURAÇÕES GERAIS E MENU
-   ========================================== */
-let listaDeProdutos = []; 
+    1. CONFIGURAÇÕES GERAIS E MENU
+    ========================================== */
+// ADICIONADO: Agora ele carrega os itens salvos para o carrinho não esvaziar ao mudar de página
+let listaDeProdutos = JSON.parse(localStorage.getItem('perfetto_cart')) || []; 
 let listaFavoritos = JSON.parse(localStorage.getItem('perfetto_favs')) || [];
 
 function inicializarMenu() {
@@ -27,8 +28,8 @@ function inicializarMenu() {
 }
 
 /* ==========================================
-   2. CARROSSEL DE BANNERS (LÓGICA DE TRILHO)
-   ========================================== */
+    2. CARROSSEL DE BANNERS (LÓGICA DE TRILHO)
+    ========================================== */
 let bannerIndex = 0;
 
 function showSlide(n) {
@@ -41,7 +42,6 @@ function showSlide(n) {
     if (bannerIndex >= slides.length) bannerIndex = 0;
     if (bannerIndex < 0) bannerIndex = slides.length - 1;
 
-    // Move o trilho exatamente 100% para cada slide
     container.style.transform = `translateX(${-bannerIndex * 100}%)`;
 }
 
@@ -53,7 +53,6 @@ function iniciarCarrossel() {
     if (nextBtn) nextBtn.onclick = () => showSlide(1);
     if (prevBtn) prevBtn.onclick = () => showSlide(-1);
 
-    // Auto-play a cada 5 segundos
     let autoPlay = setInterval(() => showSlide(1), 5000);
 
     if (container) {
@@ -63,33 +62,105 @@ function iniciarCarrossel() {
 }
 
 /* ==========================================
-   3. SISTEMA DE CARRINHO
-   ========================================== */
+    3. SISTEMA DE CARRINHO (ADICIONADO/CORRIGIDO)
+    ========================================== */
+// ADICIONADO: Função para salvar no navegador
+function salvarDados() {
+    localStorage.setItem('perfetto_cart', JSON.stringify(listaDeProdutos));
+    localStorage.setItem('perfetto_favs', JSON.stringify(listaFavoritos));
+}
+
 function adicionarAoCarrinho(nome, preco, imagem, botao) {
+    // Converte preço para número se for string
+    const precoNum = typeof preco === 'string' ? parseFloat(preco.replace('R$', '').replace(',', '.')) : preco;
+
     const itemExistente = listaDeProdutos.find(item => item.nome === nome);
     if (itemExistente) {
         itemExistente.qtd += 1;
     } else {
-        listaDeProdutos.push({ nome: nome, preco: preco, img: imagem, qtd: 1 });
+        listaDeProdutos.push({ nome: nome, preco: precoNum, img: imagem, qtd: 1 });
     }
     
+    salvarDados();
     atualizarContadorTotal();
 
-    // Feedback visual no botão
     if (botao) {
         const textoOriginal = botao.innerHTML;
         botao.innerHTML = "Adicionado! ✓";
-        botao.style.background = "#28a745"; // Verde de sucesso
+        botao.style.background = "#28a745"; 
         setTimeout(() => { 
             botao.innerHTML = textoOriginal; 
-            botao.style.background = ""; // Volta ao original
+            botao.style.background = ""; 
         }, 800);
     }
 }
 
+function atualizarContadorTotal() {
+    const contador = document.getElementById('cart-count');
+    if (contador) {
+        const total = listaDeProdutos.reduce((sum, item) => sum + item.qtd, 0);
+        contador.innerText = total;
+    }
+}
+
+// ADICIONADO: Função para abrir o Modal do Carrinho
+function configurarCarrinhoModal() {
+    const cartTrigger = document.getElementById('cart-trigger');
+    const modal = document.getElementById('modal-checkout');
+    const closeBtn = document.getElementById('close-checkout');
+
+    if (cartTrigger && modal) {
+        cartTrigger.onclick = () => {
+            renderizarItensCarrinho();
+            modal.style.display = 'block';
+        };
+    }
+
+    if (closeBtn) {
+        closeBtn.onclick = () => modal.style.display = 'none';
+    }
+}
+
+function renderizarItensCarrinho() {
+    const resumo = document.getElementById('resumo-carrinho');
+    if (!resumo) return;
+
+    if (listaDeProdutos.length === 0) {
+        resumo.innerHTML = `<p style="text-align:center; padding:20px;">Seu carrinho está vazio. 💜</p>`;
+        return;
+    }
+
+    let html = "";
+    let totalGeral = 0;
+
+    listaDeProdutos.forEach((item, index) => {
+        const subtotal = item.preco * item.qtd;
+        totalGeral += subtotal;
+        html += `
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                <img src="${item.img}" width="40" style="border-radius:4px;">
+                <div style="flex:1;">
+                    <p style="font-size:12px; font-weight:bold; margin:0;">${item.nome}</p>
+                    <p style="font-size:11px; margin:0;">${item.qtd}x R$ ${item.preco.toFixed(2)}</p>
+                </div>
+                <button onclick="removerItemCarrinho(${index})" style="background:none; border:none; color:red; cursor:pointer;">&times;</button>
+            </div>`;
+    });
+
+    html += `<div style="text-align:right; font-weight:bold; margin-top:10px;">Total: R$ ${totalGeral.toFixed(2)}</div>`;
+    resumo.innerHTML = html;
+}
+
+window.removerItemCarrinho = function(index) {
+    listaDeProdutos.splice(index, 1);
+    salvarDados();
+    atualizarContadorTotal();
+    renderizarItensCarrinho();
+};
+
 /* ==========================================
-   4. FAVORITOS (WISHLIST)
-   ========================================== */
+    4. FAVORITOS (WISHLIST) - MANTIDO
+    ========================================== */
 window.toggleFavorito = function(btn, nomeProduto) {
     const card = btn.closest('.card');
     const preco = card.querySelector('.price').innerText;
@@ -106,7 +177,7 @@ window.toggleFavorito = function(btn, nomeProduto) {
         btn.querySelector('i').classList.replace('far', 'fas'); 
     }
 
-    localStorage.setItem('perfetto_favs', JSON.stringify(listaFavoritos));
+    salvarDados();
     renderizarFavoritos();
 };
 
@@ -139,27 +210,27 @@ function renderizarFavoritos() {
 
 window.removerFavoritoUnico = function(index) {
     listaFavoritos.splice(index, 1);
-    localStorage.setItem('perfetto_favs', JSON.stringify(listaFavoritos));
+    salvarDados();
     renderizarFavoritos();
 };
 
 window.limparTodosFavoritos = function() {
     if (confirm("Remover todos os favoritos? 💜")) {
         listaFavoritos = [];
-        localStorage.setItem('perfetto_favs', JSON.stringify(listaFavoritos));
+        salvarDados();
         renderizarFavoritos();
     }
 };
 
 window.addFavParaCarrinho = function(index) {
     const item = listaFavoritos[index];
-    adicionarAoCarrinho(item.nome, item.preco);
+    adicionarAoCarrinho(item.nome, item.preco, item.img);
     alert("Produto adicionado ao carrinho! 💜");
 };
 
 /* ==========================================
-   5. COMPARTILHAMENTO E UTILITÁRIOS
-   ========================================== */
+    5. COMPARTILHAMENTO E UTILITÁRIOS - MANTIDO
+    ========================================== */
 window.compartilharProduto = function(nome) {
     const url = window.location.href;
     const msg = `Olha que lindo esse(a) ${nome} que vi na Perfetto Store! 💜`;
@@ -173,46 +244,39 @@ window.compartilharProduto = function(nome) {
 };
 
 /* ==========================================
-   INICIALIZAÇÃO AO CARREGAR A PÁGINA
-   ========================================== */
+    INICIALIZAÇÃO AO CARREGAR A PÁGINA
+    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
     inicializarMenu();
     iniciarCarrossel();
-    
+    atualizarContadorTotal(); // ADICIONADO: Para mostrar o número ao abrir o site
+    configurarCarrinhoModal(); // ADICIONADO: Para o ícone do carrinho funcionar
     renderizarFavoritos();
 });
 
-// ==========================================
-// FUNÇÕES DA PÁGINA DE PRODUTO
-// ==========================================
-
-// 1. Trocar Imagem Principal ao clicar na miniatura
+/* ==========================================
+    FUNÇÕES DA PÁGINA DE PRODUTO - MANTIDO
+    ========================================== */
 function changeImage(element) {
     const mainImg = document.getElementById('mainImg');
     if (mainImg) {
         mainImg.src = element.src;
-        
-        // Atualiza a borda das miniaturas
         const thumbs = document.querySelectorAll('.thumb-item');
         thumbs.forEach(t => t.classList.remove('active'));
         element.classList.add('active');
     }
 }
 
-// 2. Selecionar Tamanho (P, M, G)
 function selectSize(btn) {
     const btns = document.querySelectorAll('.size-option');
     btns.forEach(b => b.classList.remove('selected'));
-    
     btn.classList.add('selected');
 }
 
-// 3. Função para garantir que o Guia de Medidas role suavemente
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
