@@ -983,6 +983,20 @@ body {
         flex-direction: column;
     }
 }
+/* Reset global para links dentro dos cards (Mata o azul de vez) */
+.card a, 
+.card a:visited {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* O resto do seu código continua igual abaixo... */
+.card-content a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+/* ... resto do seu código ... */
 /* Remove a cor azul padrão e o sublinhado dos links nos títulos */
 .card-content a {
     text-decoration: none;
