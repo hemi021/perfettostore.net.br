@@ -123,27 +123,29 @@ body {
 .dark-bg.active { display: block; }
 
 /* ==========================================
-   4. CARROSSEL DE BANNERS - AJUSTE FINAL
+   4. CARROSSEL DE BANNERS - VERSÃO CORRIGIDA
    ========================================== */
 .carousel {
     width: 100%;
-    overflow: hidden; /* Esconde os banners que estão fora da tela */
+    overflow: hidden; /* ESSENCIAL: Esconde os banners que estão fora da janela */
     position: relative;
     background: #fff;
     margin: 0;
     padding: 0;
 }
 
-.carousel-inner {
-    display: flex !important; /* Coloca os banners lado a lado */
+/* Este é o "Trilho" que o JavaScript move */
+.carousel-inner, #carousel-container {
+    display: flex !important;    /* Obriga a ficar um ao lado do outro */
     flex-direction: row !important;
-    transition: transform 0.5s ease-in-out;
+    flex-wrap: nowrap !important;
+    transition: transform 0.5s ease-in-out !important;
     width: 100%;
 }
 
 .slide {
-    min-width: 100% !important; /* Cada banner ocupa 100% da largura da tela */
-    flex-shrink: 0;
+    min-width: 100% !important; /* Cada banner ocupa exatamente a tela toda */
+    flex-shrink: 0 !important;   /* Impede os banners de "encolherem" */
 }
 
 .slide img {
@@ -153,81 +155,22 @@ body {
     object-fit: cover;
 }
 
-/* Ajuste das Setas (Arrows) */
+/* Setas */
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.7);
     border: none;
     font-size: 24px;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 50%;
-    z-index: 10;
-    transition: 0.3s;
+    z-index: 100; /* Garante que as setas fiquem na frente de tudo */
     color: var(--roxo-principal);
 }
-
-.arrow:hover {
-    background: var(--roxo-principal);
-    color: #fff;
-}
-
 .prev { left: 20px; }
 .next { right: 20px; }
-
-/* ==========================================
-   5. SEÇÃO COLEÇÃO (HERO - TEXTO + IMAGEM)
-   ========================================== */
-.hero-section {
-    background-color: #FDF7FA;
-    padding: 60px 0;
-    display: flex;
-    justify-content: center;
-}
-
-
-
-.hero-text {
-    flex: 1;
-    text-align: left;
-}
-
-.hero-text h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem); /* Fonte que se ajusta ao tamanho da tela */
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-.hero-img {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.hero-img img {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 20px;
-    box-shadow: 15px 15px 0px #957DAD;
-}
-
-/* --- RESPONSIVIDADE (MOBILE) --- */
-@media (max-width: 768px) {
-    .hero-container {
-        flex-direction: column !important; /* Empilha no celular */
-        text-align: center;
-    }
-    
-    .hero-text { text-align: center; order: 1; }
-    .hero-img { order: 2; justify-content: center; }
-    
-    .hero-img img {
-        max-width: 280px;
-        box-shadow: 10px 10px 0px #957DAD;
-    }
-}
 /* ==========================================
    5. VITRINE E PADRONIZAÇÃO (CENTRALIZADO)
    ========================================== */
