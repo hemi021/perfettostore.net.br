@@ -280,3 +280,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
+/* intro de milhoes */
+document.getElementById('btn-entrar').addEventListener('click', function() {
+  const intro = document.getElementById('intro-perfetto');
+  
+  // Adiciona o efeito de brilho antes de sair (opcional)
+  this.style.background = "white";
+  this.style.color = "black";
+  
+  // Faz a transição suave para o site
+  setTimeout(() => {
+    intro.classList.add('fade-out');
+  }, 300);
+});
