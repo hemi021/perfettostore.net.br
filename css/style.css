@@ -1048,6 +1048,9 @@ body {
     font-size: initial !important;
     color: inherit !important;
 }
+/* ==========================================
+    6. ANIMAÇÃO DE INTRO (ESTILIZAÇÃO)
+   ========================================== */
 #intro-perfetto {
     position: fixed;
     top: 0;
@@ -1059,15 +1062,30 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 1s ease, visibility 1s ease; /* Suaviza a saída */
+    transition: opacity 1s ease, visibility 1s ease;
+    overflow: hidden;
 }
 
-/* Classe para sumir com a intro */
-.fade-out {
-    opacity: 0;
-    visibility: hidden;
+/* O "PS" GIGANTE E TRANSPARENTE (Ideia da Amanda) */
+#intro-perfetto::before {
+    content: "PS";
+    position: absolute;
+    /* Centraliza o PS perfeitamente ao fundo */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    font-family: 'Poppins', sans-serif; 
+    font-size: 40vw; 
+    font-weight: 800;
+    color: #957DAD; 
+    opacity: 0.08;   /* Transparência sugerida */
+    z-index: -1;
+    pointer-events: none;
+    line-height: 1;
 }
 
+/* TEXTO SENDO DIGITADO (Versão Única e Organizada) */
 #typing-text {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -1076,6 +1094,7 @@ body {
     border-right: 3px solid #957DAD;
     white-space: nowrap;
     overflow: hidden;
+    letter-spacing: 2px;
 }
 
 .cursor-blink {
@@ -1086,6 +1105,13 @@ body {
     0%, 100% { border-color: transparent }
     50% { border-color: #957DAD }
 }
+
+/* CLASSE PARA SUMIR A TELA */
+.fade-out-intro {
+    opacity: 0;
+    visibility: hidden;
+}
+
 /* ==========================================
    ESTILIZAÇÃO DOS FAVORITOS NO MENU LATERAL
    ========================================== */
@@ -1150,34 +1176,3 @@ body {
     height: 60px;
     object-fit: cover;
     border-radius: 4px;
-}
-
-/* Textos dentro do favorito */
-.fav-item p {
-    font-size: 12px;
-    margin: 0;
-    font-weight: bold;
-    color: #333;
-}
-
-.fav-item span {
-    font-size: 11px;
-    color: #957DAD; /* Cor padrão da Perfetto */
-}
-
-/* Botão de Limpar Tudo */
-.btn-limpar-fav {
-    width: 100%;
-    padding: 10px;
-    background: none;
-    border: 1px dashed #ff4d4d;
-    color: #ff4d4d;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.btn-limpar-fav:hover {
-    background: #fff5f5;
-}
