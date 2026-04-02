@@ -358,17 +358,30 @@ function iniciarAnimacaoIntro() {
     textElement.classList.add("cursor-blink");
     type();
 }
-// Configuração do ScrollReveal - O toque de sofisticação
-const sr = ScrollReveal({
-    origin: 'bottom', // Os elementos vêm de baixo
-    distance: '50px', // O quanto eles se movem
-    duration: 2000,   // Tempo da animação (2 segundos para ser bem suave)
-    delay: 200,       // Pequena espera antes de começar
-    reset: false      // Se true, a animação acontece toda vez que sobe/desce
-});
+// Espera a página carregar totalmente
+window.addEventListener('load', () => {
+    const sr = ScrollReveal({
+        origin: 'bottom',
+        distance: '60px',
+        duration: 2000,
+        delay: 200,
+        reset: false // Para animar apenas uma vez ao descer
+    });
 
-// Aplicando aos elementos do site:
-sr.reveal('.banner', { delay: 300 }); 
-sr.reveal('.produto-card', { interval: 100 }); // Aparecem um por um em sequência
-sr.reveal('.titulo-secao', { origin: 'left', distance: '100px' });
-sr.reveal('.footer-container', { delay: 400 });
+    // 1. Anima o Banner (sua classe é .carousel)
+    sr.reveal('.carousel', { delay: 300, distance: '30px' });
+
+    // 2. Anima o Destaque (sua classe é .hero)
+    sr.reveal('.hero-text', { origin: 'left', delay: 400 });
+    sr.reveal('.hero-img', { origin: 'right', delay: 500 });
+
+    // 3. Anima os Títulos das seções
+    sr.reveal('.section-title', { delay: 200 });
+
+    // 4. Anima os Cards de Produtos (sua classe é .card)
+    // O 'interval' faz eles aparecerem um por um em sequência
+    sr.reveal('.card', { interval: 150, distance: '80px' });
+
+    // 5. Anima o Rodapé
+    sr.reveal('.footer-container', { delay: 200 });
+});
