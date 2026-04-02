@@ -196,27 +196,36 @@ function iniciarAnimacaoIntro() {
 }
 
 /* ==========================================
-    6. EFEITO SCROLL REVEAL (MOVIMENTAÇÃO)
+    6. EFEITO SCROLL REVEAL (VERSÃO TURBO)
    ========================================== */
 function aplicarScrollReveal() {
     if (typeof ScrollReveal === 'undefined') return;
 
     const sr = ScrollReveal({
         origin: 'bottom',
-        distance: '100px',
-        duration: 2500,
-        delay: 300,
-        scale: 0.8,
+        distance: '50px',   // Distância menor para ser mais ágil
+        duration: 1500,     // Mais rápido (1.5s em vez de 2.5s)
+        delay: 100,         // Começa quase na hora
+        scale: 0.9,         // Menos zoom para carregar visualmente mais rápido
         opacity: 0,
         reset: true 
     });
 
-    sr.reveal('.hero-text', { origin: 'left', distance: '300px', duration: 3000 });
-    sr.reveal('.hero-img', { origin: 'right', distance: '300px', duration: 3000 });
-    sr.reveal('.card', { interval: 250, rotate: { x: 15 }, scale: 0.85 });
-    sr.reveal('.carousel', { delay: 400 });
-    sr.reveal('.section-title', { origin: 'top' });
-    sr.reveal('.footer-container', { delay: 300 });
+    // Título Hero (Entrada mais direta)
+    sr.reveal('.hero-text', { origin: 'left', distance: '150px', duration: 1800 });
+    sr.reveal('.hero-img', { origin: 'right', distance: '150px', duration: 1800 });
+
+    // Cards de Produtos (Efeito cascata veloz)
+    sr.reveal('.card', { 
+        interval: 100,      // Aparece um atrás do outro rapidinho
+        rotate: { x: 5 },   // Rotação sutil
+        scale: 0.95, 
+        distance: '60px' 
+    });
+
+    sr.reveal('.carousel', { delay: 200, scale: 1 });
+    sr.reveal('.section-title', { origin: 'top', distance: '30px' });
+    sr.reveal('.footer-container', { delay: 100 });
 }
 
 /* ==========================================
