@@ -1048,38 +1048,45 @@ body {
     font-size: initial !important;
     color: inherit !important;
 }
-
-/* intro de milhoes*/
+/*introducao*/
+/* Isso aqui vai garantir que a tela preta cubra TUDO */
 #intro-perfetto {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100vh;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 1s ease, visibility 1s;
+    position: fixed; /* Fixa na tela, independente do scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Ocupa 100% da altura da visão */
+    background-color: #000; /* Fundo preto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999; /* Valor altíssimo para ficar na frente de tudo */
+    transition: opacity 0.8s ease;
 }
 
+/* Ajuste o tamanho da logo para não ficar gigante */
+.logo-animada {
+    width: 250px; /* Ou o tamanho que preferir */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Estilo do botão para ele não ficar sem cor */
 .glow-button {
-  padding: 15px 40px;
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  letter-spacing: 2px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(255,255,255,0.2);
-  transition: 0.4s;
+    padding: 12px 30px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
 }
 
 .glow-button:hover {
-  box-shadow: 0 0 25px rgba(255,255,255,0.6);
-  transform: scale(1.05);
-}
-
-/* Classe que será aplicada via JS para sumir com a tela */
-.fade-out {
-  opacity: 0;
-  visibility: hidden;
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
