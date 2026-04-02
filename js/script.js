@@ -280,64 +280,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
-/*intro de milhoes*/
-document.addEventListener('DOMContentLoaded', function() {
-    const btnEntrar = document.getElementById('btn-entrar');
-    const intro = document.getElementById('intro-perfetto');
+const textElement = document.getElementById("typing-text");
+const introScreen = document.getElementById("intro-perfetto");
+const phrase = "Perfetto Store";
+let index = 0;
 
-    if (btnEntrar && intro) {
-        btnEntrar.addEventListener('click', function() {
-            // Adiciona a classe que faz o fade-out
-            intro.classList.add('fade-out');
-            
-            // Opcional: Salva na sessão para não mostrar de novo na mesma navegação
-            sessionStorage.setItem('introVisualizada', 'true');
-        });
-    }
-
-    // Verifica se já viu a intro nesta sessão
-    if (sessionStorage.getItem('introVisualizada') === 'true') {
-        intro.style.display = 'none';
-    }
-});
-
-/* ==========================================
-    ABERTURA EXCLUSIVA PERFETTO STORE
-   ========================================== */
-(function() {
-    function configurarAbertura() {
-        const intro = document.getElementById('intro-perfetto');
-        const btn = document.getElementById('btn-entrar');
-
-        if (!intro || !btn) return;
-
-        // Se já entrou na loja nesta sessão, esconde a intro imediatamente
-        if (sessionStorage.getItem('perfetto_logado')) {
-            intro.style.display = 'none';
-            return;
-        }
-
-        // Ação do Clique
-        btn.onclick = function() {
-            // Efeito visual de saída
-            intro.style.transition = 'opacity 0.8s ease, visibility 0.8s';
-            intro.style.opacity = '0';
-            intro.style.visibility = 'hidden';
-
-            // Salva para não repetir
-            sessionStorage.setItem('perfetto_logado', 'true');
-
-            // Remove do DOM após a animação
-            setTimeout(() => {
-                intro.style.display = 'none';
-            }, 800);
-        };
-    }
-
-    // Garante que rode independente de como a página carregue
-    if (document.readyState === 'complete') {
-        configurarAbertura();
+function typeEffect() {
+    if (index < phrase.length) {
+        textElement.textContent += phrase.charAt(index);
+        index++;
+        setTimeout(typeEffect, 120); // Velocidade da digitação (ajuste se quiser mais rápido)
     } else {
-        window.addEventListener('load', configurarAbertura);
+        // Quando terminar de digitar:
+        textElement.style.borderRight = "none"; // Remove o cursor
+        
+        // Espera 800ms para o usuário ler o nome e então some com a intro
+        setTimeout(() => {
+            introScreen.classList.add("fade-out");
+        }, 800);
     }
-})();
+}
+
+window.onload = () => {
+    textElement.classList.add("cursor-blink");
+    setTimeout(typeEffect, 500); 
+};
