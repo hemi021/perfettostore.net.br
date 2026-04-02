@@ -1,9 +1,9 @@
 /* ==========================================
     1. CONFIGURAÇÕES GERAIS E MENU
-    ========================================== */
-// ADICIONADO: Agora ele carrega os itens salvos para o carrinho não esvaziar ao mudar de página
+   ========================================== */
 let listaDeProdutos = JSON.parse(localStorage.getItem('perfetto_cart')) || []; 
 let listaFavoritos = JSON.parse(localStorage.getItem('perfetto_favs')) || [];
+let introExecutada = false;
 
 function inicializarMenu() {
     const btnAbrir = document.getElementById('menu-toggle');
@@ -28,8 +28,8 @@ function inicializarMenu() {
 }
 
 /* ==========================================
-    2. CARROSSEL DE BANNERS (LÓGICA DE TRILHO)
-    ========================================== */
+    2. CARROSSEL DE BANNERS
+   ========================================== */
 let bannerIndex = 0;
 
 function showSlide(n) {
@@ -62,19 +62,17 @@ function iniciarCarrossel() {
 }
 
 /* ==========================================
-    3. SISTEMA DE CARRINHO (ADICIONADO/CORRIGIDO)
-    ========================================== */
-// ADICIONADO: Função para salvar no navegador
+    3. SISTEMA DE CARRINHO
+   ========================================== */
 function salvarDados() {
     localStorage.setItem('perfetto_cart', JSON.stringify(listaDeProdutos));
     localStorage.setItem('perfetto_favs', JSON.stringify(listaFavoritos));
 }
 
 function adicionarAoCarrinho(nome, preco, imagem, botao) {
-    // Converte preço para número se for string
     const precoNum = typeof preco === 'string' ? parseFloat(preco.replace('R$', '').replace(',', '.')) : preco;
-
     const itemExistente = listaDeProdutos.find(item => item.nome === nome);
+    
     if (itemExistente) {
         itemExistente.qtd += 1;
     } else {
@@ -103,64 +101,27 @@ function atualizarContadorTotal() {
     }
 }
 
-// ADICIONADO: Função para abrir o Modal do Carrinho
-function configurarCarrinhoModal() {
-    const cartTrigger = document.getElementById('cart-trigger');
-    const modal = document.getElementById('modal-checkout');
-    const closeBtn = document.getElementById('close-checkout');
-
-    if (cartTrigger && modal) {
-        cartTrigger.onclick = () => {
-            renderizarItensCarrinho();
-            modal.style.display = 'block';
-        };
-    }
-
-    if (closeBtn) {
-        closeBtn.onclick = () => modal.style.display = 'none';
-    }
-}
-
-function renderizarItensCarrinho() {
-    const resumo = document.getElementById('resumo-carrinho');
-    if (!resumo) return;
-
-    if (listaDeProdutos.length === 0) {
-        resumo.innerHTML = `<p style="text-align:center; padding:20px;">Seu carrinho está vazio. 💜</p>`;
-        return;
-    }
-
-    let html = "";
-    let totalGeral = 0;
-
-    listaDeProdutos.forEach((item, index) => {
-        const subtotal = item.preco * item.qtd;
-        totalGeral += subtotal;
-        html += `
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:10px;">
-                <img src="${item.img}" width="40" style="border-radius:4px;">
-                <div style="flex:1;">
-                    <p style="font-size:12px; font-weight:bold; margin:0;">${item.nome}</p>
-                    <p style="font-size:11px; margin:0;">${item.qtd}x R$ ${item.preco.toFixed(2)}</p>
-                </div>
-                <button onclick="removerItemCarrinho(${index})" style="background:none; border:none; color:red; cursor:pointer;">&times;</button>
-            </div>`;
-    });
-
-    html += `<div style="text-align:right; font-weight:bold; margin-top:10px;">Total: R$ ${totalGeral.toFixed(2)}</div>`;
-    resumo.innerHTML = html;
-}
-
-window.removerItemCarrinho = function(index) {
-    listaDeProdutos.splice(index, 1);
-    salvarDados();
-    atualizarContadorTotal();
-    renderizarItensCarrinho();
-};
-
 /* ==========================================
-    4. FAVORITOS (WISHLIST) - MANTIDO
-    ========================================== */
+    4. FAVORITOS (WISHLIST) E SINCRONIZAÇÃO
+   ========================================== */
+function sincronizarFavoritos() {
+    const botoesFav = document.querySelectorAll('.btn-fav');
+    botoesFav.forEach(btn => {
+        const card = btn.closest('.card');
+        if (!card) return;
+        const h3 = card.querySelector('h3');
+        if (!h3) return;
+        const nomeProduto = h3.innerText.trim();
+        const ehFavorito = listaFavoritos.some(fav => fav.nome === nomeProduto);
+
+        if (ehFavorito) {
+            btn.classList.add('active');
+            const icone = btn.querySelector('i');
+            if (icone) icone.classList.replace('far', 'fas');
+        }
+    });
+}
+
 window.toggleFavorito = function(btn, nomeProduto) {
     const card = btn.closest('.card');
     const preco = card.querySelector('.price').innerText;
@@ -176,7 +137,6 @@ window.toggleFavorito = function(btn, nomeProduto) {
         btn.classList.add('active');
         btn.querySelector('i').classList.replace('far', 'fas'); 
     }
-
     salvarDados();
     renderizarFavoritos();
 };
@@ -184,12 +144,10 @@ window.toggleFavorito = function(btn, nomeProduto) {
 function renderizarFavoritos() {
     const container = document.getElementById('lista-favoritos');
     if (!container) return;
-
     if (listaFavoritos.length === 0) {
         container.innerHTML = `<p style="font-size: 13px; color: #999; text-align: center; padding: 30px;">Sua lista está vazia. 💜</p>`;
         return;
     }
-
     let html = "";
     listaFavoritos.forEach((item, index) => {
         html += `
@@ -200,122 +158,101 @@ function renderizarFavoritos() {
                     <p style="font-size: 12px; margin: 0; font-weight: bold;">${item.nome}</p>
                     <span style="font-size: 11px; color: #957DAD;">${item.preco}</span>
                 </div>
-                <button onclick="addFavParaCarrinho(${index})" style="background: #f8f8f8; border: none; padding: 8px; border-radius: 50%; color: #957DAD; cursor: pointer;">
-                    <i class="fas fa-shopping-cart"></i>
-                </button>
             </div>`;
     });
-    container.innerHTML = html + `<button onclick="limparTodosFavoritos()" style="width: 100%; padding: 10px; background: none; border: 1px dashed #ff4d4d; color: #ff4d4d; border-radius: 8px; cursor: pointer; font-size: 12px;">Limpar Tudo</button>`;
+    container.innerHTML = html;
 }
 
-window.removerFavoritoUnico = function(index) {
-    listaFavoritos.splice(index, 1);
-    salvarDados();
-    renderizarFavoritos();
-};
-
-window.limparTodosFavoritos = function() {
-    if (confirm("Remover todos os favoritos? 💜")) {
-        listaFavoritos = [];
-        salvarDados();
-        renderizarFavoritos();
-    }
-};
-
-window.addFavParaCarrinho = function(index) {
-    const item = listaFavoritos[index];
-    adicionarAoCarrinho(item.nome, item.preco, item.img);
-    alert("Produto adicionado ao carrinho! 💜");
-};
-
 /* ==========================================
-    5. COMPARTILHAMENTO E UTILITÁRIOS - MANTIDO
-    ========================================== */
-window.compartilharProduto = function(nome) {
-    const url = window.location.href;
-    const msg = `Olha que lindo esse(a) ${nome} que vi na Perfetto Store! 💜`;
-
-    if (navigator.share) {
-        navigator.share({ title: 'Perfetto Store', text: msg, url: url });
-    } else {
-        navigator.clipboard.writeText(`${msg} Link: ${url}`);
-        alert("Link copiado! Envie para suas amigas. ✨");
-    }
-};
-/* ==========================================
-    ADICIONAL: SINCRONIZAÇÃO DE ÍCONES
+    5. ANIMAÇÃO DE INTRO (SEGURA)
    ========================================== */
-function sincronizarFavoritos() {
-    // Busca todos os botões de favorito na página atual
-    const botoesFav = document.querySelectorAll('.btn-fav');
-    
-    botoesFav.forEach(btn => {
-        // Tenta encontrar o nome do produto no card atual
-        const card = btn.closest('.card');
-        if (!card) return;
-        
-        const h3 = card.querySelector('h3');
-        if (!h3) return;
-        
-        const nomeProduto = h3.innerText.trim();
+function iniciarAnimacaoIntro() {
+    const textElement = document.getElementById("typing-text");
+    const introScreen = document.getElementById("intro-perfetto");
+    if (!textElement || !introScreen || introExecutada) return;
 
-        // Verifica se esse produto está na nossa lista de favoritos salva
-        // Certifique-se de que 'listaFavoritos' esteja definida no topo do seu script
-        const ehFavorito = listaFavoritos.some(fav => fav.nome === nomeProduto);
+    introExecutada = true;
+    textElement.textContent = "";
+    const phrase = "Perfetto Store";
+    let i = 0;
 
-        if (ehFavorito) {
-            btn.classList.add('active');
-            const icone = btn.querySelector('i');
-            if (icone) {
-                icone.classList.replace('far', 'fas'); // Troca coração vazio por cheio
-            }
+    function type() {
+        if (i < phrase.length) {
+            textElement.textContent += phrase.charAt(i);
+            i++;
+            setTimeout(type, 70); 
+        } else {
+            setTimeout(() => {
+                introScreen.classList.add('fade-out-intro');
+                setTimeout(() => { introScreen.style.display = 'none'; }, 800);
+            }, 500); 
         }
-    });
+    }
+    textElement.classList.add("cursor-blink");
+    type();
+
+    // Segurança: remove a tela se travar
+    setTimeout(() => { if(introScreen) introScreen.style.display = 'none'; }, 5000);
 }
 
 /* ==========================================
-    INICIALIZAÇÃO ÚNICA (CORRIGIDA E COMPLETA)
+    6. EFEITO SCROLL REVEAL (MOVIMENTAÇÃO)
+   ========================================== */
+function aplicarScrollReveal() {
+    if (typeof ScrollReveal === 'undefined') return;
+
+    const sr = ScrollReveal({
+        origin: 'bottom',
+        distance: '100px',
+        duration: 2500,
+        delay: 300,
+        scale: 0.8,
+        opacity: 0,
+        reset: true 
+    });
+
+    sr.reveal('.hero-text', { origin: 'left', distance: '300px', duration: 3000 });
+    sr.reveal('.hero-img', { origin: 'right', distance: '300px', duration: 3000 });
+    sr.reveal('.card', { interval: 250, rotate: { x: 15 }, scale: 0.85 });
+    sr.reveal('.carousel', { delay: 400 });
+    sr.reveal('.section-title', { origin: 'top' });
+    sr.reveal('.footer-container', { delay: 300 });
+}
+
+/* ==========================================
+    7. INICIALIZAÇÃO ÚNICA
    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Funções globais (Menu, Carrinho, Wishlist Lateral)
-    if (typeof inicializarMenu === "function") inicializarMenu();
-    if (typeof atualizarContadorTotal === "function") atualizarContadorTotal();
-    if (typeof renderizarFavoritos === "function") renderizarFavoritos();
-    
-    // 2. Sincroniza os corações dos produtos da página atual
+    inicializarMenu();
+    atualizarContadorTotal();
+    renderizarFavoritos();
     sincronizarFavoritos();
     
-    // 3. Só inicia o Carrossel se ele existir na página (evita erro em categorias)
-    if (document.getElementById('carousel-container')) {
-        iniciarCarrossel();
-    }
-    
-    // 4. Só inicia a Intro se ela existir na página (geralmente só na home)
-    if (document.getElementById('intro-perfetto')) {
-        iniciarAnimacaoIntro();
-    }
+    if (document.getElementById('carousel-container')) iniciarCarrossel();
+    if (document.getElementById('intro-perfetto')) iniciarAnimacaoIntro();
+});
+
+window.addEventListener('load', () => {
+    aplicarScrollReveal();
 });
 
 /* ==========================================
-    FUNÇÕES DA PÁGINA DE PRODUTO
+    8. UTILITÁRIOS E PÁGINA DE PRODUTO
    ========================================== */
 function changeImage(element) {
     const mainImg = document.getElementById('mainImg');
     if (mainImg) {
         mainImg.src = element.src;
-        const thumbs = document.querySelectorAll('.thumb-item');
-        thumbs.forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
         element.classList.add('active');
     }
 }
 
 function selectSize(btn) {
-    const btns = document.querySelectorAll('.size-option');
-    btns.forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
 }
 
-// Scroll suave para links internos
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
