@@ -280,28 +280,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
-const textElement = document.getElementById("typing-text");
-const introScreen = document.getElementById("intro-perfetto");
-const phrase = "Perfetto Store";
-let index = 0;
+/* ==========================================
+    6. ANIMAÇÃO DE INTRO (DIGITAÇÃO)
+   ========================================== */
+function iniciarAnimacaoIntro() {
+    const textElement = document.getElementById("typing-text");
+    const introScreen = document.getElementById("intro-perfetto");
+    const phrase = "Perfetto Store";
+    let i = 0;
 
-function typeEffect() {
-    if (index < phrase.length) {
-        textElement.textContent += phrase.charAt(index);
-        index++;
-        setTimeout(typeEffect, 120); // Velocidade da digitação (ajuste se quiser mais rápido)
-    } else {
-        // Quando terminar de digitar:
-        textElement.style.borderRight = "none"; // Remove o cursor
-        
-        // Espera 800ms para o usuário ler o nome e então some com a intro
-        setTimeout(() => {
-            introScreen.classList.add("fade-out");
-        }, 800);
+    if (!textElement || !introScreen) return;
+
+    function type() {
+        if (i < phrase.length) {
+            textElement.textContent += phrase.charAt(i);
+            i++;
+            setTimeout(type, 120);
+        } else {
+            // Finaliza a digitação
+            textElement.style.borderRight = "none";
+            
+            // Aguarda 1 segundo e remove a tela
+            setTimeout(() => {
+                introScreen.classList.add('fade-out-intro'); // Use o nome exato da classe do seu CSS
+                
+                // Remove do site após o fade para não bloquear cliques
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                }, 800);
+            }, 1000);
+        }
     }
+
+    // Inicia o cursor e o efeito
+    textElement.classList.add("cursor-blink");
+    type();
 }
 
-window.onload = () => {
-    textElement.classList.add("cursor-blink");
-    setTimeout(typeEffect, 500); 
-};
+/* ==========================================
+    INICIALIZAÇÃO ÚNICA (CORRIGIDA)
+   ========================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializa todas as funções
+    inicializarMenu();
+    iniciarCarrossel();
+    atualizarContadorTotal();
+    configurarCarrinhoModal();
+    renderizarFavoritos();
+    
+    // Inicia a animação de digitação
+    iniciarAnimacaoIntro();
+});
