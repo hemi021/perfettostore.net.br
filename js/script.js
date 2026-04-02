@@ -280,16 +280,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
-/* intro de milhoes */
-document.getElementById('btn-entrar').addEventListener('click', function() {
-  const intro = document.getElementById('intro-perfetto');
-  
-  // Adiciona o efeito de brilho antes de sair (opcional)
-  this.style.background = "white";
-  this.style.color = "black";
-  
-  // Faz a transição suave para o site
-  setTimeout(() => {
-    intro.classList.add('fade-out');
-  }, 300);
+/*intro de milhoes*/
+document.addEventListener('DOMContentLoaded', function() {
+    const btnEntrar = document.getElementById('btn-entrar');
+    const intro = document.getElementById('intro-perfetto');
+
+    if (btnEntrar && intro) {
+        btnEntrar.addEventListener('click', function() {
+            // Adiciona a classe que faz o fade-out
+            intro.classList.add('fade-out');
+            
+            // Opcional: Salva na sessão para não mostrar de novo na mesma navegação
+            sessionStorage.setItem('introVisualizada', 'true');
+        });
+    }
+
+    // Verifica se já viu a intro nesta sessão
+    if (sessionStorage.getItem('introVisualizada') === 'true') {
+        intro.style.display = 'none';
+    }
 });

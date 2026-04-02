@@ -1049,44 +1049,68 @@ body {
     color: inherit !important;
 }
 /*introducao*/
-/* Isso aqui vai garantir que a tela preta cubra TUDO */
+/* --- TELA DE ABERTURA PERFETTO --- */
 #intro-perfetto {
-    position: fixed; /* Fixa na tela, independente do scroll */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Ocupa 100% da altura da visão */
-    background-color: #000; /* Fundo preto */
+    height: 100vh;
+    background-color: #000000; /* Garante o fundo preto */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 999999; /* Valor altíssimo para ficar na frente de tudo */
-    transition: opacity 0.8s ease;
+    z-index: 10000; /* Valor bem alto para ficar na frente de tudo */
+    transition: opacity 0.8s ease, visibility 0.8s;
 }
 
-/* Ajuste o tamanho da logo para não ficar gigante */
+.conteudo-intro {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Ajuste da Logo para não ficar gigante */
 .logo-animada {
-    width: 250px; /* Ou o tamanho que preferir */
+    width: 180px; /* Tamanho controlado */
     height: auto;
-    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
-/* Estilo do botão para ele não ficar sem cor */
-.glow-button {
-    padding: 12px 30px;
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-    cursor: pointer;
-    font-family: sans-serif;
-    letter-spacing: 2px;
+.frase-estilo {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    transition: 0.3s;
+    margin: 10px 0;
+}
+
+/* Botão com o efeito Glow */
+.glow-button {
+    padding: 12px 40px;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    outline: none;
 }
 
 .glow-button:hover {
-    background-color: #fff;
-    color: #000;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* Classe para sumir com a intro via JS */
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
