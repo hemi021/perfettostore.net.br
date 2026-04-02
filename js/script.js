@@ -301,33 +301,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/* abertura*/
-// --- LÓGICA DA ABERTURA PERFETTO ---
-document.addEventListener('DOMContentLoaded', function() {
-    const btnEntrar = document.getElementById('btn-entrar');
-    const intro = document.getElementById('intro-perfetto');
+/* ==========================================
+    ABERTURA EXCLUSIVA PERFETTO STORE
+   ========================================== */
+(function() {
+    function configurarAbertura() {
+        const intro = document.getElementById('intro-perfetto');
+        const btn = document.getElementById('btn-entrar');
 
-    // Só executa se a abertura existir na página atual
-    if (intro && btnEntrar) {
-        
-        // Verifica se a cliente já entrou nesta sessão (para não repetir)
-        if (sessionStorage.getItem('jaEntrou')) {
+        if (!intro || !btn) return;
+
+        // Se já entrou na loja nesta sessão, esconde a intro imediatamente
+        if (sessionStorage.getItem('perfetto_logado')) {
             intro.style.display = 'none';
+            return;
         }
 
-        btnEntrar.addEventListener('click', function() {
-            // Efeito de sumir suave
+        // Ação do Clique
+        btn.onclick = function() {
+            // Efeito visual de saída
             intro.style.transition = 'opacity 0.8s ease, visibility 0.8s';
             intro.style.opacity = '0';
             intro.style.visibility = 'hidden';
 
-            // Salva na sessão para não mostrar de novo enquanto o navegador estiver aberto
-            sessionStorage.setItem('jaEntrou', 'true');
+            // Salva para não repetir
+            sessionStorage.setItem('perfetto_logado', 'true');
 
-            // Remove do layout após a animação
+            // Remove do DOM após a animação
             setTimeout(() => {
                 intro.style.display = 'none';
             }, 800);
-        });
+        };
     }
-});
+
+    // Garante que rode independente de como a página carregue
+    if (document.readyState === 'complete') {
+        configurarAbertura();
+    } else {
+        window.addEventListener('load', configurarAbertura);
+    }
+})();
