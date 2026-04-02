@@ -1070,17 +1070,19 @@ body {
 #intro-perfetto::before {
     content: "PS";
     position: absolute;
-    /* Centralização Absoluta */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
     font-family: 'Poppins', sans-serif; 
-    font-size: 45vw; /* Tamanho gigante responsivo */
+    font-size: 45vw; 
     font-weight: 900;
     color: #957DAD; 
-    opacity: 0.12;   /* Aumentei levemente para garantir visibilidade */
-    z-index: -1;     /* Fica atrás do texto digitado */
+    
+    /* ALTERE AQUI: */
+    opacity: 0.25;   /* 25% de visibilidade. Se ainda achar claro, tente 0.3 */
+    
+    z-index: -1;     
     pointer-events: none;
     line-height: 1;
     letter-spacing: -10px;
