@@ -358,3 +358,17 @@ function iniciarAnimacaoIntro() {
     textElement.classList.add("cursor-blink");
     type();
 }
+// Configuração do ScrollReveal - O toque de sofisticação
+const sr = ScrollReveal({
+    origin: 'bottom', // Os elementos vêm de baixo
+    distance: '50px', // O quanto eles se movem
+    duration: 2000,   // Tempo da animação (2 segundos para ser bem suave)
+    delay: 200,       // Pequena espera antes de começar
+    reset: false      // Se true, a animação acontece toda vez que sobe/desce
+});
+
+// Aplicando aos elementos do site:
+sr.reveal('.banner', { delay: 300 }); 
+sr.reveal('.produto-card', { interval: 100 }); // Aparecem um por um em sequência
+sr.reveal('.titulo-secao', { origin: 'left', distance: '100px' });
+sr.reveal('.footer-container', { delay: 400 });
