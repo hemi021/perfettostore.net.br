@@ -373,9 +373,23 @@ window.addEventListener('load', () => {
     // 1. Banner Principal (Entrada suave com zoom)
     sr.reveal('.carousel', { delay: 400, scale: 0.9, distance: '40px' });
 
-    // 2. Seção Hero (Textos vindo das laterais opostas)
-    sr.reveal('.hero-text', { origin: 'left', distance: '200px', delay: 500 });
-    sr.reveal('.hero-img', { origin: 'right', distance: '200px', delay: 700 });
+    // 2. Seção Hero (O Título vindo de bem longe)
+    sr.reveal('.hero-text', { 
+        origin: 'left', 
+        distance: '300px', // Aumentei de 200px para 300px
+        duration: 3000,    // Mais lento (3 segundos) para ser bem elegante
+        delay: 600, 
+        scale: 1,          // Mantive o tamanho real para não distorcer o texto
+        opacity: 0
+    });
+
+    // A imagem que acompanha o título vindo da direita
+    sr.reveal('.hero-img', { 
+        origin: 'right', 
+        distance: '300px', 
+        duration: 3000, 
+        delay: 800 
+    });
 
     // 3. Títulos das Seções (Vêm de cima para baixo)
     sr.reveal('.section-title', { origin: 'top', distance: '50px', delay: 200 });
