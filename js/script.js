@@ -322,7 +322,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* ==========================================
-    6. ANIMAÇÃO DE INTRO (DIGITAÇÃO) - VERSÃO RÁPIDA
+    6. ANIMAÇÃO DE INTRO (DIGITAÇÃO)
    ========================================== */
 function iniciarAnimacaoIntro() {
     const textElement = document.getElementById("typing-text");
@@ -336,17 +336,11 @@ function iniciarAnimacaoIntro() {
         if (i < phrase.length) {
             textElement.textContent += phrase.charAt(i);
             i++;
-            // Velocidade das letras: 70ms (mais rápido que 100ms)
             setTimeout(type, 70); 
         } else {
-            // Finaliza a digitação e tira o cursor
             textElement.style.borderRight = "none";
-            
-            // Aguarda apenas 500ms (meio segundo) e começa a sumir
             setTimeout(() => {
                 introScreen.classList.add('fade-out-intro');
-                
-                // Tira o display 'none' após a transição do CSS (800ms)
                 setTimeout(() => {
                     introScreen.style.display = 'none';
                 }, 800);
@@ -354,34 +348,46 @@ function iniciarAnimacaoIntro() {
         }
     }
 
-    // Inicia o cursor piscando e a digitação
     textElement.classList.add("cursor-blink");
     type();
 }
-// Espera a página carregar totalmente
+
+/* ==========================================
+    7. EFEITO SCROLL REVEAL (MOVIMENTAÇÃO)
+   ========================================== */
 window.addEventListener('load', () => {
+    // Iniciamos a animação de digitação
+    iniciarAnimacaoIntro();
+
+    // Configuração do ScrollReveal "Efeito Uau"
     const sr = ScrollReveal({
         origin: 'bottom',
-        distance: '60px',
-        duration: 2000,
-        delay: 200,
-        reset: false // Para animar apenas uma vez ao descer
+        distance: '100px', // Aumentei para o movimento ser bem longo e visível
+        duration: 2500,    // 2.5 segundos para ser bem fluido e elegante
+        delay: 300,        
+        scale: 0.8,        // Os itens começam 20% menores e crescem ao aparecer
+        opacity: 0,
+        reset: true        // 'true' faz a animação acontecer toda vez que sobe/desce a tela
     });
 
-    // 1. Anima o Banner (sua classe é .carousel)
-    sr.reveal('.carousel', { delay: 300, distance: '30px' });
+    // 1. Banner Principal (Entrada suave com zoom)
+    sr.reveal('.carousel', { delay: 400, scale: 0.9, distance: '40px' });
 
-    // 2. Anima o Destaque (sua classe é .hero)
-    sr.reveal('.hero-text', { origin: 'left', delay: 400 });
-    sr.reveal('.hero-img', { origin: 'right', delay: 500 });
+    // 2. Seção Hero (Textos vindo das laterais opostas)
+    sr.reveal('.hero-text', { origin: 'left', distance: '200px', delay: 500 });
+    sr.reveal('.hero-img', { origin: 'right', distance: '200px', delay: 700 });
 
-    // 3. Anima os Títulos das seções
-    sr.reveal('.section-title', { delay: 200 });
+    // 3. Títulos das Seções (Vêm de cima para baixo)
+    sr.reveal('.section-title', { origin: 'top', distance: '50px', delay: 200 });
 
-    // 4. Anima os Cards de Produtos (sua classe é .card)
-    // O 'interval' faz eles aparecerem um por um em sequência
-    sr.reveal('.card', { interval: 150, distance: '80px' });
+    // 4. Cards de Produtos (Efeito cascata marcante)
+    sr.reveal('.card', { 
+        interval: 250,      // Tempo entre um card e outro aparecer
+        rotate: { x: 15, y: 0, z: 0 }, // Leve inclinação para parecer que está "abrindo"
+        scale: 0.85,
+        distance: '120px'   // Faz eles "brotarem" de bem baixo
+    });
 
-    // 5. Anima o Rodapé
-    sr.reveal('.footer-container', { delay: 200 });
+    // 5. Rodapé (Entrada simples e limpa)
+    sr.reveal('.footer-container', { delay: 300, distance: '50px', scale: 1 });
 });
