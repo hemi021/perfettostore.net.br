@@ -1086,3 +1086,98 @@ body {
     0%, 100% { border-color: transparent }
     50% { border-color: #957DAD }
 }
+/* ==========================================
+   ESTILIZAÇÃO DOS FAVORITOS NO MENU LATERAL
+   ========================================== */
+
+/* Container que segura a lista */
+.fav-container {
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre cada item favorito */
+    max-height: 400px; /* Limite de altura com scroll se tiver muitos itens */
+    overflow-y: auto;
+}
+
+/* Linha divisória entre Categorias e Favoritos */
+.menu-divider {
+    margin: 20px 10px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+/* Cada item de favorito individualmente */
+.fav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.fav-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Botão de remover (o X vermelho) */
+.fav-item button[onclick*="removerFavoritoUnico"] {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Imagem do produto no favorito */
+.fav-item img {
+    width: 50px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Textos dentro do favorito */
+.fav-item p {
+    font-size: 12px;
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.fav-item span {
+    font-size: 11px;
+    color: #957DAD; /* Cor padrão da Perfetto */
+}
+
+/* Botão de Limpar Tudo */
+.btn-limpar-fav {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: 1px dashed #ff4d4d;
+    color: #ff4d4d;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.btn-limpar-fav:hover {
+    background: #fff5f5;
+}
