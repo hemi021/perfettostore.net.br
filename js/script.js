@@ -295,14 +295,15 @@ function iniciarAnimacaoIntro() {
         if (i < phrase.length) {
             textElement.textContent += phrase.charAt(i);
             i++;
-            setTimeout(type, 120);
+            setTimeout(type, 100);
         } else {
             // Finaliza a digitação
             textElement.style.borderRight = "none";
             
-            // Aguarda 1 segundo e remove a tela
-            setTimeout(() => {
-                introScreen.classList.add('fade-out-intro'); // Use o nome exato da classe do seu CSS
+           // Aguarda 1 segundo e remove a tela
+         setTimeout(() => {
+         introScreen.classList.add('fade-out-intro');
+         }, 500); // Mude 1000 para 500 (meio segundo
                 
                 // Remove do site após o fade para não bloquear cliques
                 setTimeout(() => {
