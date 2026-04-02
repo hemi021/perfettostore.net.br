@@ -260,6 +260,7 @@ function sincronizarFavoritos() {
         const nomeProduto = h3.innerText.trim();
 
         // Verifica se esse produto está na nossa lista de favoritos salva
+        // Certifique-se de que 'listaFavoritos' esteja definida no topo do seu script
         const ehFavorito = listaFavoritos.some(fav => fav.nome === nomeProduto);
 
         if (ehFavorito) {
@@ -271,14 +272,15 @@ function sincronizarFavoritos() {
         }
     });
 }
+
 /* ==========================================
     INICIALIZAÇÃO ÚNICA (CORRIGIDA E COMPLETA)
    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Funções globais (Menu, Carrinho, Wishlist Lateral)
-    inicializarMenu();
-    atualizarContadorTotal();
-    renderizarFavoritos();
+    if (typeof inicializarMenu === "function") inicializarMenu();
+    if (typeof atualizarContadorTotal === "function") atualizarContadorTotal();
+    if (typeof renderizarFavoritos === "function") renderizarFavoritos();
     
     // 2. Sincroniza os corações dos produtos da página atual
     sincronizarFavoritos();
@@ -293,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         iniciarAnimacaoIntro();
     }
 });
+
 /* ==========================================
     FUNÇÕES DA PÁGINA DE PRODUTO
    ========================================== */
@@ -319,89 +322,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
-});
-
-/* ==========================================
-    6. ANIMAÇÃO DE INTRO (DIGITAÇÃO)
-   ========================================== */
-function iniciarAnimacaoIntro() {
-    const textElement = document.getElementById("typing-text");
-    const introScreen = document.getElementById("intro-perfetto");
-    const phrase = "Perfetto Store";
-    let i = 0;
-
-    if (!textElement || !introScreen) return;
-
-    function type() {
-        if (i < phrase.length) {
-            textElement.textContent += phrase.charAt(i);
-            i++;
-            setTimeout(type, 70); 
-        } else {
-            textElement.style.borderRight = "none";
-            setTimeout(() => {
-                introScreen.classList.add('fade-out-intro');
-                setTimeout(() => {
-                    introScreen.style.display = 'none';
-                }, 800);
-            }, 500); 
-        }
-    }
-
-    textElement.classList.add("cursor-blink");
-    type();
-}
-
-/* ==========================================
-    7. EFEITO SCROLL REVEAL (MOVIMENTAÇÃO)
-   ========================================== */
-window.addEventListener('load', () => {
-    // Iniciamos a animação de digitação
-    iniciarAnimacaoIntro();
-
-    // Configuração do ScrollReveal "Efeito Uau"
-    const sr = ScrollReveal({
-        origin: 'bottom',
-        distance: '100px', // Aumentei para o movimento ser bem longo e visível
-        duration: 2500,    // 2.5 segundos para ser bem fluido e elegante
-        delay: 300,        
-        scale: 0.8,        // Os itens começam 20% menores e crescem ao aparecer
-        opacity: 0,
-        reset: true        // 'true' faz a animação acontecer toda vez que sobe/desce a tela
-    });
-
-    // 1. Banner Principal (Entrada suave com zoom)
-    sr.reveal('.carousel', { delay: 400, scale: 0.9, distance: '40px' });
-
-    // 2. Seção Hero (O Título vindo de bem longe)
-    sr.reveal('.hero-text', { 
-        origin: 'left', 
-        distance: '300px', // Aumentei de 200px para 300px
-        duration: 3000,    // Mais lento (3 segundos) para ser bem elegante
-        delay: 600, 
-        scale: 1,          // Mantive o tamanho real para não distorcer o texto
-        opacity: 0
-    });
-
-    // A imagem que acompanha o título vindo da direita
-    sr.reveal('.hero-img', { 
-        origin: 'right', 
-        distance: '300px', 
-        duration: 3000, 
-        delay: 800 
-    });
-
-    // 3. Títulos das Seções (Vêm de cima para baixo)
-    sr.reveal('.section-title', { origin: 'top', distance: '50px', delay: 200 });
-
-    // 4. Cards de Produtos (Efeito cascata marcante)
-    sr.reveal('.card', { 
-        interval: 250,      // Tempo entre um card e outro aparecer
-        rotate: { x: 15, y: 0, z: 0 }, // Leve inclinação para parecer que está "abrindo"
-        scale: 0.85,
-        distance: '120px'   // Faz eles "brotarem" de bem baixo
-    });
-
-    // 5. Rodapé (Entrada simples e limpa)
-    sr.reveal('.footer-container', { delay: 300, distance: '50px', scale: 1 });
 });
