@@ -1088,24 +1088,55 @@ body {
     margin: 10px 0;
 }
 
-/* Botão com o efeito Glow */
+/* BOTÃO SOFISTICADO PERFETTO */
 .glow-button {
-    padding: 12px 40px;
+    position: relative;
+    padding: 15px 50px;
     background: transparent;
     color: #ffffff;
-    border: 1px solid #ffffff;
-    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    letter-spacing: 2px;
-    transition: all 0.4s ease;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 4px; /* Espaçamento chique */
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden; /* Necessário para o efeito interno */
+    transition: all 0.5s ease;
     outline: none;
 }
 
+/* O efeito de preenchimento (A "alma" do botão) */
+.glow-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Começa fora da visão */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(149, 125, 173, 0.4), transparent); /* Tom Lavanda da Perfetto */
+    transition: all 0.6s ease;
+}
+
 .glow-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    border-color: #957DAD; /* Cor Lilás da logo */
+    letter-spacing: 6px; /* Expande levemente o texto no hover */
+    box-shadow: 0 0 20px rgba(149, 125, 173, 0.2);
+}
+
+.glow-button:hover::before {
+    left: 100%; /* A luz passa pelo botão */
+}
+
+/* Toque final: Uma linha fina embaixo da frase */
+.frase-estilo {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    opacity: 0.8;
 }
 
 /* Classe para sumir com a intro via JS */

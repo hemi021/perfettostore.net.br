@@ -300,3 +300,34 @@ document.addEventListener('DOMContentLoaded', function() {
         intro.style.display = 'none';
     }
 });
+
+/* abertura*/
+// --- LÓGICA DA ABERTURA PERFETTO ---
+document.addEventListener('DOMContentLoaded', function() {
+    const btnEntrar = document.getElementById('btn-entrar');
+    const intro = document.getElementById('intro-perfetto');
+
+    // Só executa se a abertura existir na página atual
+    if (intro && btnEntrar) {
+        
+        // Verifica se a cliente já entrou nesta sessão (para não repetir)
+        if (sessionStorage.getItem('jaEntrou')) {
+            intro.style.display = 'none';
+        }
+
+        btnEntrar.addEventListener('click', function() {
+            // Efeito de sumir suave
+            intro.style.transition = 'opacity 0.8s ease, visibility 0.8s';
+            intro.style.opacity = '0';
+            intro.style.visibility = 'hidden';
+
+            // Salva na sessão para não mostrar de novo enquanto o navegador estiver aberto
+            sessionStorage.setItem('jaEntrou', 'true');
+
+            // Remove do layout após a animação
+            setTimeout(() => {
+                intro.style.display = 'none';
+            }, 800);
+        });
+    }
+});
