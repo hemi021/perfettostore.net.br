@@ -242,21 +242,24 @@ window.compartilharProduto = function(nome) {
         alert("Link copiado! Envie para suas amigas. ✨");
     }
 };
-
 /* ==========================================
-    INICIALIZAÇÃO AO CARREGAR A PÁGINA
-    ========================================== */
+    INICIALIZAÇÃO ÚNICA (CORRIGIDA)
+   ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
+    // Inicializa todas as funções de uma vez só
     inicializarMenu();
     iniciarCarrossel();
-    atualizarContadorTotal(); // ADICIONADO: Para mostrar o número ao abrir o site
-    configurarCarrinhoModal(); // ADICIONADO: Para o ícone do carrinho funcionar
+    atualizarContadorTotal();
+    configurarCarrinhoModal();
     renderizarFavoritos();
+    
+    // Inicia a animação de digitação
+    iniciarAnimacaoIntro();
 });
 
 /* ==========================================
-    FUNÇÕES DA PÁGINA DE PRODUTO - MANTIDO
-    ========================================== */
+    FUNÇÕES DA PÁGINA DE PRODUTO
+   ========================================== */
 function changeImage(element) {
     const mainImg = document.getElementById('mainImg');
     if (mainImg) {
@@ -273,6 +276,7 @@ function selectSize(btn) {
     btn.classList.add('selected');
 }
 
+// Scroll suave para links internos
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -280,8 +284,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
+
 /* ==========================================
-    6. ANIMAÇÃO DE INTRO (DIGITAÇÃO)
+    6. ANIMAÇÃO DE INTRO (DIGITAÇÃO) - VERSÃO RÁPIDA
    ========================================== */
 function iniciarAnimacaoIntro() {
     const textElement = document.getElementById("typing-text");
@@ -295,40 +300,25 @@ function iniciarAnimacaoIntro() {
         if (i < phrase.length) {
             textElement.textContent += phrase.charAt(i);
             i++;
-            setTimeout(type, 100);
+            // Velocidade das letras: 70ms (mais rápido que 100ms)
+            setTimeout(type, 70); 
         } else {
-            // Finaliza a digitação
+            // Finaliza a digitação e tira o cursor
             textElement.style.borderRight = "none";
             
-           // Aguarda 1 segundo e remove a tela
-         setTimeout(() => {
-         introScreen.classList.add('fade-out-intro');
-         }, 500); // Mude 1000 para 500 (meio segundo
+            // Aguarda apenas 500ms (meio segundo) e começa a sumir
+            setTimeout(() => {
+                introScreen.classList.add('fade-out-intro');
                 
-                // Remove do site após o fade para não bloquear cliques
+                // Tira o display 'none' após a transição do CSS (800ms)
                 setTimeout(() => {
                     introScreen.style.display = 'none';
                 }, 800);
-            }, 1000);
+            }, 500); 
         }
     }
 
-    // Inicia o cursor e o efeito
+    // Inicia o cursor piscando e a digitação
     textElement.classList.add("cursor-blink");
     type();
 }
-
-/* ==========================================
-    INICIALIZAÇÃO ÚNICA (CORRIGIDA)
-   ========================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    // Inicializa todas as funções
-    inicializarMenu();
-    iniciarCarrossel();
-    atualizarContadorTotal();
-    configurarCarrinhoModal();
-    renderizarFavoritos();
-    
-    // Inicia a animação de digitação
-    iniciarAnimacaoIntro();
-});
