@@ -243,20 +243,56 @@ window.compartilharProduto = function(nome) {
     }
 };
 /* ==========================================
-    INICIALIZAÇÃO ÚNICA (CORRIGIDA)
+    ADICIONAL: SINCRONIZAÇÃO DE ÍCONES
+   ========================================== */
+function sincronizarFavoritos() {
+    // Busca todos os botões de favorito na página atual
+    const botoesFav = document.querySelectorAll('.btn-fav');
+    
+    botoesFav.forEach(btn => {
+        // Tenta encontrar o nome do produto no card atual
+        const card = btn.closest('.card');
+        if (!card) return;
+        
+        const h3 = card.querySelector('h3');
+        if (!h3) return;
+        
+        const nomeProduto = h3.innerText.trim();
+
+        // Verifica se esse produto está na nossa lista de favoritos salva
+        const ehFavorito = listaFavoritos.some(fav => fav.nome === nomeProduto);
+
+        if (ehFavorito) {
+            btn.classList.add('active');
+            const icone = btn.querySelector('i');
+            if (icone) {
+                icone.classList.replace('far', 'fas'); // Troca coração vazio por cheio
+            }
+        }
+    });
+}
+/* ==========================================
+    INICIALIZAÇÃO ÚNICA (CORRIGIDA E COMPLETA)
    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializa todas as funções de uma vez só
+    // 1. Funções globais (Menu, Carrinho, Wishlist Lateral)
     inicializarMenu();
-    iniciarCarrossel();
     atualizarContadorTotal();
-    configurarCarrinhoModal();
     renderizarFavoritos();
     
-    // Inicia a animação de digitação
-    iniciarAnimacaoIntro();
+    // 2. Sincroniza os corações dos produtos da página atual
+    sincronizarFavoritos();
+    
+    // 3. Só inicia o Carrossel se ele existir na página (evita erro em categorias)
+    if (document.getElementById('carousel-container')) {
+        iniciarCarrossel();
+    }
+    
+    // 4. Só inicia a Intro se ela existir na página (geralmente só na home)
+    if (document.getElementById('intro-perfetto')) {
+        iniciarAnimacaoIntro();
+    }
 });
-
 /* ==========================================
     FUNÇÕES DA PÁGINA DE PRODUTO
    ========================================== */
