@@ -239,6 +239,45 @@ body {
     border-color: var(--roxo-principal);
 }
 /* ==========================================
+    ESTILIZAÇÃO DO BOTÃO "VER LOOKS"
+   ========================================== */
+.btn-ver-looks {
+    display: inline-block;
+    padding: 14px 40px;
+    background-color: #957DAD; /* Roxo padrão Perfetto */
+    color: #ffffff;
+    font-family: 'Cinzel', serif; /* Fonte imponente que importamos */
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Espaçamento chic entre as letras */
+    text-decoration: none;
+    border-radius: 0; /* Bordas retas passam mais seriedade/luxo */
+    transition: all 0.4s ease;
+    border: 1px solid #957DAD;
+    cursor: pointer;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito ao passar o mouse (Hover) */
+.btn-ver-looks:hover {
+    background-color: transparent;
+    color: #957DAD;
+    box-shadow: 0 10px 20px rgba(149, 125, 173, 0.2);
+    transform: translateY(-3px); /* Leve subida */
+}
+
+/* Ajuste para mobile (garante que não fique gigante em telas pequenas) */
+@media (max-width: 768px) {
+    .btn-ver-looks {
+        padding: 12px 30px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+}
+/* ==========================================
    AJUSTE PARA CELULAR (UM EMBAIXO DO OUTRO)
    ========================================== */
 @media screen and (max-width: 768px) {
