@@ -284,7 +284,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 /* ==========================================
-    SISTEMA DE BUSCA INTELIGENTE (ATUALIZADO)
+    SISTEMA DE BUSCA INTELIGENTE (CORRIGIDO)
    ========================================== */
 const meusProdutos = [
     { 
@@ -307,6 +307,16 @@ const meusProdutos = [
     }
 ];
 
+// Função auxiliar para encontrar a raiz do site e evitar erro 404
+function getRootPath() {
+    // Se o site estiver em um subdiretório do GitHub (ex: /perfetto-store/)
+    const path = window.location.pathname;
+    if (path.includes('/perfetto-store/')) {
+        return '/perfetto-store/';
+    }
+    return '/';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const inputBusca = document.getElementById('search-in');
     const containerResultados = document.getElementById('search-results');
@@ -325,34 +335,56 @@ document.addEventListener('DOMContentLoaded', () => {
                     filtrados.forEach(p => {
                         const item = document.createElement('div');
                         item.className = 'search-item-result';
+                        
+                        // Ajuste de caminho da imagem para funcionar em subpastas
+                        const isSubfolder = window.location.pathname.includes('/vestidos/') || 
+                                           window.location.pathname.includes('/calcas/') ||
+                                           window.location.pathname.includes('/saias/') ||
+                                           window.location.pathname.includes('/blusas/') ||
+                                           window.location.pathname.includes('/conjuntos/');
+                        
+                        const imgSrc = isSubfolder ? '../' + p.img : p.img;
+                        const linkFinal = isSubfolder ? '../' + p.link : p.link;
+
                         item.innerHTML = `
-                            <img src="${p.img}" alt="${p.nome}">
+                            <img src="${imgSrc}" alt="${p.nome}">
                             <div class="info">
-                                <span class="name">${p.nome}</span>
-                                <span class="price">${p.preco}</span>
+                                <span class="name">${p.name}</span>
+                                <span class="price">${p.price}</span>
                             </div>
                         `;
-                        // Ao clicar, vai para a página do produto
+
                         item.onclick = () => {
-                            window.location.href = p.link;
+                            window.location.href = linkFinal;
                         };
                         containerResultados.appendChild(item);
                     });
                     containerResultados.style.display = 'block';
-                } else {
-                    containerResultados.innerHTML = '<p style="padding:15px; font-size:12px; color:#666; text-align:center;">Nenhum look encontrado... 💜</p>';
-                    containerResultados.style.display = 'block';
                 }
-            } else {
-                containerResultados.style.display = 'none';
+                // ... resto do seu código de "Nenhum look encontrado"
             }
         });
+    }
+});
+/* ==========================================
+    LÓGICA EXCLUSIVA DA PÁGINA DE PRODUTO
+   ========================================== */
+document.addEventListener('click', function(e) {
+    // Lógica para trocar a imagem (Miniaturas)
+    if (e.target.classList.contains('thumb-item')) {
+        const mainImg = document.getElementById('mainImg');
+        if (mainImg) {
+            mainImg.src = e.target.src;
+            
+            // Atualiza a borda da miniatura ativa
+            document.querySelectorAll('.thumb-item').forEach(img => img.classList.remove('active'));
+            e.target.classList.add('active');
+        }
+    }
 
-        // Fecha a lista se clicar em qualquer outro lugar da tela
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.search-box')) {
-                containerResultados.style.display = 'none';
-            }
-        });
+    // Lógica para selecionar o tamanho
+    if (e.target.classList.contains('size-option')) {
+        document.querySelectorAll('.size-option').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
     }
 });
