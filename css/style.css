@@ -1052,7 +1052,7 @@ body {
     6. ANIMAÇÃO DE INTRO (ESTILIZAÇÃO)
    ========================================== */
 #intro-perfetto {
-    position: fixed;
+    position: fixed; /* Garante que cubra a tela toda */
     top: 0;
     left: 0;
     width: 100%;
@@ -1066,38 +1066,36 @@ body {
     overflow: hidden;
 }
 
-/* O "PS" GIGANTE E TRANSPARENTE (Ideia da Amanda) */
+/* O "PS" GIGANTE E TRANSPARENTE */
 #intro-perfetto::before {
     content: "PS";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
     font-family: 'Poppins', sans-serif; 
     font-size: 45vw; 
     font-weight: 900;
     color: #957DAD; 
-    
-    /* ALTERE AQUI: */
-    opacity: 0.25;   /* 25% de visibilidade. Se ainda achar claro, tente 0.3 */
-    
+    opacity: 0.15;   /* Diminuí um pouco para não brigar com o texto principal */
     z-index: -1;     
     pointer-events: none;
     line-height: 1;
     letter-spacing: -10px;
 }
 
-/* TEXTO SENDO DIGITADO (Versão Única e Organizada) */
+/* TEXTO SENDO DIGITADO - FONTE DE LUXO */
 #typing-text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 2.5rem;
-    color: #957DAD;
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.5rem;             /* Aumentei um pouco o impacto */
+    font-weight: 700; 
+    font-style: italic;            /* O itálico nessa fonte é lindíssimo */
+    color: #957DAD;                /* Mudei para roxo para aparecer no fundo branco */
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 4px rgba(149, 125, 173, 0.2); 
     border-right: 3px solid #957DAD;
     white-space: nowrap;
     overflow: hidden;
-    letter-spacing: 2px;
 }
 
 .cursor-blink {
@@ -1116,27 +1114,23 @@ body {
 }
 
 /* ==========================================
-   ESTILIZAÇÃO DOS FAVORITOS NO MENU LATERAL
+   RESTANTE DO CÓDIGO (FAVORITOS E REVEAL)
    ========================================== */
-
-/* Container que segura a lista */
 .fav-container {
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaço entre cada item favorito */
-    max-height: 400px; /* Limite de altura com scroll se tiver muitos itens */
+    gap: 15px;
+    max-height: 400px;
     overflow-y: auto;
 }
 
-/* Linha divisória entre Categorias e Favoritos */
 .menu-divider {
     margin: 20px 10px;
     border: 0;
     border-top: 1px solid #eee;
 }
 
-/* Cada item de favorito individualmente */
 .fav-item {
     display: flex;
     align-items: center;
@@ -1154,7 +1148,6 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-/* Botão de remover (o X vermelho) */
 .fav-item button[onclick*="removerFavoritoUnico"] {
     position: absolute;
     top: -5px;
@@ -1173,14 +1166,13 @@ body {
     z-index: 10;
 }
 
-/* Imagem do produto no favorito */
 .fav-item img {
     width: 50px;
     height: 60px;
     object-fit: cover;
-    border-radius: 4px;}
+    border-radius: 4px;
+}
 
-    /* Esconde os elementos antes da animação carregar */
 .reveal-hidden {
     visibility: hidden;
 }

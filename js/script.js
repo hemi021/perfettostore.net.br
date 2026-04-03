@@ -164,35 +164,49 @@ function renderizarFavoritos() {
 }
 
 /* ==========================================
-    5. ANIMAÇÃO DE INTRO (SEGURA)
+    5. ANIMAÇÃO DE INTRO (ESTILIZADA)
    ========================================== */
 function iniciarAnimacaoIntro() {
     const textElement = document.getElementById("typing-text");
     const introScreen = document.getElementById("intro-perfetto");
+    
+    // Se não achar os elementos ou já tiver rodado, para aqui
     if (!textElement || !introScreen || introExecutada) return;
 
     introExecutada = true;
-    textElement.textContent = "";
-    const phrase = "Perfetto Store";
+    textElement.textContent = ""; // Garante que comece totalmente limpo
+    
+    const phrase = "Perfetto Store"; 
     let i = 0;
 
     function type() {
         if (i < phrase.length) {
             textElement.textContent += phrase.charAt(i);
             i++;
-            setTimeout(type, 70); 
+            // 80ms é o tempo ideal para fontes de luxo (serifadas)
+            setTimeout(type, 80); 
         } else {
+            // Remove o cursor piscante para um final mais elegante
+            textElement.style.borderRight = "none";
+            
             setTimeout(() => {
                 introScreen.classList.add('fade-out-intro');
-                setTimeout(() => { introScreen.style.display = 'none'; }, 800);
-            }, 500); 
+                setTimeout(() => { 
+                    introScreen.style.display = 'none'; 
+                }, 800);
+            }, 600); 
         }
     }
+
     textElement.classList.add("cursor-blink");
     type();
 
-    // Segurança: remove a tela se travar
-    setTimeout(() => { if(introScreen) introScreen.style.display = 'none'; }, 5000);
+    // Segurança: remove a tela se travar por qualquer motivo
+    setTimeout(() => { 
+        if(introScreen && introScreen.style.display !== 'none') {
+            introScreen.style.display = 'none'; 
+        }
+    }, 5000);
 }
 
 /* ==========================================
