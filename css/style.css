@@ -1215,3 +1215,84 @@ body {
 .reveal-hidden {
     visibility: hidden;
 }
+/* Container da busca */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(149, 125, 173, 0.4);
+    border-radius: 25px;
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(149, 125, 173, 0.2);
+}
+
+#search-in {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #333;
+    padding: 8px;
+    width: 100%;
+}
+
+/* O Dropdown Moderno com Foto */
+.search-suggestions {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.85); /* Transparência */
+    backdrop-filter: blur(12px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: none; /* Escondido por padrão */
+    z-index: 9999;
+    max-height: 450px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Item do Resultado */
+.search-item-result {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    gap: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+.search-item-result:hover {
+    background: rgba(149, 125, 173, 0.1);
+}
+
+.search-item-result img {
+    width: 50px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.search-item-result .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-item-result .info span.name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.search-item-result .info span.price {
+    font-size: 11px;
+    color: #957DAD;
+    margin-top: 2px;
+}

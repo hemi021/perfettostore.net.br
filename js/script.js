@@ -282,4 +282,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
+});/* ==========================================
+    SISTEMA DE BUSCA INTELIGENTE
+   ========================================== */
+const meusProdutos = [
+    { nome: "Vestido Midi Elegance", preco: "R$ 189,90", img: "img/produtos/vestido-midi.jpg", link: "produto-detalhe.html" },
+    { nome: "Conjunto Alfaiataria Roxo", preco: "R$ 249,00", img: "img/produtos/conjunto.jpg", link: "produto-detalhe.html" },
+    { nome: "Blusa Seda Soft", preco: "R$ 98,00", img: "img/produtos/blusa.jpg", link: "produto-detalhe.html" },
+    // Adicione mais produtos seguindo o modelo acima
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inputBusca = document.getElementById('search-in');
+    const containerResultados = document.getElementById('search-results');
+
+    if (inputBusca && containerResultados) {
+        inputBusca.addEventListener('input', (e) => {
+            const busca = e.target.value.toLowerCase();
+            containerResultados.innerHTML = "";
+
+            if (busca.length > 0) {
+                const filtrados = meusProdutos.filter(p => p.nome.toLowerCase().includes(busca));
+                
+                if (filtrados.length > 0) {
+                    filtrados.forEach(p => {
+                        const item = document.createElement('div');
+                        item.className = 'search-item-result';
+                        item.innerHTML = `
+                            <img src="${p.img}">
+                            <div class="info">
+                                <span class="name">${p.nome}</span>
+                                <span class="price">${p.preco}</span>
+                            </div>
+                        `;
+                        item.onclick = () => window.location.href = p.link;
+                        containerResultados.appendChild(item);
+                    });
+                    containerResultados.style.display = 'block';
+                } else {
+                    containerResultados.innerHTML = '<p style="padding:15px; font-size:12px; color:#666;">Nenhum look encontrado... 💜</p>';
+                    containerResultados.style.display = 'block';
+                }
+            } else {
+                containerResultados.style.display = 'none';
+            }
+        });
+
+        // Fecha ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-box')) {
+                containerResultados.style.display = 'none';
+            }
+        });
+    }
 });
