@@ -282,14 +282,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
-});/* ==========================================
-    SISTEMA DE BUSCA INTELIGENTE
+});
+/* ==========================================
+    SISTEMA DE BUSCA INTELIGENTE (ATUALIZADO)
    ========================================== */
 const meusProdutos = [
-    { nome: "Vestido Midi Elegance", preco: "R$ 189,90", img: "img/produtos/vestido-midi.jpg", link: "produto-detalhe.html" },
-    { nome: "Conjunto Alfaiataria Roxo", preco: "R$ 249,00", img: "img/produtos/conjunto.jpg", link: "produto-detalhe.html" },
-    { nome: "Blusa Seda Soft", preco: "R$ 98,00", img: "img/produtos/blusa.jpg", link: "produto-detalhe.html" },
-    // Adicione mais produtos seguindo o modelo acima
+    { 
+        nome: "Bata Elegance", 
+        preco: "R$ 189,90", 
+        img: "img/blusas/bata.jpg", 
+        link: "produto.html" 
+    },
+    { 
+        nome: "Cropped Amarração", 
+        preco: "R$ 59,90", 
+        img: "img/bata.jpg", 
+        link: "produto.html" 
+    },
+    { 
+        nome: "Bata Sonia", 
+        preco: "R$ 69,90", 
+        img: "img/batasonic.jpg", 
+        link: "produto.html" 
+    }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -298,29 +313,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (inputBusca && containerResultados) {
         inputBusca.addEventListener('input', (e) => {
-            const busca = e.target.value.toLowerCase();
+            const busca = e.target.value.toLowerCase().trim();
             containerResultados.innerHTML = "";
 
             if (busca.length > 0) {
-                const filtrados = meusProdutos.filter(p => p.nome.toLowerCase().includes(busca));
+                const filtrados = meusProdutos.filter(p => 
+                    p.nome.toLowerCase().includes(busca)
+                );
                 
                 if (filtrados.length > 0) {
                     filtrados.forEach(p => {
                         const item = document.createElement('div');
                         item.className = 'search-item-result';
                         item.innerHTML = `
-                            <img src="${p.img}">
+                            <img src="${p.img}" alt="${p.nome}">
                             <div class="info">
                                 <span class="name">${p.nome}</span>
                                 <span class="price">${p.preco}</span>
                             </div>
                         `;
-                        item.onclick = () => window.location.href = p.link;
+                        // Ao clicar, vai para a página do produto
+                        item.onclick = () => {
+                            window.location.href = p.link;
+                        };
                         containerResultados.appendChild(item);
                     });
                     containerResultados.style.display = 'block';
                 } else {
-                    containerResultados.innerHTML = '<p style="padding:15px; font-size:12px; color:#666;">Nenhum look encontrado... 💜</p>';
+                    containerResultados.innerHTML = '<p style="padding:15px; font-size:12px; color:#666; text-align:center;">Nenhum look encontrado... 💜</p>';
                     containerResultados.style.display = 'block';
                 }
             } else {
@@ -328,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Fecha ao clicar fora
+        // Fecha a lista se clicar em qualquer outro lugar da tela
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.search-box')) {
                 containerResultados.style.display = 'none';
