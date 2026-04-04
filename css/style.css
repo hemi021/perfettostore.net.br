@@ -1530,49 +1530,55 @@ body {
     }
 }
 /* ==========================================
-   PAINEL DO CARRINHO (DIREITA)
+   PAINEL DO CARRINHO (ESTILO UNIFICADO)
    ========================================== */
 
-.side-panel {
-    position: fixed;
-    top: 0;
-    right: -400px; /* Escondido fora da tela à direita */
-    left: auto !important; /* Força a não herdar NADA da esquerda */
+/* 1. O Painel Lateral - Configuração Principal */
+#cart-side.side-panel {
+    position: fixed !important;
+    top: 0 !important;
+    right: -450px !important;    /* Totalmente escondido à direita */
+    left: auto !important;       /* Garante que não apareça na esquerda */
     width: 380px;
     height: 100vh;
-    background: #fff;
-    z-index: 10000; /* Garante que fique acima de tudo */
+    background: #ffffff;
+    z-index: 999999 !important;  /* Fica na frente de tudo (inclusive da logo) */
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    visibility: hidden;          /* Fica invisível para não bloquear cliques no header */
 }
 
-/* Quando o carrinho é ativado pelo JS */
-.side-panel.active {
-    right: 0;
+/* 2. Quando o carrinho ganha a classe 'active' via JS */
+#cart-side.side-panel.active {
+    right: 0 !important;
+    visibility: visible !important;
 }
 
-/* Fundo escuro (Overlay) */
-.bg-overlay {
-    position: fixed;
+/* 3. Fundo Escuro (Overlay) */
+#cart-overlay.bg-overlay {
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 9999;
-    display: none; /* Escondido por padrão */
+    background: rgba(0,0,0,0.6);
+    z-index: 999998;             /* Um nível abaixo do painel */
+    display: none;               /* Escondido por padrão */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.bg-overlay.active {
-    display: block;
+#cart-overlay.bg-overlay.active {
+    display: block !important;
     opacity: 1;
 }
 
-/* Estrutura Interna */
+/* ==========================================
+   ESTRUTURA INTERNA DO CARRINHO
+   ========================================== */
+
 .side-header {
     padding: 20px;
     border-bottom: 1px solid #eee;
@@ -1581,13 +1587,27 @@ body {
     align-items: center;
 }
 
+#close-cart {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 25px;
+    padding: 10px;
+    color: #333;
+    transition: transform 0.2s;
+}
+
+#close-cart:hover {
+    transform: scale(1.2);
+}
+
 .side-content {
     flex: 1;
     overflow-y: auto;
     padding: 20px;
 }
 
-/* Itens do Carrinho */
+/* Itens Individuais no Carrinho */
 .cart-item {
     display: flex;
     gap: 15px;
@@ -1603,6 +1623,7 @@ body {
     border-radius: 5px;
 }
 
+/* Rodapé do Carrinho */
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
@@ -1612,7 +1633,7 @@ body {
 .btn-checkout {
     width: 100%;
     padding: 15px;
-    background: #957DAD;
+    background: #957DAD; /* Seu lilás característico */
     color: white;
     border: none;
     border-radius: 8px;
@@ -1626,16 +1647,26 @@ body {
     background: #846ca3;
 }
 
+/* Ícone do Carrinho no Header */
+.cart-box {
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 /* ==========================================
    AJUSTES RESPONSIVOS (MOBILE)
    ========================================== */
+
 @media (max-width: 480px) {
-    .side-panel {
-        width: 85%; /* No celular ocupa quase a tela toda */
-        right: -100%; /* Esconde baseado na largura total */
+    #cart-side.side-panel {
+        width: 85% !important;   /* No celular ocupa quase a tela toda */
+        right: -100% !important; /* Esconde baseado na largura total */
     }
     
-    .side-panel.active {
-        right: 0;
+    #cart-side.side-panel.active {
+        right: 0 !important;
     }
 }
