@@ -209,39 +209,36 @@ function iniciarAnimacaoIntro() {
     }, 5000);
 }
 
-/* ==========================================
-    6. EFEITO SCROLL REVEAL (VERSÃO TURBO)
-   ========================================== */
 function aplicarScrollReveal() {
     if (typeof ScrollReveal === 'undefined') return;
 
     const sr = ScrollReveal({
         origin: 'bottom',
-        distance: '50px',   // Distância menor para ser mais ágil
-        duration: 1500,     // Mais rápido (1.5s em vez de 2.5s)
-        delay: 100,         // Começa quase na hora
-        scale: 0.9,         // Menos zoom para carregar visualmente mais rápido
+        distance: '50px',
+        duration: 1200,
+        delay: 100,
+        scale: 0.95,
         opacity: 0,
-        reset: true 
+        reset: false // 'false' é melhor para performance em sites de vendas
     });
 
-    // Título Hero (Entrada mais direta)
-    sr.reveal('.hero-text', { origin: 'left', distance: '150px', duration: 1800 });
-    sr.reveal('.hero-img', { origin: 'right', distance: '150px', duration: 1800 });
+    // Revelar a nova seção de Categorias
+    sr.reveal('.texto-parallax', { delay: 200 });
+    sr.reveal('.parallax-item', { 
+        interval: 150, // Faz as "bolinhas" aparecerem uma depois da outra
+        scale: 0.8,
+        distance: '30px'
+    });
 
-    // Cards de Produtos (Efeito cascata veloz)
+    // Cards de Produtos
     sr.reveal('.card', { 
-        interval: 100,      // Aparece um atrás do outro rapidinho
-        rotate: { x: 5 },   // Rotação sutil
-        scale: 0.95, 
-        distance: '60px' 
+        interval: 100, 
+        distance: '40px' 
     });
 
     sr.reveal('.carousel', { delay: 200, scale: 1 });
     sr.reveal('.section-title', { origin: 'top', distance: '30px' });
-    sr.reveal('.footer-container', { delay: 100 });
 }
-
 /* ==========================================
     7. INICIALIZAÇÃO ÚNICA
    ========================================== */
@@ -349,9 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         item.innerHTML = `
                             <img src="${imgSrc}" alt="${p.nome}">
                             <div class="info">
-                                <span class="name">${p.name}</span>
-                                <span class="price">${p.price}</span>
-                            </div>
+                                <span class="name">${p.nome}</span>
+                                 <span class="price">${p.preco}</span>
+                                </div>
                         `;
 
                         item.onclick = () => {
@@ -388,14 +385,26 @@ document.addEventListener('click', function(e) {
         e.target.classList.add('active');
     }
 });
-/* Lógica Parallax para Categorias */
+/* Lógica Parallax para Categorias (Suave e Controlada) */
 window.addEventListener('scroll', function() {
+    const section = document.querySelector('.categorias-parallax-modern');
     const items = document.querySelectorAll('.parallax-item');
-    const scrollY = window.pageYOffset;
+    
+    if (!section) return;
 
-    items.forEach(item => {
-        const speed = parseFloat(item.getAttribute('data-speed'));
-        // Move o item baseado no scroll e na velocidade definida
-        item.style.transform = `translateY(${scrollY * speed}px)`;
-    });
+    // Verifica se a seção está visível na tela
+    const rect = section.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isVisible) {
+        // O cálculo usa a posição da seção em relação ao topo da janela
+        const scrollOffset = window.innerHeight - rect.top;
+
+        items.forEach(item => {
+            const speed = parseFloat(item.getAttribute('data-speed')) || 0.1;
+            // Limita o movimento para não "fugir" do layout
+            const yPos = (scrollOffset * speed);
+            item.style.transform = `translateY(${yPos}px)`;
+        });
+    }
 });

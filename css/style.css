@@ -239,61 +239,124 @@ body {
     border-color: var(--roxo-principal);
 }
 /* ==========================================
-    ESTILIZAÇÃO DO BOTÃO "VER LOOKS"
+   5. SEÇÃO CATEGORIAS PARALLAX (MODERNO)
    ========================================== */
-.btn-ver-looks {
-    display: inline-block;
-    padding: 14px 40px;
-    background-color: #957DAD; /* Roxo padrão Perfetto */
-    color: #ffffff;
-    font-family: 'Cinzel', serif; /* Fonte imponente que importamos */
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px; /* Espaçamento chic entre as letras */
-    text-decoration: none;
-    border-radius: 0; /* Bordas retas passam mais seriedade/luxo */
-    transition: all 0.4s ease;
-    border: 1px solid #957DAD;
-    cursor: pointer;
-    margin-top: 20px;
+.categorias-parallax-modern {
     position: relative;
+    padding: 80px 0;
+    background-color: #fdfaff; /* Fundo lilás bem suave */
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Efeito ao passar o mouse (Hover) */
-.btn-ver-looks:hover {
-    background-color: transparent;
-    color: #957DAD;
-    box-shadow: 0 10px 20px rgba(149, 125, 173, 0.2);
-    transform: translateY(-3px); /* Leve subida */
+/* Brilho de fundo glassmorphism */
+.parallax-bg-blur {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(149, 125, 173, 0.15) 0%, rgba(255,255,255,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
 }
 
-/* Ajuste para mobile (garante que não fique gigante em telas pequenas) */
+.container-parallax {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.texto-parallax h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--roxo-principal);
+    margin-bottom: 10px;
+}
+
+.texto-parallax p {
+    font-family: 'Poppins', sans-serif;
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 40px;
+}
+
+/* Organização das "Bolas" */
+.parallax-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Garante que no celular elas fiquem em colunas */
+    padding: 20px;
+}
+
+.parallax-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    transition: transform 0.2s ease-out;
+}
+
+/* O Círculo Moderno */
+.modern-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid rgba(149, 125, 173, 0.3);
+    padding: 6px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modern-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.6s ease;
+}
+
+.modern-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--texto-escuro);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Hover interativo */
+.parallax-item:hover .modern-circle {
+    transform: scale(1.1) translateY(-10px);
+    border-color: var(--roxo-principal);
+    box-shadow: 0 20px 40px rgba(149, 125, 173, 0.3);
+}
+
+.parallax-item:hover img {
+    transform: scale(1.15);
+}
+
+/* Responsivo para Celular */
 @media (max-width: 768px) {
-    .btn-ver-looks {
-        padding: 12px 30px;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
+    .modern-circle {
+        width: 110px;
+        height: 110px;
     }
-}
-/* ==========================================
-   AJUSTE PARA CELULAR (UM EMBAIXO DO OUTRO)
-   ========================================== */
-@media screen and (max-width: 768px) {
-    .hero-container {
-        flex-direction: column !important; /* Empilha no celular */
-        text-align: center !important;
+    .parallax-wrapper {
+        gap: 15px;
     }
-
-    .hero-text {
-        text-align: center !important;
-        margin-bottom: 30px;
-    }
-
-    .hero-img img {
-        max-width: 300px !important; /* Foto menor no celular */
-        height: 350px !important;
+    .texto-parallax h2 {
+        font-size: 1.8rem;
     }
 }
 /* ==========================================
