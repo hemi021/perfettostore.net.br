@@ -421,3 +421,22 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
+/* ==========================================
+    FUNÇÃO DE COMPARTILHAMENTO
+   ========================================== */
+function compartilharProduto(nome) {
+    const url = window.location.href;
+    const texto = `Olha esse look que encontrei na Perfetto Store: ${nome} 💜`;
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Perfetto Store',
+            text: texto,
+            url: url
+        }).catch(console.error);
+    } else {
+        // Fallback para navegadores que não suportam (copiar link)
+        navigator.clipboard.writeText(`${texto} - ${url}`);
+        alert("Link copiado para a área de transferência! 💜");
+    }
+}
