@@ -1443,6 +1443,27 @@ body {
     transform: scale(1.1);
 }
 
+.btn-categoria-parallax {
+    background-color: #957DAD; /* Roxo da Perfetto */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 12px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(149, 125, 173, 0.3);
+}
+
+.parallax-item:hover .btn-categoria-parallax {
+    background-color: #7a5f91; /* Um roxo levemente mais escuro no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(149, 125, 173, 0.5);
+}
+
 /* Mobile */
 @media (max-width: 768px) {
     .parallax-wrapper { gap: 20px; }
