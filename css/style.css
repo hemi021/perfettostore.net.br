@@ -1448,3 +1448,22 @@ body {
     .parallax-wrapper { gap: 20px; }
     .modern-circle { width: 120px; height: 120px; }
 }
+/* Estado inicial do Header (Transparente) */
+.main-header {
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: all 0.4s ease-in-out; /* O segredo da suavidade */
+}
+
+/* Estado quando o usuário rolar a página (Branco/Ativo) */
+.main-header.scrolled {
+    background: rgba(255, 255, 255, 0.95) !important; /* Branco levemente transparente */
+    backdrop-filter: blur(10px); /* Efeito vidro jateado chique */
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05) !important;
+    padding: 10px 5%; /* Ele dá uma leve "encolhida" ao rolar */
+}
+
+/* Ajuste nos links para aparecerem bem no fundo transparente */
+.main-nav a, .logo, .cart-box {
+    transition: color 0.4s ease;
+}

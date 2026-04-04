@@ -408,3 +408,16 @@ window.addEventListener('scroll', function() {
         });
     }
 });
+/* ==========================================
+   EFEITO HEADER TRANSPARENTE -> BRANCO
+   ========================================== */
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.main-header');
+    
+    // Se rolar mais de 50px, adiciona a classe 'scrolled'
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
