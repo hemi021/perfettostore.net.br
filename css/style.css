@@ -1488,3 +1488,44 @@ body {
 .main-nav a, .logo, .cart-box {
     transition: color 0.4s ease;
 }
+/* ==========================================
+   AJUSTE DOS BOTÕES "IR COMPRAR" (CATEGORIAS)
+   ========================================== */
+
+/* Esconde o nome antigo caso ele ainda apareça */
+.modern-name {
+    display: none !important;
+}
+
+/* Estilização do novo botão */
+.btn-categoria-parallax {
+    background-color: var(--roxo-principal); /* Usa a variável que já existe no seu topo */
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 2px solid var(--roxo-principal);
+    text-decoration: none !important;
+}
+
+/* Efeito ao passar o mouse no círculo ou no botão */
+.parallax-item:hover .btn-categoria-parallax {
+    background-color: transparent;
+    color: var(--roxo-principal) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(149, 125, 173, 0.3);
+}
+
+/* Ajuste para não bugar no celular */
+@media (max-width: 768px) {
+    .btn-categoria-parallax {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+}
