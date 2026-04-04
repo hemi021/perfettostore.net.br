@@ -306,7 +306,6 @@ const meusProdutos = [
 
 // Função auxiliar para encontrar a raiz do site e evitar erro 404
 function getRootPath() {
-    // Se o site estiver em um subdiretório do GitHub (ex: /perfetto-store/)
     const path = window.location.pathname;
     if (path.includes('/perfetto-store/')) {
         return '/perfetto-store/';
@@ -333,22 +332,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         const item = document.createElement('div');
                         item.className = 'search-item-result';
                         
-                        // Ajuste de caminho da imagem para funcionar em subpastas
-                        const isSubfolder = window.location.pathname.includes('/vestidos/') || 
-                                           window.location.pathname.includes('/calcas/') ||
-                                           window.location.pathname.includes('/saias/') ||
-                                           window.location.pathname.includes('/blusas/') ||
-                                           window.location.pathname.includes('/conjuntos/');
+                        // --- LÓGICA DE CAMINHO REFORMULADA ---
+                        // Verifica se estamos em qualquer página que NÃO seja a index.html na raiz
+                        // Se o pathname contém pastas ou termina em algo que não seja a raiz, precisamos do ../
+                        const pathSegments = window.location.pathname.split('/').filter(s => s.length > 0);
                         
-                        const imgSrc = isSubfolder ? '../' + p.img : p.img;
-                        const linkFinal = isSubfolder ? '../' + p.link : p.link;
+                        // Se houver mais de um segmento (ex: perfetto-store/vestidos) 
+                        // ou se estiver em uma pasta simples (ex: /vestidos/), precisamos subir um nível.
+                        let prefixo = "";
+                        const subpastasConhecidas = ['vestidos', 'calcas', 'saias', 'blusas', 'conjuntos'];
+                        const atual = window.location.pathname.toLowerCase();
+                        
+                        if (subpastasConhecidas.some(pasta => atual.includes('/' + pasta + '/'))) {
+                            prefixo = "../";
+                        }
+
+                        const imgSrc = prefixo + p.img;
+                        const linkFinal = prefixo + p.link;
 
                         item.innerHTML = `
-                            <img src="${imgSrc}" alt="${p.nome}">
+                            <img src="${imgSrc}" alt="${p.nome}" onerror="this.src='${prefixo}img/placeholder.jpg'">
                             <div class="info">
                                 <span class="name">${p.nome}</span>
-                                 <span class="price">${p.preco}</span>
-                                </div>
+                                <span class="price">${p.preco}</span>
+                            </div>
                         `;
 
                         item.onclick = () => {
@@ -357,11 +364,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         containerResultados.appendChild(item);
                     });
                     containerResultados.style.display = 'block';
+                } else {
+                    // Caso não encontre nada, limpa e esconde ou mostra aviso
+                    containerResultados.innerHTML = `<div style="padding:15px; color:#999; font-size:12px; text-align:center;">Nenhum look encontrado 💜</div>`;
+                    containerResultados.style.display = 'block';
                 }
-                // ... resto do seu código de "Nenhum look encontrado"
+            } else {
+                containerResultados.style.display = 'none';
             }
         });
     }
+    
+    // Fecha a busca ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (!inputBusca.contains(e.target) && !containerResultados.contains(e.target)) {
+            containerResultados.style.display = 'none';
+        }
+    });
 });
 /* ==========================================
     LÓGICA EXCLUSIVA DA PÁGINA DE PRODUTO
@@ -440,3 +459,125 @@ function compartilharProduto(nome) {
         alert("Link copiado para a área de transferência! 💜");
     }
 }
+/* ==========================================
+    CONTROLE DO PAINEL DO CARRINHO
+   ========================================== */
+
+function inicializarCarrinho() {
+    // Ajustado para o ID 'cart-trigger' do seu HTML
+    const btnAbrir = document.getElementById('cart-trigger'); 
+    const btnFechar = document.getElementById('close-cart');
+    const cartSide = document.getElementById('cart-side');
+    const overlay = document.getElementById('cart-overlay');
+
+    const toggleCart = () => {
+        if (cartSide) cartSide.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
+        
+        // Se abriu o carrinho, renderiza os itens
+        if (cartSide && cartSide.classList.contains('active')) {
+            renderizarItensCarrinho();
+        }
+    };
+
+    if (btnAbrir) btnAbrir.onclick = toggleCart;
+    if (btnFechar) btnFechar.onclick = toggleCart;
+    if (overlay) overlay.onclick = toggleCart;
+}
+
+function renderizarItensCarrinho() {
+    const container = document.getElementById('cart-items-container');
+    const totalElement = document.getElementById('cart-total-value');
+    
+    if (!container) return;
+
+    // Se o carrinho estiver vazio
+    if (!listaDeProdutos || listaDeProdutos.length === 0) {
+        container.innerHTML = `
+            <div style="text-align:center; padding-top:50px;">
+                <p style="color:#999; font-size: 14px;">Seu carrinho está vazio 🌸</p>
+            </div>`;
+        if (totalElement) totalElement.innerText = "R$ 0,00";
+        return;
+    }
+
+    let html = "";
+    let somaTotal = 0;
+
+    // Detecta se precisa de prefixo ../ para as imagens (se estiver em subpastas)
+    const prefixo = (window.location.pathname.includes('/vestidos/') || 
+                     window.location.pathname.includes('/blusas/') ||
+                     window.location.pathname.includes('/calcas/') ||
+                     window.location.pathname.includes('/saias/') ||
+                     window.location.pathname.includes('/conjuntos/')) ? '../' : '';
+
+    listaDeProdutos.forEach((item, index) => {
+        const subtotal = item.preco * item.qtd;
+        somaTotal += subtotal;
+
+        // Garante que o caminho da imagem esteja correto
+        const imgSrc = item.img.startsWith('http') ? item.img : prefixo + item.img;
+
+        html += `
+            <div class="cart-item" style="display: flex; gap: 15px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                <img src="${imgSrc}" alt="${item.nome}" style="width: 60px; height: 80px; object-fit: cover; border-radius: 5px;">
+                <div style="flex:1;">
+                    <p style="font-weight:bold; margin:0; font-size:14px; color: #333;">${item.nome}</p>
+                    <p style="color:#957DAD; font-size:13px; margin:5px 0; font-weight: 600;">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <button onclick="alterarQtd(${index}, -1)" style="border:1px solid #ddd; background:#fff; border-radius:4px; width:24px; height:24px; cursor:pointer;">-</button>
+                        <span style="font-size: 14px;">${item.qtd}</span>
+                        <button onclick="alterarQtd(${index}, 1)" style="border:1px solid #ddd; background:#fff; border-radius:4px; width:24px; height:24px; cursor:pointer;">+</button>
+                    </div>
+                </div>
+                <button onclick="removerDoCarrinho(${index})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size: 20px;">&times;</button>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+    if (totalElement) totalElement.innerText = `R$ ${somaTotal.toFixed(2).replace('.', ',')}`;
+}
+
+function alterarQtd(index, valor) {
+    listaDeProdutos[index].qtd += valor;
+    
+    if (listaDeProdutos[index].qtd <= 0) {
+        listaDeProdutos.splice(index, 1);
+    }
+    
+    salvarDados(); // Atualiza o localStorage
+    renderizarItensCarrinho(); // Recarrega a lista visual
+    atualizarContadorTotal(); // Atualiza o número no ícone do carrinho
+}
+
+function removerDoCarrinho(index) {
+    listaDeProdutos.splice(index, 1);
+    salvarDados();
+    renderizarItensCarrinho();
+    atualizarContadorTotal();
+}
+
+function finalizarCompra() {
+    if(!listaDeProdutos || listaDeProdutos.length === 0) return alert("Seu carrinho está vazio!");
+    
+    let mensagem = "Olá Perfetto Store! Gostaria de fazer o seguinte pedido:\n\n";
+    let total = 0;
+
+    listaDeProdutos.forEach(item => {
+        mensagem += `• ${item.nome} (${item.qtd}x) - R$ ${(item.preco * item.qtd).toFixed(2)}\n`;
+        total += item.preco * item.qtd;
+    });
+    
+    mensagem += `\n*Total: R$ ${total.toFixed(2)}*`;
+    
+    // Substitua pelo seu número real do WhatsApp
+    const fone = "5547996302096"; 
+    const url = `https://wa.me/${fone}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+}
+
+// Inicia as funções quando o site carrega
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarCarrinho();
+});

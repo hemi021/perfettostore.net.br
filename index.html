@@ -34,6 +34,28 @@
         <a href="../blusas/index.html">Blusas</a>
         <a href="../conjuntos/index.html">Conjuntos</a>
     </nav>
+    <!-- Painel do Carrinho -->
+<div id="cart-side" class="side-panel">
+    <div class="side-header">
+        <h3>Meu Carrinho 🛍️</h3>
+        <button id="close-cart" class="close-btn">&times;</button>
+    </div>
+    
+    <div id="cart-items-container" class="side-content">
+        <!-- Itens aparecerão aqui via JS -->
+    </div>
+
+    <div class="cart-footer">
+        <div class="total-price">
+            <span>Total:</span>
+            <span id="cart-total-value">R$ 0,00</span>
+        </div>
+        <button class="btn-checkout" onclick="finalizarCompra()">Finalizar Pedido</button>
+    </div>
+</div>
+
+<!-- Overlay para escurecer o fundo -->
+<div id="cart-overlay" class="bg-overlay"></div>
     <div class="wishlist-container">
         <h3 class="wishlist-title">Meus Favoritos 💜</h3>
         <div id="lista-favoritos"></div>
