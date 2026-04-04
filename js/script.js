@@ -464,120 +464,37 @@ function compartilharProduto(nome) {
    ========================================== */
 
 function inicializarCarrinho() {
-    // Ajustado para o ID 'cart-trigger' do seu HTML
-    const btnAbrir = document.getElementById('cart-trigger'); 
+    // Tenta encontrar o botão por qualquer um dos dois IDs (o novo e o antigo)
+    const btnAbrir = document.getElementById('cart-trigger') || document.getElementById('cart-icon-btn');
     const btnFechar = document.getElementById('close-cart');
     const cartSide = document.getElementById('cart-side');
     const overlay = document.getElementById('cart-overlay');
 
-    const toggleCart = () => {
-        if (cartSide) cartSide.classList.toggle('active');
-        if (overlay) overlay.classList.toggle('active');
-        
-        // Se abriu o carrinho, renderiza os itens
-        if (cartSide && cartSide.classList.contains('active')) {
-            renderizarItensCarrinho();
-        }
-    };
-
-    if (btnAbrir) btnAbrir.onclick = toggleCart;
-    if (btnFechar) btnFechar.onclick = toggleCart;
-    if (overlay) overlay.onclick = toggleCart;
-}
-
-function renderizarItensCarrinho() {
-    const container = document.getElementById('cart-items-container');
-    const totalElement = document.getElementById('cart-total-value');
-    
-    if (!container) return;
-
-    // Se o carrinho estiver vazio
-    if (!listaDeProdutos || listaDeProdutos.length === 0) {
-        container.innerHTML = `
-            <div style="text-align:center; padding-top:50px;">
-                <p style="color:#999; font-size: 14px;">Seu carrinho está vazio 🌸</p>
-            </div>`;
-        if (totalElement) totalElement.innerText = "R$ 0,00";
-        return;
+    // Função para abrir
+    if (btnAbrir) {
+        btnAbrir.onclick = (e) => {
+            e.preventDefault();
+            if (cartSide && overlay) {
+                cartSide.classList.add('active');
+                overlay.classList.add('active');
+                renderizarItensCarrinho(); // Atualiza a lista de produtos ao abrir
+            }
+        };
     }
 
-    let html = "";
-    let somaTotal = 0;
-
-    // Detecta se precisa de prefixo ../ para as imagens (se estiver em subpastas)
-    const prefixo = (window.location.pathname.includes('/vestidos/') || 
-                     window.location.pathname.includes('/blusas/') ||
-                     window.location.pathname.includes('/calcas/') ||
-                     window.location.pathname.includes('/saias/') ||
-                     window.location.pathname.includes('/conjuntos/')) ? '../' : '';
-
-    listaDeProdutos.forEach((item, index) => {
-        const subtotal = item.preco * item.qtd;
-        somaTotal += subtotal;
-
-        // Garante que o caminho da imagem esteja correto
-        const imgSrc = item.img.startsWith('http') ? item.img : prefixo + item.img;
-
-        html += `
-            <div class="cart-item" style="display: flex; gap: 15px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                <img src="${imgSrc}" alt="${item.nome}" style="width: 60px; height: 80px; object-fit: cover; border-radius: 5px;">
-                <div style="flex:1;">
-                    <p style="font-weight:bold; margin:0; font-size:14px; color: #333;">${item.nome}</p>
-                    <p style="color:#957DAD; font-size:13px; margin:5px 0; font-weight: 600;">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <button onclick="alterarQtd(${index}, -1)" style="border:1px solid #ddd; background:#fff; border-radius:4px; width:24px; height:24px; cursor:pointer;">-</button>
-                        <span style="font-size: 14px;">${item.qtd}</span>
-                        <button onclick="alterarQtd(${index}, 1)" style="border:1px solid #ddd; background:#fff; border-radius:4px; width:24px; height:24px; cursor:pointer;">+</button>
-                    </div>
-                </div>
-                <button onclick="removerDoCarrinho(${index})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size: 20px;">&times;</button>
-            </div>
-        `;
-    });
-
-    container.innerHTML = html;
-    if (totalElement) totalElement.innerText = `R$ ${somaTotal.toFixed(2).replace('.', ',')}`;
-}
-
-function alterarQtd(index, valor) {
-    listaDeProdutos[index].qtd += valor;
-    
-    if (listaDeProdutos[index].qtd <= 0) {
-        listaDeProdutos.splice(index, 1);
+    // Função para fechar no "X"
+    if (btnFechar) {
+        btnFechar.onclick = () => {
+            cartSide.classList.remove('active');
+            overlay.classList.remove('active');
+        };
     }
-    
-    salvarDados(); // Atualiza o localStorage
-    renderizarItensCarrinho(); // Recarrega a lista visual
-    atualizarContadorTotal(); // Atualiza o número no ícone do carrinho
+
+    // Função para fechar clicando no fundo escuro
+    if (overlay) {
+        overlay.onclick = () => {
+            cartSide.classList.remove('active');
+            overlay.classList.remove('active');
+        };
+    }
 }
-
-function removerDoCarrinho(index) {
-    listaDeProdutos.splice(index, 1);
-    salvarDados();
-    renderizarItensCarrinho();
-    atualizarContadorTotal();
-}
-
-function finalizarCompra() {
-    if(!listaDeProdutos || listaDeProdutos.length === 0) return alert("Seu carrinho está vazio!");
-    
-    let mensagem = "Olá Perfetto Store! Gostaria de fazer o seguinte pedido:\n\n";
-    let total = 0;
-
-    listaDeProdutos.forEach(item => {
-        mensagem += `• ${item.nome} (${item.qtd}x) - R$ ${(item.preco * item.qtd).toFixed(2)}\n`;
-        total += item.preco * item.qtd;
-    });
-    
-    mensagem += `\n*Total: R$ ${total.toFixed(2)}*`;
-    
-    // Substitua pelo seu número real do WhatsApp
-    const fone = "5547996302096"; 
-    const url = `https://wa.me/${fone}?text=${encodeURIComponent(mensagem)}`;
-    window.open(url, '_blank');
-}
-
-// Inicia as funções quando o site carrega
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarCarrinho();
-});
