@@ -464,37 +464,38 @@ function compartilharProduto(nome) {
    ========================================== */
 
 function inicializarCarrinho() {
-    // Tenta encontrar o botão por qualquer um dos dois IDs (o novo e o antigo)
-    const btnAbrir = document.getElementById('cart-trigger') || document.getElementById('cart-icon-btn');
+    const btnAbrir = document.getElementById('cart-trigger');
     const btnFechar = document.getElementById('close-cart');
-    const cartSide = document.getElementById('cart-side');
-    const overlay = document.getElementById('cart-overlay');
+    const carrinho = document.getElementById('cart-side');
+    const fundoEscuro = document.getElementById('cart-overlay');
 
-    // Função para abrir
-    if (btnAbrir) {
-        btnAbrir.onclick = (e) => {
-            e.preventDefault();
-            if (cartSide && overlay) {
-                cartSide.classList.add('active');
-                overlay.classList.add('active');
-                renderizarItensCarrinho(); // Atualiza a lista de produtos ao abrir
+    if (btnAbrir && carrinho && fundoEscuro) {
+        btnAbrir.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que o link tente navegar para outra página
+            carrinho.classList.add('active');
+            fundoEscuro.classList.add('active');
+            
+            // Verifica se a função de renderizar existe antes de chamar
+            if (typeof renderizarItensCarrinho === "function") {
+                renderizarItensCarrinho();
             }
-        };
+        });
     }
 
-    // Função para fechar no "X"
-    if (btnFechar) {
-        btnFechar.onclick = () => {
-            cartSide.classList.remove('active');
-            overlay.classList.remove('active');
-        };
-    }
+    // Função interna para fechar o painel
+    const fechar = () => {
+        if (carrinho) carrinho.classList.remove('active');
+        if (fundoEscuro) fundoEscuro.classList.remove('active');
+    };
 
-    // Função para fechar clicando no fundo escuro
-    if (overlay) {
-        overlay.onclick = () => {
-            cartSide.classList.remove('active');
-            overlay.classList.remove('active');
-        };
-    }
+    if (btnFechar) btnFechar.onclick = fechar;
+    if (fundoEscuro) fundoEscuro.onclick = fechar;
 }
+
+/* ==========================================
+    INICIALIZAÇÃO AUTOMÁTICA
+   ========================================== */
+// Isso garante que o JS só tente rodar quando o HTML estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarCarrinho();
+});
