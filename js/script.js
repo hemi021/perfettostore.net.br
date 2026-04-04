@@ -388,3 +388,14 @@ document.addEventListener('click', function(e) {
         e.target.classList.add('active');
     }
 });
+/* Lógica Parallax para Categorias */
+window.addEventListener('scroll', function() {
+    const items = document.querySelectorAll('.parallax-item');
+    const scrollY = window.pageYOffset;
+
+    items.forEach(item => {
+        const speed = parseFloat(item.getAttribute('data-speed'));
+        // Move o item baseado no scroll e na velocidade definida
+        item.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+});

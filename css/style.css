@@ -1296,3 +1296,92 @@ body {
     color: #957DAD;
     margin-top: 2px;
 }
+.categorias-parallax-modern {
+    position: relative;
+    padding: 100px 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+/* Bolhas de brilho no fundo (Orna com o lilás) */
+.parallax-bg-blur {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(149, 125, 173, 0.15) 0%, rgba(255,255,255,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container-parallax {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.parallax-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.parallax-item {
+    transition: transform 0.1s linear; /* Suaviza o movimento do scroll */
+}
+
+.modern-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(149, 125, 173, 0.3);
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px); /* Efeito de vidro */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modern-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(20%); /* Fica colorido no hover */
+    transition: all 0.5s ease;
+}
+
+.modern-name {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Hover "Explosivo" */
+.parallax-item:hover .modern-circle {
+    transform: scale(1.1) translateY(-10px);
+    border-color: #957DAD;
+    box-shadow: 0 30px 60px rgba(149, 125, 173, 0.3);
+}
+
+.parallax-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .parallax-wrapper { gap: 20px; }
+    .modern-circle { width: 120px; height: 120px; }
+}
