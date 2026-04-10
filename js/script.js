@@ -237,3 +237,54 @@ document.querySelectorAll('.btn-calc').forEach(btn => {
         } catch (e) { alert("Erro ao calcular."); }
     };
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Efeito de Digitação e Sumir Intro
+    const textElement = document.getElementById("typing-text");
+    const introDiv = document.getElementById("intro-perfetto");
+    const phrase = "Perfetto Store";
+    let i = 0;
+
+    function type() {
+        if (i < phrase.length) {
+            textElement.textContent += phrase.charAt(i);
+            i++;
+            setTimeout(type, 150);
+        } else {
+            setTimeout(() => {
+                introDiv.classList.add("fade-out");
+            }, 1000);
+        }
+    }
+    type();
+
+    // 2. Menu Lateral
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideMenu = document.getElementById('menu-side');
+    const overlay = document.getElementById('bg-overlay');
+    const closeBtn = document.getElementById('close-menu');
+
+    function toggleMenu() {
+        sideMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    if (menuToggle) menuToggle.onclick = toggleMenu;
+    if (closeBtn) closeBtn.onclick = toggleMenu;
+    if (overlay) overlay.onclick = toggleMenu;
+});
+
+// Funções Globais (Carrinho e Favoritos)
+let listaDeProdutos = [];
+function adicionarAoCarrinho(nome, preco, img, btn) {
+    listaDeProdutos.push({nome, preco, img, qtd: 1});
+    document.getElementById('cart-count').innerText = listaDeProdutos.length;
+    btn.innerText = "Adicionado!";
+    setTimeout(() => btn.innerText = "Comprar", 1000);
+}
+
+function toggleFavorito(btn, nome) {
+    btn.classList.toggle('active');
+    const icon = btn.querySelector('i');
+    icon.classList.toggle('fas');
+    icon.classList.toggle('far');
+}

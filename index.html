@@ -22,13 +22,8 @@
             <a href="index.html">Início</a>
             <a href="vestidos.html">Vestidos</a>
             <a href="calcas.html">Calças</a>
-            <a href="saias.html">Saias</a>
-            <a href="blusas.html">Blusas</a>
-            <a href="conjuntos.html">Conjuntos</a>
-            
             <h3 class="wishlist-title">Meus Favoritos 💜</h3>
-            <div id="lista-favoritos">
-                </div>
+            <div id="lista-favoritos"></div>
         </nav>
     </div>
 
@@ -42,19 +37,7 @@
                 </button>
                 <div class="logo">Perfetto <span class="lilac">Store</span></div>
             </div>
-
-            <div class="search-box" style="position: relative;"> 
-                <input type="text" placeholder="Buscar produto..." id="search-in" autocomplete="off">
-                <button type="button">🔍</button>
-                <div id="search-results" class="search-suggestions"></div>
-            </div>
-
             <div class="nav-right">
-                <nav class="main-nav">
-                    <a href="index.html">Início</a>
-                    <a href="https://wa.me/5547996302096" target="_blank">Contato</a>
-                    <a href="https://instagram.com/perfettostore.jlle" target="_blank">Instagram</a>
-                </nav>
                 <div class="cart-box" id="cart-trigger">
                     <span class="cart-icon">🛒</span>
                     <span class="cart-count" id="cart-count">0</span>
@@ -63,139 +46,67 @@
         </div>
     </header>
 
-   <main>
-    <section class="carousel">
-        <div class="carousel-inner" id="carousel-container">
-            <div class="slide"><img src="img/banner2.jpg" alt="Banner 1"></div>
-            <div class="slide"><img src="img/banner3.jpg" alt="Banner 2"></div>
-        </div>
-        <button class="arrow prev" id="prev-btn">&#10094;</button>
-        <button class="arrow next" id="next-btn">&#10095;</button>
-    </section>
-
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1>Coleção <br>Perfetto 💜</h1>
-                <p>O melhor da moda feminina selecionado especialmente para você brilhar em qualquer ocasião.</p>
-                <a href="#produtos" class="btn-cta" style="display: inline-block; background: var(--roxo-principal); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; margin-top: 20px;">Ver Looks</a>
+    <main>
+        <section class="carousel">
+            <div class="carousel-inner" id="carousel-container">
+                <div class="slide"><img src="img/banner2.jpg" alt="Banner 1"></div>
+                <div class="slide"><img src="img/banner3.jpg" alt="Banner 2"></div>
             </div>
-            <div class="hero-img">
-                <img src="img/roupalaranja.jpg" alt="Roupa Laranja">
-            </div>
-        </div>
-    </section>
+            <button class="arrow prev" id="prev-btn">&#10094;</button>
+            <button class="arrow next" id="next-btn">&#10095;</button>
+        </section>
 
-    <section class="products-section" id="produtos" style="padding: 50px 0;">
-        <div class="container"> <h2 class="section-title" style="text-align: center; margin-bottom: 30px;">Novas Peças 💜</h2>
-            
-            <div class="product-grid">
-                <article class="card">
-                    <button class="btn-share" onclick="alert('Link copiado!')"><i class="fas fa-share-alt"></i></button>
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin', '189,90', 'img/roupa2.jpg')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/roupa2.jpg" alt="Vestido Satin" class="product-img">
-                    <div class="card-content">
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1>Coleção <br>Perfetto 💜</h1>
+                    <p>O melhor da moda feminina selecionado para você brilhar.</p>
+                    <a href="#produtos" class="btn-buy" style="width: auto; text-decoration: none; display: inline-block;">Ver Looks</a>
+                </div>
+                <div class="hero-img">
+                    <img src="img/roupalaranja.jpg" alt="Destaque">
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section" id="produtos">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 30px;">Novas Peças 💜</h2>
+                <div class="product-grid">
+                    <article class="card">
+                        <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin', '189,90', 'img/roupa2.jpg')"><i class="far fa-heart"></i></button>
+                        <img src="img/roupa2.jpg" class="product-img">
                         <h3>Vestido Satin</h3>
                         <p class="price">R$ 189,90</p>
                         <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin', '189,90', 'img/roupa2.jpg', this)">Comprar</button>
-                        
-                        <div class="shipping-calculator" style="margin-top: 15px;">
-                            <div style="display: flex; gap: 5px;">
-                                <input type="text" placeholder="CEP" class="cep-input" style="width: 60%; padding: 5px;">
-                                <button class="btn-calc" style="width: 40%;">Calcular</button>
-                            </div>
-                            <div class="shipping-result"></div>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="card">
-                    <button class="btn-share" onclick="alert('Link copiado!')"><i class="fas fa-share-alt"></i></button>
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração', '59,90', 'img/bata.jpg')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/bata.jpg" alt="Cropped Amarração" class="product-img">
-                    <div class="card-content">
+                    <article class="card">
+                        <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração', '59,90', 'img/bata.jpg')"><i class="far fa-heart"></i></button>
+                        <img src="img/bata.jpg" class="product-img">
                         <h3>Cropped Amarração</h3>
                         <p class="price">R$ 59,90</p>
                         <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', '59,90', 'img/bata.jpg', this)">Comprar</button>
-                        
-                        <div class="shipping-calculator" style="margin-top: 15px;">
-                            <div style="display: flex; gap: 5px;">
-                                <input type="text" placeholder="CEP" class="cep-input" style="width: 60%; padding: 5px;">
-                                <button class="btn-calc" style="width: 40%;">Calcular</button>
-                            </div>
-                            <div class="shipping-result"></div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <button class="btn-share" onclick="alert('Link copiado!')"><i class="fas fa-share-alt"></i></button>
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Bata Sonia', '69,90', 'img/batasonic.jpg')">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <img src="img/batasonic.jpg" alt="Bata Sonia" class="product-img">
-                    <div class="card-content">
-                        <h3>Bata Sonia</h3>
-                        <p class="price">R$ 69,90</p>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Bata Sonia', '69,90', 'img/batasonic.jpg', this)">Comprar</button>
-                        
-                        <div class="shipping-calculator" style="margin-top: 15px;">
-                            <div style="display: flex; gap: 5px;">
-                                <input type="text" placeholder="CEP" class="cep-input" style="width: 60%; padding: 5px;">
-                                <button class="btn-calc" style="width: 40%;">Calcular</button>
-                            </div>
-                            <div class="shipping-result"></div>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 
     <footer class="main-footer">
         <div class="footer-container">
-            <div class="payments">
-                <p>Formas de Pagamento</p>
-                <div class="pay-row">
-                    <img src="img/pagamentos/visa_PNG4.png" alt="Visa" class="pay-img">
-                    <img src="img/pagamentos/master-card.png" alt="Mastercard" class="pay-img">
-                    <img src="img/pagamentos/paypal.png" alt="PayPal" class="pay-img">
-                    <img src="img/pagamentos/elo-png.png" alt="Elo" class="pay-img">
-                    <img src="img/pagamentos/pixx.jpg" alt="pix" class="pay-img">
-                </div>
-            </div>
-            <div class="legal">
-                <p>CNPJ: 59.017.606/0001-82</p>
-                <p>© 2026 Perfetto Store — Joinville/SC</p>
-            </div>
+            <p>© 2026 Perfetto Store — Joinville/SC</p>
         </div>
     </footer>
 
     <div id="modal-checkout" class="checkout-modal">
         <div class="modal-content">
-            <button class="close-modal" id="close-checkout">&times;</button>
+            <button id="close-checkout" style="float:right; border:none; background:none; font-size:24px;">&times;</button>
             <div id="camada-carrinho">
-                <div class="checkout-header">
-                    <h2>Seu Carrinho 💜</h2>
-                    <div id="resumo-carrinho" style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #957DAD;"></div>
-                </div>
-                <button type="button" id="ir-para-dados" class="btn-buy" style="width: 100%;">CONTINUAR PARA ENTREGA ➔</button>
-            </div>
-
-            <div id="camada-formulario" style="display: none;">
-                <div class="checkout-header"><h2>Finalizar Pedido 💜</h2></div>
-                <form id="form-final">
-                    <input type="text" id="c-nome" placeholder="Seu Nome Completo" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
-                    <input type="text" id="c-end" placeholder="Endereço (Rua, Nº, Bairro)" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
-                    <button type="button" id="btn-finish" class="btn-whatsapp-final" style="width: 100%; background: #957DAD; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                        PAGAR COM MERCADO PAGO ➔
-                    </button>
-                </form>
+                <h2>Seu Carrinho</h2>
+                <div id="resumo-carrinho"></div>
+                <div id="valor-total-modal"></div>
+                <button id="ir-para-dados" class="btn-buy">Finalizar</button>
             </div>
         </div>
     </div>

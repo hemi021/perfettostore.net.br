@@ -448,3 +448,37 @@ body {
 .product-grid {
     display: grid !important; /* Força a grade de produtos a aparecer */
 }
+/* Correção de visibilidade */
+#intro-perfetto {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: white;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#typing-text {
+    font-size: 2.5rem;
+    color: var(--roxo-principal);
+    border-right: 3px solid var(--roxo-principal);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.8s ease;
+}
+
+/* Garante que o main apareça */
+main {
+    display: block !important;
+}
+
+.hero, .products-section {
+    display: flex !important;
+    opacity: 1 !important;
+}
