@@ -3,146 +3,204 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" href="img/PS/PS.png" type="image/png">
+    <link rel="icon" href="img/PS.png" type="image/png">
     <title>Perfetto Store | Oficial</title>
-    
-    <!-- Meta Tags -->
-    <meta property="og:title" content="Perfetto Store 💜">
-    <meta property="og:description" content="Moda feminina com elegância e leveza.">
-    <meta property="og:image" content="../img/logo-da-loja.jpg"> 
-    <meta property="og:url" content="https://perfettostore.net.br">
-
-    <!-- Fonts & CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Intro Animation -->
-<div id="intro-perfetto">
-    <div class="conteudo-intro">
+    <div id="intro-perfetto">
         <h1 id="typing-text"></h1>
     </div>
-</div>
 
-<!-- Menu Lateral de Categorias -->
-<div id="menu-side" class="side-panel">
-    <button class="close-panel" id="close-menu">&times;</button>
-    <nav class="side-nav">
-        <h3 class="menu-title">Categorias</h3>
-        <a href="../index.html">Início</a>
-        <a href="../vestidos/index.html">Vestidos</a>
-        <a href="../calcas/index.html">Calças</a>
-        <a href="../saias/index.html">Saias</a>
-        <a href="../blusas/index.html">Blusas</a>
-        <a href="../conjuntos/index.html">Conjuntos</a>
-    </nav>
-    <div class="wishlist-container">
-        <h3 class="wishlist-title">Meus Favoritos 💜</h3>
-        <div id="lista-favoritos"></div>
-    </div>
-</div>
-
-<!-- Background escuro comum -->
-<div id="bg-overlay" class="dark-bg"></div>
-
-<!-- HEADER -->
-<header class="main-header">
-    <div class="cart-box" id="cart-trigger">
-        <span class="cart-icon">🛒</span>
-        <span class="cart-count" id="cart-count">0</span>
+    <div id="menu-side" class="side-panel">
+        <button class="close-panel" id="close-menu">&times;</button>
+        <nav class="side-nav">
+            <h3 class="menu-title">Categorias</h3>
+            <a href="index.html">Início</a>
+            <a href="vestidos.html">Vestidos</a>
+            <a href="calcas.html">Calças</a>
+            <a href="saias.html">Saias</a>
+            <a href="blusas.html">Blusas</a>
+            <a href="conjuntos.html">Conjuntos</a>
+            
+            <h3 class="wishlist-title">Meus Favoritos 💜</h3>
+            <div id="lista-favoritos">
+                </div>
+        </nav>
     </div>
 
-    <div class="header-container">
-        <div class="nav-left">
-            <button id="menu-toggle" class="hamburger">
-                <span></span><span></span><span></span>
-            </button>
-            <div class="logo">
-                <a href="../index.html" style="text-decoration: none; color: inherit;">
-                    Perfetto <span class="lilac">Store</span>
-                </a>
+    <div id="bg-overlay" class="dark-bg"></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="nav-left">
+                <button id="menu-toggle" class="hamburger">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="logo">Perfetto <span class="lilac">Store</span></div>
             </div>
-        </div> 
 
-        <div class="search-box" style="position: relative;"> 
-            <input type="text" placeholder="Buscar produto..." id="search-in" autocomplete="off">
-            <div id="search-results" class="search-suggestions"></div>
+            <div class="search-box" style="position: relative;"> 
+                <input type="text" placeholder="Buscar produto..." id="search-in" autocomplete="off">
+                <button type="button">🔍</button>
+                <div id="search-results" class="search-suggestions"></div>
+            </div>
+
+            <div class="nav-right">
+                <nav class="main-nav">
+                    <a href="index.html">Início</a>
+                    <a href="https://wa.me/5547996302096" target="_blank">Contato</a>
+                    <a href="https://instagram.com/perfettostore.jlle" target="_blank">Instagram</a>
+                </nav>
+                <div class="cart-box" id="cart-trigger">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <div class="nav-right">
-            <nav class="main-nav">
-                <a href="../index.html">Início</a>
-                <a href="https://wa.me/5547996302096" target="_blank">Contato</a>
-                <a href="https://instagram.com/perfettostore.jlle" target="_blank">Instagram</a>
-            </nav>
-        </div>
-    </div>
-</header>
-
-<main>
-    <!-- Carrossel -->
+   <main>
     <section class="carousel">
         <div class="carousel-inner" id="carousel-container">
-            <div class="slide"><img src="../img/banner/banner (2).png" alt="Banner (2)"></div>
-            <div class="slide"><img src="../img/banner/banner1.png" alt="Banner 1"></div>
-            <div class="slide"><img src="../img/banner/banner3.jpg" alt="Banner 3"></div>
+            <div class="slide"><img src="img/banner2.jpg" alt="Banner 1"></div>
+            <div class="slide"><img src="img/banner3.jpg" alt="Banner 2"></div>
         </div>
         <button class="arrow prev" id="prev-btn">&#10094;</button>
         <button class="arrow next" id="next-btn">&#10095;</button>
     </section>
 
-    <!-- Parallax e Produtos seguem aqui (seu código original está mantido) -->
-    <!-- ... (restante das seções de produtos) ... -->
-</main>
-
-<footer class="main-footer">
-    <div class="footer-container">
-        <div class="payments">
-            <p>Formas de Pagamento</p>
-            <div class="pay-row">
-                <img src="../img/pagamentos/visa_PNG4.png" alt="Visa" class="pay-img">
-                <img src="../img/pagamentos/master-card.png" alt="Mastercard" class="pay-img">
-                <img src="../img/pagamentos/paypal.png" alt="PayPal" class="pay-img">
-                <img src="../img/pagamentos/elo-png.png" alt="Elo" class="pay-img">
-                <img src="../img/pagamentos/pixx.jpg" alt="pix" class="pay-img">
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Coleção <br>Perfetto 💜</h1>
+                <p>O melhor da moda feminina selecionado especialmente para você brilhar em qualquer ocasião.</p>
+                <a href="#produtos" class="btn-cta" style="display: inline-block; background: var(--roxo-principal); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; margin-top: 20px;">Ver Looks</a>
+            </div>
+            <div class="hero-img">
+                <img src="img/roupalaranja.jpg" alt="Roupa Laranja">
             </div>
         </div>
-        <div class="legal">
-            <p>CNPJ: 59.017.606/0001-82</p>
-            <p>© 2026 Perfetto Store — Joinville/SC</p>
+    </section>
+
+    <section class="products-section" id="produtos" style="padding: 50px 0;">
+        <div class="container"> <h2 class="section-title" style="text-align: center; margin-bottom: 30px;">Novas Peças 💜</h2>
+            
+            <div class="product-grid">
+                <article class="card">
+                    <button class="btn-share" onclick="alert('Link copiado!')"><i class="fas fa-share-alt"></i></button>
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin', '189,90', 'img/roupa2.jpg')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/roupa2.jpg" alt="Vestido Satin" class="product-img">
+                    <div class="card-content">
+                        <h3>Vestido Satin</h3>
+                        <p class="price">R$ 189,90</p>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin', '189,90', 'img/roupa2.jpg', this)">Comprar</button>
+                        
+                        <div class="shipping-calculator" style="margin-top: 15px;">
+                            <div style="display: flex; gap: 5px;">
+                                <input type="text" placeholder="CEP" class="cep-input" style="width: 60%; padding: 5px;">
+                                <button class="btn-calc" style="width: 40%;">Calcular</button>
+                            </div>
+                            <div class="shipping-result"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <button class="btn-share" onclick="alert('Link copiado!')"><i class="fas fa-share-alt"></i></button>
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração', '59,90', 'img/bata.jpg')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/bata.jpg" alt="Cropped Amarração" class="product-img">
+                    <div class="card-content">
+                        <h3>Cropped Amarração</h3>
+                        <p class="price">R$ 59,90</p>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', '59,90', 'img/bata.jpg', this)">Comprar</button>
+                        
+                        <div class="shipping-calculator" style="margin-top: 15px;">
+                            <div style="display: flex; gap: 5px;">
+                                <input type="text" placeholder="CEP" class="cep-input" style="width: 60%; padding: 5px;">
+                                <button class="btn-calc" style="width: 40%;">Calcular</button>
+                            </div>
+                            <div class="shipping-result"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <button class="btn-share" onclick="alert('Link copiado!')"><i class="fas fa-share-alt"></i></button>
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Bata Sonia', '69,90', 'img/batasonic.jpg')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <img src="img/batasonic.jpg" alt="Bata Sonia" class="product-img">
+                    <div class="card-content">
+                        <h3>Bata Sonia</h3>
+                        <p class="price">R$ 69,90</p>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Bata Sonia', '69,90', 'img/batasonic.jpg', this)">Comprar</button>
+                        
+                        <div class="shipping-calculator" style="margin-top: 15px;">
+                            <div style="display: flex; gap: 5px;">
+                                <input type="text" placeholder="CEP" class="cep-input" style="width: 60%; padding: 5px;">
+                                <button class="btn-calc" style="width: 40%;">Calcular</button>
+                            </div>
+                            <div class="shipping-result"></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="payments">
+                <p>Formas de Pagamento</p>
+                <div class="pay-row">
+                    <img src="img/pagamentos/visa_PNG4.png" alt="Visa" class="pay-img">
+                    <img src="img/pagamentos/master-card.png" alt="Mastercard" class="pay-img">
+                    <img src="img/pagamentos/paypal.png" alt="PayPal" class="pay-img">
+                    <img src="img/pagamentos/elo-png.png" alt="Elo" class="pay-img">
+                    <img src="img/pagamentos/pixx.jpg" alt="pix" class="pay-img">
+                </div>
+            </div>
+            <div class="legal">
+                <p>CNPJ: 59.017.606/0001-82</p>
+                <p>© 2026 Perfetto Store — Joinville/SC</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal-checkout" class="checkout-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-checkout">&times;</button>
+            <div id="camada-carrinho">
+                <div class="checkout-header">
+                    <h2>Seu Carrinho 💜</h2>
+                    <div id="resumo-carrinho" style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #957DAD;"></div>
+                </div>
+                <button type="button" id="ir-para-dados" class="btn-buy" style="width: 100%;">CONTINUAR PARA ENTREGA ➔</button>
+            </div>
+
+            <div id="camada-formulario" style="display: none;">
+                <div class="checkout-header"><h2>Finalizar Pedido 💜</h2></div>
+                <form id="form-final">
+                    <input type="text" id="c-nome" placeholder="Seu Nome Completo" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
+                    <input type="text" id="c-end" placeholder="Endereço (Rua, Nº, Bairro)" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
+                    <button type="button" id="btn-finish" class="btn-whatsapp-final" style="width: 100%; background: #957DAD; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                        PAGAR COM MERCADO PAGO ➔
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</footer>
 
-<!-- ESTRUTURA DO CARRINHO (FORA DE TUDO PARA NÃO BUGAR) -->
-<div id="cart-side" class="side-panel">
-    <div class="side-header">
-        <h3>Meu Carrinho 🛍️</h3>
-        <button id="close-cart" class="close-btn">&times;</button>
-    </div>
-    
-    <div id="cart-items-container" class="side-content">
-        <!-- Itens aparecerão aqui via JS -->
-    </div>
-
-    <div class="cart-footer">
-        <div class="total-box" style="display: flex; justify-content: space-between; font-weight: bold; padding: 10px 0;">
-            <span>Total:</span>
-            <span id="cart-total-value">R$ 0,00</span>
-        </div>
-        <button class="btn-checkout" onclick="finalizarCompra()">Finalizar Pedido</button>
-    </div>
-</div>
-
-<!-- Overlay Único para o Carrinho -->
-<div id="cart-overlay" class="bg-overlay"></div>
-
-<!-- Scripts -->
-<script src="https://sdk.mercadopago.com.br/js/v2"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="../js/script.js?v=3"></script>
+    <script src="https://sdk.mercadopago.com.br/js/v2"></script>
+    <script src="script.js"></script>
 </body>
 </html>
