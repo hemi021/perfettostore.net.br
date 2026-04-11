@@ -1,290 +1,153 @@
-/* ==========================================
-   1. CONFIGURAÇÕES INICIAIS E INTRO
-   ========================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    iniciarIntro();
-    renderizarFavoritos();
-    atualizarContadorTotal();
-});
+const products = [
+  { id: 1, name: "Conjunto Lilás", price: 200, category: "conjuntos", img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=500" },
+  { id: 2, name: "Blusa Floral", price: 120, category: "blusas", img: "https://images.unsplash.com/photo-1564252261158-4dd0f2159bd0?q=80&w=500" },
+  { id: 3, name: "Short Jeans", price: 90, category: "shorts", img: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=500" },
+  { id: 4, name: "Saia Longa", price: 150, category: "saias", img: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=500" }
+];
 
-function iniciarIntro() {
-    const textElement = document.getElementById("typing-text");
-    const introDiv = document.getElementById("intro-perfetto");
-    const phrase = "Perfetto Store";
-    let i = 0;
+// Carrega carrinho do navegador ou inicia vazio
+let cart = JSON.parse(localStorage.getItem('perfetto_cart')) || [];
 
-    if (!textElement) return;
+function renderProducts() {
+  const grids = ["featured-grid", "conjuntos-grid", "blusas-grid", "shorts-grid", "saias-grid"];
+  
+  grids.forEach(gridId => {
+    const element = document.getElementById(gridId);
+    if (!element) return;
 
-    function type() {
-        if (i < phrase.length) {
-            textElement.textContent += phrase.charAt(i);
-            i++;
-            setTimeout(type, 100);
-        } else {
-            setTimeout(() => {
-                introDiv.classList.add("fade-out-intro");
-                // Remove do DOM após a transição para não atrapalhar cliques
-                setTimeout(() => introDiv.style.display = 'none', 800);
-            }, 800);
-        }
-    }
-    type();
-}
-
-/* ==========================================
-   2. MENU LATERAL (SIDE-PANEL) E FAVORITOS
-   ========================================== */
-const menuToggle = document.getElementById('menu-toggle');
-const sideMenu = document.getElementById('menu-side');
-const overlay = document.getElementById('bg-overlay');
-const closeBtn = document.getElementById('close-menu');
-
-function toggleMenu() {
-    if (sideMenu && overlay) {
-        sideMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
-    }
-}
-
-if (menuToggle) menuToggle.onclick = toggleMenu;
-if (closeBtn) closeBtn.onclick = toggleMenu;
-if (overlay) overlay.onclick = toggleMenu;
-
-// Lógica de Favoritos
-let favoritos = JSON.parse(localStorage.getItem('perfetto_favs')) || [];
-
-window.toggleFavorito = function(btn, nome, preco, img) {
-    const index = favoritos.findIndex(f => f.nome === nome);
-    
-    if (index > -1) {
-        favoritos.splice(index, 1);
-        btn.classList.remove('active');
-        btn.querySelector('i').className = 'far fa-heart';
+    if (gridId === "featured-grid") {
+      element.innerHTML = products.map(p => createCard(p)).join("");
     } else {
-        favoritos.push({ nome, preco, img });
-        btn.classList.add('active');
-        btn.querySelector('i').className = 'fas fa-heart';
+      const cat = gridId.replace("-grid", "");
+      element.innerHTML = products.filter(p => p.category === cat).map(createCard).join("");
     }
-    
-    localStorage.setItem('perfetto_favs', JSON.stringify(favoritos));
-    renderizarFavoritos();
-};
-
-function renderizarFavoritos() {
-    const container = document.getElementById('lista-favoritos');
-    if (!container) return;
-    
-    if (favoritos.length === 0) {
-        container.innerHTML = '<p style="font-size:12px; color:#999; padding:10px;">Nenhum favorito ainda.</p>';
-        return;
-    }
-
-    container.innerHTML = favoritos.map(f => `
-        <div class="fav-item" style="display:flex; align-items:center; gap:10px; margin-bottom:10px; padding:5px; border-bottom:1px solid #f0f0f0;">
-            <img src="${f.img}" style="width:40px; height:50px; object-fit:cover; border-radius:4px;">
-            <div>
-                <span style="font-size:12px; display:block; font-weight:600;">${f.nome}</span>
-                <span style="font-size:11px; color:var(--roxo-principal);">${f.preco}</span>
-            </div>
-        </div>
-    `).join('');
+  });
+  updateCartUI();
 }
 
-/* ==========================================
-   3. CARROSSEL DE BANNERS
-   ========================================== */
-let bannerIndex = 0;
-const containerCarousel = document.getElementById('carousel-container');
-const slides = document.querySelectorAll('.slide');
-const nextBtn = document.getElementById('next-btn');
-const prevBtn = document.getElementById('prev-btn');
-
-function showSlide(n) {
-    if (!containerCarousel || slides.length === 0) return;
-    bannerIndex += n;
-    if (bannerIndex >= slides.length) bannerIndex = 0;
-    if (bannerIndex < 0) bannerIndex = slides.length - 1;
-    containerCarousel.style.transform = `translateX(${-bannerIndex * 100}%)`;
+function createCard(p) {
+  return `
+    <div class="product-card">
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>R$ ${p.price.toFixed(2)}</p>
+      <button class="btn-primary" onclick="addToCart(${p.id})">Adicionar à Sacola</button>
+    </div>
+  `;
 }
 
-if (nextBtn) nextBtn.onclick = () => showSlide(1);
-if (prevBtn) prevBtn.onclick = () => showSlide(-1);
-
-// AutoPlay
-setInterval(() => showSlide(1), 5000);
-
-/* ==========================================
-   4. SISTEMA DE COMPRA E MERCADO PAGO
-   ========================================== */
-let listaDeProdutos = [];
-const cartCountElement = document.getElementById('cart-count');
-const modalCheckout = document.getElementById('modal-checkout');
-const resumoConteudo = document.getElementById('resumo-carrinho');
-
-window.adicionarAoCarrinho = function(nome, preco, img, btn) {
-    const itemExistente = listaDeProdutos.find(item => item.nome === nome);
-    if (itemExistente) {
-        itemExistente.qtd += 1;
-    } else {
-        listaDeProdutos.push({ nome, preco, img, qtd: 1 });
-    }
-    
-    atualizarContadorTotal();
-    
-    // Feedback visual no botão
-    if (btn) {
-        const originalText = btn.innerHTML;
-        btn.innerHTML = "Adicionado! ✓";
-        btn.style.background = "#7a6391";
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.style.background = "";
-        }, 800);
-    }
-};
-
-function atualizarContadorTotal() {
-    const totalItens = listaDeProdutos.reduce((soma, item) => soma + item.qtd, 0);
-    if (cartCountElement) cartCountElement.innerText = totalItens;
-
-    let subtotal = listaDeProdutos.reduce((soma, item) => {
-        let precoLimpo = parseFloat(item.preco.replace('R$', '').replace('.', '').replace(',', '.'));
-        return soma + (precoLimpo * item.qtd);
-    }, 0);
-
-    let valorFrete = window.freteAtual || 0;
-    let totalGeral = subtotal + valorFrete;
-
-    const totalDisplay = document.getElementById('valor-total-modal');
-    if (totalDisplay) {
-        totalDisplay.innerText = `Total: R$ ${totalGeral.toFixed(2)} (Frete: R$ ${valorFrete.toFixed(2)})`;
-    }
+function addToCart(id) {
+  const item = products.find(p => p.id === id);
+  cart.push(item);
+  localStorage.setItem('perfetto_cart', JSON.stringify(cart));
+  updateCartUI();
+  toggleCart(true);
 }
 
-window.renderizarResumo = function() {
-    if (!resumoConteudo) return;
-    resumoConteudo.innerHTML = listaDeProdutos.map((item, index) => `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:8px;">
-            <div style="flex:1; text-align:left;">
-                <span style="font-weight:500; font-size:14px; display:block;">${item.nome}</span>
-                <small style="color:#888;">${item.preco}</small>
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-                <button type="button" onclick="alterarQtd(${index}, -1)" style="width:25px; height:25px; border-radius:50%; border:1px solid #ddd; background:white;">-</button>
-                <span style="font-weight:bold;">${item.qtd}</span>
-                <button type="button" onclick="alterarQtd(${index}, 1)" style="width:25px; height:25px; border-radius:50%; border:none; background:#957DAD; color:white;">+</button>
-            </div>
-        </div>
-    `).join('');
-};
-
-window.alterarQtd = function(index, operacao) {
-    listaDeProdutos[index].qtd += operacao;
-    if (listaDeProdutos[index].qtd <= 0) listaDeProdutos.splice(index, 1);
-    renderizarResumo();
-    atualizarContadorTotal();
-};
-
-// Checkout Pro Mercado Pago
-const mp = new MercadoPago('APP_USR-a68e1268-65ea-4878-9949-14e0cc2af141', { locale: 'pt-BR' });
-
-const btnFinish = document.getElementById('btn-finish');
-if (btnFinish) {
-    btnFinish.onclick = () => {
-        const nome = document.getElementById('c-nome').value;
-        const endereco = document.getElementById('c-end').value;
-
-        if (!nome || !endereco) {
-            alert("Preencha os dados de entrega! 💜");
-            return;
-        }
-
-        window.location.href = "https://link.mercadopago.com.br/pedidoperfettostore";
-    };
+function updateCartUI() {
+  const badge = document.getElementById("cart-badge");
+  const list = document.getElementById("cart-items");
+  if(badge) badge.innerText = cart.length;
+  if(list) {
+    list.innerHTML = cart.map((item, index) => `
+      <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+        <span>${item.name}</span>
+        <b>R$ ${item.price}</b>
+        <button onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">X</button>
+      </div>
+    `).join("");
+  }
 }
 
-/* ==========================================
-   5. CÁLCULO DE FRETE (JOINVILLE)
-   ========================================== */
-document.querySelectorAll('.btn-calc').forEach(btn => {
-    btn.onclick = async function() {
-        const container = this.closest('.shipping-calculator');
-        const input = container.querySelector('.cep-input');
-        const resultDiv = container.querySelector('.shipping-result');
-        const cep = input.value.replace(/\D/g, '');
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('perfetto_cart', JSON.stringify(cart));
+  updateCartUI();
+}
 
-        if (cep.length !== 8) return alert("CEP incompleto!");
+function toggleCart(forceOpen = false) {
+  const sidebar = document.getElementById("cart-sidebar");
+  if(forceOpen) sidebar.classList.add("open");
+  else sidebar.classList.toggle("open");
+}
 
-        try {
-            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-            const dados = await response.json();
-            if (dados.erro) return alert("CEP não encontrado!");
+function navigate(page) {
+  const target = document.getElementById("page-" + page);
+  if (target) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    target.classList.add("active");
+  } else {
+    // Se você estiver em uma subpasta, ele volta para a raiz e entra na pasta certa
+    window.location.href = window.location.origin + "/" + page;
+  }
+}
 
-            const bairro = dados.bairro.toLowerCase();
-            let valorUber = 12.00;
+function checkout() {
+  alert("Pedido enviado para o WhatsApp da Perfetto!");
+  cart = [];
+  localStorage.removeItem('perfetto_cart');
+  updateCartUI();
+  toggleCart();
+}
 
-            if (bairro.includes("centro") || bairro.includes("america") || bairro.includes("ateneu")) {
-                valorUber = 8.00;
-            } else if (bairro.includes("pirabeiraba") || bairro.includes("aventureiro") || bairro.includes("vila nova")) {
-                valorUber = 18.00;
+document.addEventListener("DOMContentLoaded", renderProducts);
+function showPush(message) {
+    // 1. Cria o Estilo CSS dinamicamente (se ainda não existir)
+    if (!document.getElementById('push-style')) {
+        const style = document.createElement('style');
+        style.id = 'push-style';
+        style.innerHTML = `
+            .push-toast {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: white;
+                color: #2e1f4a;
+                padding: 16px 24px;
+                border-radius: 12px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+                border-left: 6px solid #9b72cf;
+                z-index: 10000;
+                font-family: sans-serif;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                animation: pushIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             }
-
-            resultDiv.style.display = "block";
-            resultDiv.innerHTML = `<div style="color:#957DAD;">🛵 Uber Moto para ${dados.bairro}: R$ ${valorUber.toFixed(2)}</div>`;
-            
-            window.freteAtual = valorUber;
-            atualizarContadorTotal();
-        } catch (e) { alert("Erro ao calcular."); }
-    };
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Efeito de Digitação e Sumir Intro
-    const textElement = document.getElementById("typing-text");
-    const introDiv = document.getElementById("intro-perfetto");
-    const phrase = "Perfetto Store";
-    let i = 0;
-
-    function type() {
-        if (i < phrase.length) {
-            textElement.textContent += phrase.charAt(i);
-            i++;
-            setTimeout(type, 150);
-        } else {
-            setTimeout(() => {
-                introDiv.classList.add("fade-out");
-            }, 1000);
-        }
-    }
-    type();
-
-    // 2. Menu Lateral
-    const menuToggle = document.getElementById('menu-toggle');
-    const sideMenu = document.getElementById('menu-side');
-    const overlay = document.getElementById('bg-overlay');
-    const closeBtn = document.getElementById('close-menu');
-
-    function toggleMenu() {
-        sideMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
+            @keyframes pushIn {
+                from { transform: translateX(120%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            .push-fadeOut {
+                animation: pushOut 0.5s ease forwards;
+            }
+            @keyframes pushOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(120%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     }
 
-    if (menuToggle) menuToggle.onclick = toggleMenu;
-    if (closeBtn) closeBtn.onclick = toggleMenu;
-    if (overlay) overlay.onclick = toggleMenu;
-});
+    // 2. Cria o elemento da Notificação
+    const toast = document.createElement('div');
+    toast.className = 'push-toast';
+    toast.innerHTML = `
+        <span style="font-size: 20px;">🛍️</span>
+        <div style="display: flex; flex-direction: column;">
+            <strong style="font-size: 14px; color: #9b72cf;">Perfetto Store</strong>
+            <span style="font-size: 13px;">${message}</span>
+        </div>
+    `;
 
-// Funções Globais (Carrinho e Favoritos)
-let listaDeProdutos = [];
-function adicionarAoCarrinho(nome, preco, img, btn) {
-    listaDeProdutos.push({nome, preco, img, qtd: 1});
-    document.getElementById('cart-count').innerText = listaDeProdutos.length;
-    btn.innerText = "Adicionado!";
-    setTimeout(() => btn.innerText = "Comprar", 1000);
+    document.body.appendChild(toast);
+
+    // 3. Remove automaticamente após 3 segundos
+    setTimeout(() => {
+        toast.classList.add('push-fadeOut');
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
 }
 
-function toggleFavorito(btn, nome) {
-    btn.classList.toggle('active');
-    const icon = btn.querySelector('i');
-    icon.classList.toggle('fas');
-    icon.classList.toggle('far');
-}
+// Para testar, basta chamar:
+// showPush("Conjunto Lilás adicionado!");

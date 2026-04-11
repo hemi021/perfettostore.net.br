@@ -1,437 +1,103 @@
-/* ==========================================
-   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
-   ========================================== */
-:root {
-    --roxo-principal: #957DAD;
-    --roxo-escuro: #7a6391;
-    --fundo-suave: #FDF7FA;
-    --branco: #ffffff;
-    --cinza-claro: #f4f4f4;
-    --texto-escuro: #333333;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background-color: var(--branco);
-    color: var(--texto-escuro);
-    line-height: 1.6;
-    padding-top: 80px;
-    overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+  background: #faf8ff;
+  color: #2e1f4a;
+  margin: 0;
+  transition: all 0.3s;
 }
 
-/* ==========================================
-   2. INTRO DE CARREGAMENTO
-   ========================================== */
-#intro-perfetto {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: white;
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
 }
 
-.fade-out {
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.8s ease-in-out;
+/* Navbar */
+#navbar {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* ==========================================
-   3. HEADER E BUSCA
-   ========================================== */
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--branco);
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
+.nav-logo {
+  font-family: 'Playfair Display';
+  font-size: 1.8rem;
+  color: #9b72cf;
+  cursor: pointer;
 }
 
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
 }
 
-.hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.nav-links a {
+  text-decoration: none;
+  color: #2e1f4a;
+  font-weight: 600;
 }
 
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--roxo-principal);
-    border-radius: 2px;
+/* Grid de Produtos */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: 700;
+.product-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
-.logo a {
-    text-decoration: none !important;
-    color: inherit !important;
+.product-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.lilac {
-    color: var(--roxo-principal);
+.btn-primary {
+  background: #9b72cf;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
 }
 
-.search-box {
-    background: var(--cinza-claro);
-    padding: 8px 15px;
-    border-radius: 25px;
-    flex: 1;
-    max-width: 300px;
-    margin: 0 20px;
+/* Carrinho Sidebar */
+.cart-sidebar {
+  position: fixed;
+  right: -350px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.4s;
+  z-index: 1000;
 }
 
-.search-box input {
-    border: none;
-    background: transparent;
-    outline: none;
-    width: 100%;
-    font-size: 14px;
+.cart-sidebar.open {
+  right: 0;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: var(--texto-escuro);
-    font-weight: 500;
-    margin-left: 15px;
-    transition: 0.3s;
-}
-
-.main-nav a:hover {
-    color: var(--roxo-principal);
-}
-
-/* ==========================================
-   4. MENU LATERAL
-   ========================================== */
-.side-panel {
-    position: fixed;
-    left: -320px;
-    top: 0;
-    width: 300px;
-    height: 100%;
-    background: var(--branco);
-    z-index: 9000;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 60px 20px;
-    box-shadow: 5px 0 25px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-}
-
-.side-panel.active {
-    left: 0;
-}
-
-.dark-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 8000;
-    display: none;
-}
-
-.dark-bg.active {
-    display: block;
-}
-
-.close-panel {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    color: var(--roxo-principal);
-    cursor: pointer;
-}
-
-.side-nav a {
-    display: block;
-    text-decoration: none;
-    color: var(--texto-escuro);
-    padding: 12px;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.side-nav a:hover {
-    background: var(--fundo-suave);
-    color: var(--roxo-principal);
-    transform: translateX(5px);
-}
-
-/* ==========================================
-   5. CARROSSEL E HERO
-   ========================================== */
-.carousel {
-    position: relative;
-    width: 100%;
-    height: 450px;
-    overflow: hidden;
-}
-
-.carousel-inner {
-    display: flex;
-    height: 100%;
-    transition: 0.6s ease-in-out;
-}
-
-.slide {
-    min-width: 100%;
-    height: 100%;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 8%;
-    background-color: var(--fundo-suave);
-}
-
-.hero-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1200px;
-    width: 100%;
-    gap: 40px;
-}
-
-.hero-text h1 {
-    font-size: 3rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-.hero-img img {
-    width: 380px;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 20px 20px 0 var(--roxo-principal);
-}
-
-/* ==========================================
-   6. VITRINE DE PRODUTOS
-   ========================================== */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 40px 0;
-}
-
-.card {
-    background: var(--branco);
-    border: 1px solid #eee;
-    border-radius: 15px;
-    padding: 15px;
-    position: relative;
-    transition: 0.3s ease;
-    text-align: center;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.product-img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.price {
-    color: var(--roxo-principal);
-    font-weight: 700;
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-.btn-buy {
-    width: 100%;
-    background: var(--roxo-principal);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* ==========================================
-   7. RESPONSIVIDADE (MOBILE)
-   ========================================== */
-@media screen and (max-width: 768px) {
-    .carousel {
-        height: 300px;
-    }
-
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .product-img {
-        height: 180px;
-    }
-}
-/* 1. RESET E ESTRUTURA */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background-color: #ffffff;
-    padding-top: 80px;
-    overflow-x: hidden;
-}
-
-/* 2. VITRINE (Onde estão os cards) */
-.products-section {
-    display: block !important;
-    padding: 40px 0;
-    background: #fff;
-}
-
-.container-vitrine, .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 3. GRID DOS PRODUTOS (Organiza as colunas) */
-.product-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-/* 4. O CARD (Controla o tamanho de cada produto) */
-.card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Garante que todos tenham o mesmo tamanho */
-}
-
-/* 5. A IMAGEM (Corrige o erro de ficarem GIGANTES) */
-.card img, .product-img {
-    width: 100% !important;
-    height: 320px !important; /* Altura fixa para não estourar */
-    object-fit: cover !important; /* Faz a foto preencher o espaço sem distorcer */
-    border-radius: 10px;
-    display: block;
-    margin: 0 auto 15px;
-}
-
-/* 6. TEXTOS DO CARD */
-.card h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.price {
-    color: #957DAD;
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.btn-buy {
-    background: #957DAD;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    width: 100%;
-}
-
-/* 7. AJUSTE PARA CELULAR (2 colunas) */
-@media screen and (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-        padding: 10px;
-    }
-
-    .card {
-        padding: 8px !important;
-    }
-
-    .card img, .product-img {
-        height: 200px !important; /* Imagem menor no celular */
-    }
-}
+/* Páginas */
+.page { display: none; }
+.page.active { display: block; }
