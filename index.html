@@ -1,72 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="img/PS.png" type="image/png">
+
   <title>Perfetto Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS externo -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<nav id="navbar">
-  <div class="container">
-    <div class="nav-inner">
-      <span class="nav-logo" onclick="navigate('home')">Perfetto Store</span>
-      <ul class="nav-links">
-        <li><a href="#" class="active" onclick="navigate('home')">Home</a></li>
-        <li><a href="#" onclick="navigate('conjuntos')">Conjuntos</a></li>
-        <li><a href="#" onclick="navigate('blusas')">Blusas</a></li>
-        <li><a href="#" onclick="navigate('shorts')">Shorts</a></li>
-        <li><a href="#" onclick="navigate('saias')">Saias</a></li>
-      </ul>
-      <div class="nav-right">
-        <button class="cart-btn" onclick="toggleCart()">
-          🛍️ <span class="cart-badge" id="cart-badge">0</span>
-        </button>
+  <div class="site">
+    <!-- CABEÇALHO -->
+    <header>
+      <div class="logo">
+        Perfetto <span style="color: var(--accent)">Store</span>
       </div>
+
+      <nav>
+        <a class="nav-link" href="#">Início</a>
+        <a class="nav-link" href="#produtos">Produtos</a>
+        <a class="nav-link" href="#quem-somos">Quem somos</a>
+        <a class="nav-link" href="#contato">Contato</a>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="search" role="search">
+          <input placeholder="Pesquisar produtos..." aria-label="Pesquisar" />
+          <button aria-label="buscar" style="color: var(--accent-dark)">🔍</button>
+        </div>
+
+        <div class="cart">
+          <button aria-label="ver carrinho" style="color: var(--accent-dark)">🛒</button>
+          <div class="count" id="cart-count">0</div>
+        </div>
+      </div>
+    </header>
+    <!-- CARROSEL-->
+     <!-- CARROSSEL DE BANNERS -->
+<section class="carousel">
+  <div class="carousel-container" id="carousel">
+    <!-- Slide 1 -->
+    <div class="slide ativo">
+      <img src="img/banner2.jpg" alt="Promoção até 50% OFF">
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="img/banner3.jpg" alt="Frete grátis para todo o Brasil">
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="img/banner (2).png" alt="Nova coleção">
     </div>
   </div>
-</nav>
 
-<div id="page-home" class="page active">
-  <section class="hero">
-    <div class="container">
-      <h1>Perfetto Store</h1>
-      <p>Moda feminina elegante e moderna</p>
-    </div>
-  </section>
+  <!-- Controles -->
+  <button class="prev" aria-label="Anterior">❮</button>
+  <button class="next" aria-label="Próximo">❯</button>
 
-  <section class="section container">
-    <h2>Destaques</h2>
-    <div class="products-grid" id="featured-grid"></div>
-  </section>
-</div>
+  <!-- Indicadores -->
+  <div class="indicators" id="indicators"></div>
+</section>
 
-<div id="page-conjuntos" class="page">
-    <div class="container"><h2>Conjuntos</h2><div id="conjuntos-grid" class="products-grid"></div></div>
-</div>
-<div id="page-blusas" class="page">
-    <div class="container"><h2>Blusas</h2><div id="blusas-grid" class="products-grid"></div></div>
-</div>
-<div id="page-shorts" class="page">
-    <div class="container"><h2>Shorts</h2><div id="shorts-grid" class="products-grid"></div></div>
-</div>
-<div id="page-saias" class="page">
-    <div class="container"><h2>Saias</h2><div id="saias-grid" class="products-grid"></div></div>
-</div>
 
-<div class="cart-sidebar" id="cart-sidebar">
-  <div class="cart-header">
-    <h3>Sua Sacola</h3>
-    <button onclick="toggleCart()">X</button>
+    <!-- HERO -->
+    <section class="hero" aria-label="destaque">
+      <div class="text">
+        <h1>Novas peças  toda semana</h1>
+        <p>Seleção de vestidos, croppeds e essenciais com frete rápido para todo o Brasil.</p>
+        <p style="margin-top:12px">
+          <a href="#produtos" class="cta">Ver produtos</a>
+        </p>
+      </div>
+      <img src="img/download (3).jpg" alt="Produto destaque" />
+    </section>
+
+    <!-- GRID DE PRODUTOS -->
+    <section id="produtos">
+      <h2 style="color: var(--accent-dark)">Produtos</h2>
+      <div class="products" id="products-grid">
+        <article class="product-card" data-id="1">
+          <img src="img/roupa3.jpg" alt="Blazer" />
+          <div class="product-info">
+            <h3>Blazer </h3>
+            <div class="price">R$ 129,90</div>
+            <button class="buy">Comprar</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-id="2">
+          <img src="img/roupa2.jpg" alt="Blazer" />
+          <div class="product-info">
+            <h3>Blazer</h3>
+            <div class="price">R$ 49,90</div>
+            <button class="buy">Comprar</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-id="3">
+          <img src="img/roupa1.jpg" alt="Conjunto" />
+          <div class="product-info">
+            <h3> conjunto</h3>
+            <div class="price">R$ 159,90</div>
+            <button class="buy">Comprar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+      <div>
+        © <strong style="color: var(--accent-dark)">Perfetto store</strong> — Todos os direitos reservados
+      </div>
+      <div><small>Contato: perfettostorejlle@gmai.com • instagram: Perfetto Store</small></div>
+    </footer>
   </div>
-  <div id="cart-items"></div>
-  <div class="cart-footer">
-    <button class="btn-primary" onclick="checkout()">Finalizar Compra</button>
-  </div>
-</div>
 
-<script src="script.js"></script>
+  <!-- JS externo -->
+  <script src="script.js"></script>
+
+  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/55 047 996302096" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
