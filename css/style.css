@@ -271,3 +271,39 @@ body {
     background: #7a6391;
     letter-spacing: 1px;
 }
+/* Layout do Cabeçalho */
+.header-layout-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quick-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.quick-links a {
+    font-size: 11px;
+    text-decoration: none;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Menu Lateral à Direita */
+.side-panel-right {
+    left: auto !important;
+    right: -300px; /* Escondido na direita */
+}
+
+.side-panel-right.active {
+    right: 0 !important;
+}

@@ -1,4 +1,4 @@
-// Controle do Menu
+// --- CONTROLE DO MENU LATERAL (DIREITA) ---
 const menuToggle = document.getElementById('menu-toggle');
 const menuSide = document.getElementById('menu-side');
 const closeMenu = document.getElementById('close-menu');
@@ -10,7 +10,16 @@ if(closeMenu) {
     closeMenu.onclick = () => menuSide.classList.remove('active');
 }
 
-// Lógica de Carrinho Persistente
+// Fechar ao clicar fora do menu
+document.addEventListener('click', (e) => {
+    if (menuSide && menuSide.classList.contains('active')) {
+        if (!menuSide.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuSide.classList.remove('active');
+        }
+    }
+});
+
+// --- LÓGICA DE CARRINHO PERSISTENTE ---
 let carrinho = JSON.parse(localStorage.getItem('perfetto_cart')) || [];
 
 function adicionarAoCarrinho(nome, preco, imagem) {
@@ -19,7 +28,7 @@ function adicionarAoCarrinho(nome, preco, imagem) {
     localStorage.setItem('perfetto_cart', JSON.stringify(carrinho));
     
     atualizarBadge();
-    showPush(`✨ ${nome} adicionado!`);
+    showPush(`✨ ${nome} adicionado ao carrinho!`);
 }
 
 function atualizarBadge() {
@@ -27,56 +36,51 @@ function atualizarBadge() {
     if(badge) badge.innerText = carrinho.length;
 }
 
-// Notificação Push elegante
-function showPush(msg) {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed; bottom: 20px; right: 20px;
-        background: white; border-left: 5px solid #957DAD;
-        padding: 15px 25px; border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        z-index: 9999; font-family: sans-serif;
-    `;
-    toast.innerHTML = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3000);
-}
-
-// Inicia o contador ao carregar a página
-document.addEventListener('DOMContentLoaded', atualizarBadge);
-// Função para trocar a imagem principal da galeria
-function changeImage(element) {
-    const mainImg = document.getElementById('mainImg');
-    mainImg.src = element.src;
-    
-    // Atualiza a borda da miniatura ativa
-    document.querySelectorAll('.thumb-item').forEach(thumb => thumb.classList.remove('active'));
-    element.classList.add('active');
-}
-
-// Função para selecionar o tamanho
-function selectSize(element) {
-    document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
-    element.classList.add('active');
-    
-    // Opcional: mostrar push confirmando o tamanho
-    console.log("Tamanho selecionado: " + element.innerText);
-}
+// --- LÓGICA DE FAVORITOS ---
 function toggleFavorito(botao, nomeProduto) {
     const icone = botao.querySelector('i');
-    
     botao.classList.toggle('active');
     
     if (botao.classList.contains('active')) {
-        icone.classList.replace('far', 'fas'); // Muda para coração preenchido
+        icone.classList.replace('far', 'fas'); // Coração preenchido
         showPush(`💜 ${nomeProduto} adicionado aos favoritos!`);
     } else {
-        icone.classList.replace('fas', 'far'); // Volta para coração vazio
+        icone.classList.replace('fas', 'far'); // Coração vazio
         showPush(`💔 ${nomeProduto} removido dos favoritos.`);
     }
 }
 
-// Função showPush atualizada para ser elegante
+// --- GALERIA E PRODUTO ---
+function changeImage(element) {
+    const mainImg = document.getElementById('mainImg');
+    if(mainImg) mainImg.src = element.src;
+    
+    document.querySelectorAll('.thumb-item').forEach(thumb => thumb.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function selectSize(element) {
+    document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
+    element.classList.add('active');
+}
+
+// --- BANNER ROTATIVO (SLIDER) ---
+let currentBanner = 0;
+const banners = document.querySelectorAll('.banner-img');
+
+function nextBanner() {
+    if (banners.length > 0) {
+        banners[currentBanner].classList.remove('active');
+        currentBanner = (currentBanner + 1) % banners.length;
+        banners[currentBanner].classList.add('active');
+    }
+}
+
+if (banners.length > 0) {
+    setInterval(nextBanner, 4000); // Troca a cada 4 segundos
+}
+
+// --- NOTIFICAÇÃO PUSH ELEGANTE ---
 function showPush(msg) {
     const toast = document.createElement('div');
     toast.className = 'push-toast';
@@ -85,8 +89,16 @@ function showPush(msg) {
         transform: translateX(-50%); background: #2e1f4a;
         color: white; padding: 12px 25px; border-radius: 50px;
         z-index: 10000; font-size: 14px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        font-family: 'Poppins', sans-serif;
     `;
     toast.innerHTML = msg;
     document.body.appendChild(toast);
-    setTimeout(() => { toast.remove(); }, 3000);
+    setTimeout(() => { 
+        toast.style.opacity = '0';
+        toast.style.transition = '0.5s';
+        setTimeout(() => toast.remove(), 500); 
+    }, 3000);
 }
+
+// Inicializa o badge ao carregar
+document.addEventListener('DOMContentLoaded', atualizarBadge);
