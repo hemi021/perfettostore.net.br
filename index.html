@@ -40,15 +40,18 @@
         </div>
 
         <div class="nav-center">
-            <div class="logo">
-                <a href="index.html">Perfetto <span class="lilac">Store</span></a>
-            </div>
-            <div class="quick-links">
-                <a href="https://instagram.com/perfettostore" target="_blank">Instagram</a>
-                <a href="https://wa.me/5547996302096" target="_blank">Contato</a>
-            </div>
-        </div>
-
+    <div class="logo">
+        <a href="index.html">Perfetto <span class="lilac">Store</span></a>
+    </div>
+    <div class="quick-links">
+        <a href="https://instagram.com/perfettostore.jlle" target="_blank" title="Siga nosso Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/5547991778060" target="_blank" title="Chame no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+</div>
         <div class="nav-right">
             <button id="menu-toggle" class="hamburger-menu">
                 <span></span>
@@ -63,9 +66,9 @@
 <main style="margin-top: 130px;">
     <section class="banner-container">
         <div class="slider">
-            <img src="img/banner/banner1.jpg" class="banner-img active" alt="Coleção Nova">
-            <img src="img/banner/banner2.jpg" class="banner-img" alt="Estilo Perfetto">
-            <img src="img/banner/banner3.jpg" class="banner-img" alt="Looks Exclusivos">
+            <img src="img/banner/banner3.jpg" class="banner-img active" alt="Coleção Nova">
+            <img src="img/banner/banner (2).png" class="banner-img" alt="Estilo Perfetto">
+            <img src="img/banner/banner1.png" class="banner-img" alt="Looks Exclusivos">
         </div>
         <div class="banner-content">
             <h1>Nova Coleção Perfetto</h1>
@@ -130,6 +133,34 @@
                         </div>
 
                         <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin', 189.90, 'img/roupa2.jpg')">
+                            EU QUERO 🛍️
+                        </button>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Linho')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="produto.html">
+                        <img src="img/destaque/roupadestaque.jpg" alt="Conjunto Linho" class="product-img">
+                    </a>
+                    <div class="card-content">
+                        <h3>Conjunto Linho Premium</h3>
+                        <p class="price">R$ 249,90</p>
+                        
+                        <div class="payment-info">
+                            <div class="payment-icons-img">
+                                <img src="img/pagamentos/pixx.png" alt="Pix">
+                                <img src="img/pagamentos/visa_PNG4.png" alt="Visa">
+                                <img src="img/pagamentos/master-card.png" alt="Mastercard">
+                                <img src="img/pagamentos/elo-png.png" alt="Elo">
+                                <img src="img/pagamentos/paypal.png" alt="Paypal">
+                            </div>
+                            <span>ou 3x de <strong>R$ 83,30</strong></span>
+                        </div>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Linho', 249.90, 'img/destaque/roupadestaque.jpg')">
                             EU QUERO 🛍️
                         </button>
                     </div>
