@@ -1,134 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="img/PS.png" type="image/png">
-
-  <title>Perfetto Store</title>
-
-  <!-- CSS externo -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="img/PS/PS.png" type="image/png">
+    <title>Perfetto Store | Home</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="site">
-    <!-- CABEÇALHO -->
-    <header>
-      <div class="logo">
-        Perfetto <span style="color: var(--accent)">Store</span>
-      </div>
 
-      <nav>
-        <a class="nav-link" href="#">Início</a>
-        <a class="nav-link" href="#produtos">Produtos</a>
-        <a class="nav-link" href="#quem-somos">Quem somos</a>
-        <a class="nav-link" href="#contato">Contato</a>
-      </nav>
+<div id="menu-side" class="side-panel">
+    <button class="close-panel" id="close-menu">&times;</button>
+    <nav class="side-nav">
+        <h3 class="menu-title">Categorias</h3>
+        <a href="index.html">Início</a>
+        <a href="vestidos/index.html">Vestidos</a>
+        <a href="calcas/index.html">Calças</a>
+        <a href="saias/index.html">Saias</a>
+        <a href="blusas/index.html">Blusas</a> 
+        <a href="conjuntos/index.html">Conjuntos</a>
+        <hr class="menu-divider">
+        <h3 class="menu-title">Meus Favoritos 💜</h3>
+        <div id="lista-favoritos" class="fav-container"></div>
+    </nav>
+</div>
 
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="search" role="search">
-          <input placeholder="Pesquisar produtos..." aria-label="Pesquisar" />
-          <button aria-label="buscar" style="color: var(--accent-dark)">🔍</button>
+<header class="main-header">
+    <div class="header-container">
+        <div class="nav-left">
+            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
+            <div class="logo"><a href="index.html">Perfetto <span class="lilac">Store</span></a></div>
         </div>
-
-        <div class="cart">
-          <button aria-label="ver carrinho" style="color: var(--accent-dark)">🛒</button>
-          <div class="count" id="cart-count">0</div>
+        <div class="search-box">
+            <input type="text" placeholder="Buscar..." id="search-in">
         </div>
-      </div>
-    </header>
-    <!-- CARROSEL-->
-     <!-- CARROSSEL DE BANNERS -->
-<section class="carousel">
-  <div class="carousel-container" id="carousel">
-    <!-- Slide 1 -->
-    <div class="slide ativo">
-      <img src="img/banner2.jpg" alt="Promoção até 50% OFF">
+        <div class="nav-right">
+            <div class="cart-box" onclick="toggleCart()">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
     </div>
-    <!-- Slide 2 -->
-    <div class="slide">
-      <img src="img/banner3.jpg" alt="Frete grátis para todo o Brasil">
-    </div>
-    <!-- Slide 3 -->
-    <div class="slide">
-      <img src="img/banner (2).png" alt="Nova coleção">
-    </div>
-  </div>
+</header>
 
-  <!-- Controles -->
-  <button class="prev" aria-label="Anterior">❮</button>
-  <button class="next" aria-label="Próximo">❯</button>
-
-  <!-- Indicadores -->
-  <div class="indicators" id="indicators"></div>
-</section>
-
-
-    <!-- HERO -->
-    <section class="hero" aria-label="destaque">
-      <div class="text">
-        <h1>Novas peças  toda semana</h1>
-        <p>Seleção de vestidos, croppeds e essenciais com frete rápido para todo o Brasil.</p>
-        <p style="margin-top:12px">
-          <a href="#produtos" class="cta">Ver produtos</a>
-        </p>
-      </div>
-      <img src="img/download (3).jpg" alt="Produto destaque" />
+<main style="margin-top: 100px;">
+    <section class="hero-home">
+        <div class="container">
+            <h1>Nova Coleção Perfetto</h1>
+            <p>Onde a moda encontra a sua melhor versão.</p>
+        </div>
     </section>
 
-    <!-- GRID DE PRODUTOS -->
-    <section id="produtos">
-      <h2 style="color: var(--accent-dark)">Produtos</h2>
-      <div class="products" id="products-grid">
-        <article class="product-card" data-id="1">
-          <img src="img/roupa3.jpg" alt="Blazer" />
-          <div class="product-info">
-            <h3>Blazer </h3>
-            <div class="price">R$ 129,90</div>
-            <button class="buy">Comprar</button>
-          </div>
-        </article>
-
-        <article class="product-card" data-id="2">
-          <img src="img/roupa2.jpg" alt="Blazer" />
-          <div class="product-info">
-            <h3>Blazer</h3>
-            <div class="price">R$ 49,90</div>
-            <button class="buy">Comprar</button>
-          </div>
-        </article>
-
-        <article class="product-card" data-id="3">
-          <img src="img/roupa1.jpg" alt="Conjunto" />
-          <div class="product-info">
-            <h3> conjunto</h3>
-            <div class="price">R$ 159,90</div>
-            <button class="buy">Comprar</button>
-          </div>
-        </article>
-      </div>
+    <section class="products-section">
+        <div class="container"> 
+            <h2 class="section-title">Destaques 💜</h2>
+            <div class="product-grid" id="home-products">
+                <article class="card">
+                    <button class="btn-fav"><i class="far fa-heart"></i></button>
+                    <img src="img/bata.jpg" alt="Destaque" class="product-img">
+                    <div class="card-content">
+                        <h3>Cropped Amarração</h3>
+                        <p class="price">R$ 59,90</p>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, 'img/bata.jpg')">Eu quero</button>
+                    </div>
+                </article>
+            </div> 
+        </div> 
     </section>
+</main>
 
-    <!-- RODAPÉ -->
-    <footer>
-      <div>
-        © <strong style="color: var(--accent-dark)">Perfetto store</strong> — Todos os direitos reservados
-      </div>
-      <div><small>Contato: perfettostorejlle@gmai.com • instagram: Perfetto Store</small></div>
-    </footer>
-  </div>
-
-  <!-- JS externo -->
-  <script src="script.js"></script>
-
-  <!-- BOTÃO WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/55 047 996302096" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
-
+<script src="js/script.js"></script>
 </body>
 </html>
-
 
 
 

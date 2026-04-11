@@ -1,76 +1,46 @@
-// Controle simples de carrinho
-const cartCountEl = document.getElementById('cart-count');
-let cartCount = 0;
+// Controle do Menu
+const menuToggle = document.getElementById('menu-toggle');
+const menuSide = document.getElementById('menu-side');
+const closeMenu = document.getElementById('close-menu');
 
-document.querySelectorAll('.buy').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    cartCount++;
-    cartCountEl.textContent = cartCount;
-
-    // Feedback visual
-    btn.textContent = 'Adicionado ✓';
-    btn.disabled = true;
-    setTimeout(()=>{
-      btn.textContent = 'Comprar';
-      btn.disabled = false;
-    }, 1200);
-  });
-});
-// ==========================
-// CARROSSEL DE BANNERS
-// ==========================
-const carousel = document.getElementById('carousel');
-const slides = document.querySelectorAll('.carousel .slide');
-const prevBtn = document.querySelector('.carousel .prev');
-const nextBtn = document.querySelector('.carousel .next');
-const indicatorsContainer = document.getElementById('indicators');
-
-let currentIndex = 0;
-let interval = setInterval(nextSlide, 4000); // muda a cada 4s
-
-// Criar indicadores dinamicamente
-slides.forEach((_, i) => {
-  const dot = document.createElement('button');
-  if (i === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => goToSlide(i));
-  indicatorsContainer.appendChild(dot);
-});
-const dots = indicatorsContainer.querySelectorAll('button');
-
-function updateCarousel() {
-  carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-  dots.forEach(d => d.classList.remove('active'));
-  dots[currentIndex].classList.add('active');
+if(menuToggle) {
+    menuToggle.onclick = () => menuSide.classList.add('active');
+}
+if(closeMenu) {
+    closeMenu.onclick = () => menuSide.classList.remove('active');
 }
 
-function nextSlide() {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateCarousel();
+// Lógica de Carrinho Persistente
+let carrinho = JSON.parse(localStorage.getItem('perfetto_cart')) || [];
+
+function adicionarAoCarrinho(nome, preco, imagem) {
+    const item = { nome, preco, imagem };
+    carrinho.push(item);
+    localStorage.setItem('perfetto_cart', JSON.stringify(carrinho));
+    
+    atualizarBadge();
+    showPush(`✨ ${nome} adicionado!`);
 }
 
-function prevSlide() {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateCarousel();
+function atualizarBadge() {
+    const badge = document.getElementById('cart-count');
+    if(badge) badge.innerText = carrinho.length;
 }
 
-function goToSlide(index) {
-  currentIndex = index;
-  updateCarousel();
+// Notificação Push elegante
+function showPush(msg) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed; bottom: 20px; right: 20px;
+        background: white; border-left: 5px solid #957DAD;
+        padding: 15px 25px; border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        z-index: 9999; font-family: sans-serif;
+    `;
+    toast.innerHTML = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3000);
 }
 
-// Botões de navegação
-nextBtn.addEventListener('click', () => {
-  nextSlide();
-  resetInterval();
-});
-
-prevBtn.addEventListener('click', () => {
-  prevSlide();
-  resetInterval();
-});
-
-// Reinicia o autoplay quando usuário interage
-function resetInterval() {
-  clearInterval(interval);
-  interval = setInterval(nextSlide, 4000);
-}
+// Inicia o contador ao carregar a página
+document.addEventListener('DOMContentLoaded', atualizarBadge);
