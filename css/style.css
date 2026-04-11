@@ -307,3 +307,67 @@ body {
 .side-panel-right.active {
     right: 0 !important;
 }
+/* --- ESTILIZAÇÃO DOS PAGAMENTOS NOS CARDS --- */
+
+.payment-info {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.payment-icons-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Espaço entre as bandeiras */
+    margin-bottom: 8px;
+}
+
+.payment-icons-img img {
+    width: 32px; /* Tamanho ideal para as bandeiras */
+    height: auto;
+    filter: grayscale(100%); /* Ficam em preto e branco */
+    opacity: 0.5; /* Ficam clarinhas */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Movimento suave */
+}
+
+/* Efeito HOVER: Quando passa o mouse no ícone */
+.payment-icons-img img:hover {
+    filter: grayscale(0%); /* Ganha cor real */
+    opacity: 1; /* Fica nítido */
+    transform: scale(1.4) translateY(-5px); /* Aumenta e sobe um pouquinho */
+    cursor: pointer;
+}
+
+/* Texto das parcelas */
+.payment-info span {
+    font-size: 0.85rem;
+    color: #555;
+    display: block;
+}
+
+/* --- EFEITO HOVER NO BOTÃO DE COMPRA --- */
+
+.btn-buy {
+    background: #957DAD; /* Seu roxo/lilás */
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(149, 125, 173, 0.2);
+}
+
+.btn-buy:hover {
+    background: #7a6391; /* Escurece um pouco */
+    transform: translateY(-3px); /* Sobe o botão */
+    box-shadow: 0 8px 20px rgba(149, 125, 173, 0.4); /* Sombra mais forte */
+}
+
+.btn-buy:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
