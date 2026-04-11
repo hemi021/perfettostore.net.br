@@ -44,3 +44,21 @@ function showPush(msg) {
 
 // Inicia o contador ao carregar a página
 document.addEventListener('DOMContentLoaded', atualizarBadge);
+// Função para trocar a imagem principal da galeria
+function changeImage(element) {
+    const mainImg = document.getElementById('mainImg');
+    mainImg.src = element.src;
+    
+    // Atualiza a borda da miniatura ativa
+    document.querySelectorAll('.thumb-item').forEach(thumb => thumb.classList.remove('active'));
+    element.classList.add('active');
+}
+
+// Função para selecionar o tamanho
+function selectSize(element) {
+    document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
+    element.classList.add('active');
+    
+    // Opcional: mostrar push confirmando o tamanho
+    console.log("Tamanho selecionado: " + element.innerText);
+}
