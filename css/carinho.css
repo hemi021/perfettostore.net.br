@@ -31,8 +31,39 @@
     width: 90px !important;
     height: 120px !important;
     object-fit: cover;
+    border-radius: 12px;/* --- ESTILIZAÇÃO DA PÁGINA DE CARRINHO --- */}
+
+.cart-main-content {
+    margin-top: 150px; /* Evita que o header cubra o conteúdo */
+    padding-bottom: 80px;
+    min-height: 70vh;
+}
+
+.cart-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- LISTA DE PRODUTOS --- */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f8f8f8;
+    gap: 20px;
+}
+
+/* RESOLUÇÃO DAS FOTOS GIGANTES */
+.cart-item img {
+    width: 90px !important;
+    height: 120px !important;
+    object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .cart-item-info {
@@ -53,7 +84,7 @@
     margin-bottom: 10px;
 }
 
-/* Botão Remover (Lixeirinha) */
+/* Botão Remover */
 .btn-remove {
     background: #fff0f0;
     color: #ff4d4d;
@@ -73,7 +104,7 @@
     color: white;
 }
 
-/* --- ÁREA DO TOTAL E BOTÕES --- */
+/* --- RESUMO E TOTAIS --- */
 .cart-summary {
     background: #faf8ff;
     padding: 25px;
@@ -96,13 +127,13 @@
     color: var(--lilac);
 }
 
-/* Botão Finalizar Pedido (WhatsApp) */
+/* BOTÃO WHATSAPP COLORIDO */
 .btn-checkout {
     background: #25D366;
     color: white;
     width: 100%;
     border: none;
-    padding: 18px;
+    padding: 20px;
     border-radius: 50px;
     font-weight: bold;
     font-size: 1.1rem;
@@ -114,6 +145,8 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-checkout:hover {
@@ -122,7 +155,6 @@
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
-/* Link para voltar a comprar */
 .btn-continue {
     display: block;
     text-align: center;
