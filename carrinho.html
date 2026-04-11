@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Meu Carrinho | Perfetto Store</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/carrinho.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container header-layout-custom">
+            <div class="nav-left">
+                <a href="index.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+            <div class="nav-center">
+                <div class="logo">
+                    <a href="index.html">Perfetto <span class="lilac">Store</span></a>
+                </div>
+            </div>
+            <div class="nav-right"></div>
+        </div>
+    </header>
+
+    <main class="cart-wrapper">
+        <div class="cart-container">
+            <h2>Seu Carrinho 🛍️</h2>
+            <hr class="menu-divider">
+            
+            <div id="itens-carrinho">
+                </div>
+
+            <div class="cart-footer">
+                <div class="total-box">
+                    <span>Total do Pedido:</span>
+                    <span class="total-price">R$ <span id="valor-total">0,00</span></span>
+                </div>
+                <button class="btn-checkout" onclick="finalizarCompra()">
+                    FINALIZAR PEDIDO VIA WHATSAPP <i class="fab fa-whatsapp"></i>
+                </button>
+                <a href="index.html" class="continue-shopping">Continuar Comprando</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/cart.js"></script>
+</body>
+</html>
