@@ -36,10 +36,10 @@
             <div class="logo"><a href="index.html">Perfetto <span class="lilac">Store</span></a></div>
         </div>
         <div class="search-box">
-            <input type="text" placeholder="Buscar..." id="search-in">
+            <input type="text" placeholder="Buscar na Perfetto..." id="search-in">
         </div>
         <div class="nav-right">
-            <div class="cart-box" onclick="toggleCart()">
+            <div class="cart-box" onclick="toggleCart()" style="cursor: pointer;">
                 <span class="cart-icon">🛒</span>
                 <span class="cart-count" id="cart-count">0</span>
             </div>
@@ -47,9 +47,14 @@
     </div>
 </header>
 
-<main style="margin-top: 100px;">
-    <section class="hero-home">
-        <div class="container">
+<main style="margin-top: 80px;">
+    <section class="banner-container">
+        <div class="slider">
+            <img src="img/banner/banner1.jpg" class="banner-img active" alt="Coleção Nova">
+            <img src="img/banner/banner2.jpg" class="banner-img" alt="Estilo Perfetto">
+            <img src="img/banner/banner3.jpg" class="banner-img" alt="Looks Exclusivos">
+        </div>
+        <div class="banner-content">
             <h1>Nova Coleção Perfetto</h1>
             <p>Onde a moda encontra a sua melhor versão.</p>
         </div>
@@ -57,33 +62,70 @@
 
     <section class="products-section">
         <div class="container"> 
-            <h2 class="section-title">Destaques 💜</h2>
+            <h2 class="section-title">Destaques da Semana 💜</h2>
+            
             <div class="product-grid" id="home-products">
+                
                 <article class="card">
-                    <button class="btn-fav"><i class="far fa-heart"></i></button>
-                    <img src="img/bata.jpg" alt="Destaque" class="product-img">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="produto.html">
+                        <img src="img/bata.jpg" alt="Cropped Amarração" class="product-img">
+                    </a>
                     <div class="card-content">
                         <h3>Cropped Amarração</h3>
                         <p class="price">R$ 59,90</p>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, 'img/bata.jpg')">Eu quero</button>
+                        
+                        <div class="payment-info">
+                            <div class="payment-icons">
+                                <i class="fa-brands fa-pix"></i>
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <span>ou 3x de <strong>R$ 19,96</strong></span>
+                        </div>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, 'img/bata.jpg')">
+                            EU QUERO 🛍️
+                        </button>
                     </div>
                 </article>
-            </div> 
-        </div> 
+
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="produto.html">
+                        <img src="img/roupa2.jpg" alt="Vestido Satin" class="product-img">
+                    </a>
+                    <div class="card-content">
+                        <h3>Vestido Satin Soft</h3>
+                        <p class="price">R$ 189,90</p>
+                        
+                        <div class="payment-info">
+                            <div class="payment-icons">
+                                <i class="fa-brands fa-pix"></i>
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <span>ou 3x de <strong>R$ 63,30</strong></span>
+                        </div>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin', 189.90, 'img/roupa2.jpg')">
+                            EU QUERO 🛍️
+                        </button>
+                    </div>
+                </article>
+
+            </div> </div> 
     </section>
 </main>
+
+<footer class="main-footer">
+    <div class="container" style="text-align: center; padding: 40px 0;">
+        <p>CNPJ: 59.017.606/0001-82 | © 2026 Perfetto Store</p>
+    </div>
+</footer>
 
 <script src="js/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

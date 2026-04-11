@@ -62,3 +62,31 @@ function selectSize(element) {
     // Opcional: mostrar push confirmando o tamanho
     console.log("Tamanho selecionado: " + element.innerText);
 }
+function toggleFavorito(botao, nomeProduto) {
+    const icone = botao.querySelector('i');
+    
+    botao.classList.toggle('active');
+    
+    if (botao.classList.contains('active')) {
+        icone.classList.replace('far', 'fas'); // Muda para coração preenchido
+        showPush(`💜 ${nomeProduto} adicionado aos favoritos!`);
+    } else {
+        icone.classList.replace('fas', 'far'); // Volta para coração vazio
+        showPush(`💔 ${nomeProduto} removido dos favoritos.`);
+    }
+}
+
+// Função showPush atualizada para ser elegante
+function showPush(msg) {
+    const toast = document.createElement('div');
+    toast.className = 'push-toast';
+    toast.style.cssText = `
+        position: fixed; bottom: 20px; left: 50%;
+        transform: translateX(-50%); background: #2e1f4a;
+        color: white; padding: 12px 25px; border-radius: 50px;
+        z-index: 10000; font-size: 14px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    `;
+    toast.innerHTML = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.remove(); }, 3000);
+}
