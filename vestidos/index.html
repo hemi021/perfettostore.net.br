@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="../img/PS/PS.png" type="image/png">
     <title>Perfetto Store | Vestidos</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
@@ -85,20 +84,7 @@
     </div>
 </header>
 
-<main style="margin-top: 80px;">
-    <section class="banner-container">
-        <div class="slider">
-            <img src="../img/banner/banner1.jpg" class="banner-img active" alt="Banner 1">
-            <img src="../img/banner/banner2.jpg" class="banner-img" alt="Banner 2">
-            <img src="../img/banner/banner3.jpg" class="banner-img" alt="Banner 3">
-        </div>
-
-        <div class="banner-content">
-            <h1>Vestidos Exclusivos</h1>
-            <p>Elegância que transparece em cada detalhe.</p>
-        </div>
-    </section>
-
+<main style="margin-top: 100px;">
     <section style="padding: 40px 0 0;">
         <div class="container">
             <h2 class="section-title" style="text-align: left;">Vestidos 💜</h2>
@@ -198,7 +184,26 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50" alt="WhatsApp">
 </a>
 
-<div id="modal-checkout" class="checkout-modal"></div>
+<div id="modal-checkout" class="checkout-modal">
+    <div class="modal-content">
+        <button class="close-modal" id="close-checkout">&times;</button>
+        <div id="camada-carrinho">
+            <div class="checkout-header"><h2>Seu Carrinho 💜</h2></div>
+            <div id="resumo-carrinho" style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #957DAD;"></div>
+            <button type="button" id="ir-para-dados" class="btn-buy" style="width: 100%;">CONTINUAR PARA ENTREGA ➔</button>
+        </div>
+        <div id="camada-formulario" style="display: none;">
+            <div class="checkout-header"><h2>Finalizar Pedido 💜</h2></div>
+            <form id="form-final">
+                <input type="text" id="c-nome" placeholder="Seu Nome Completo" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
+                <input type="text" id="c-end" placeholder="Endereço (Rua, Nº, Bairro)" required style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ddd;">
+                <button type="button" id="btn-finish" class="btn-whatsapp-final" style="width: 100%; background: #957DAD; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                    PAGAR COM MERCADO PAGO ➔
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://sdk.mercadopago.com.br/js/v2"></script>
 <script src="../js/script.js"></script>
