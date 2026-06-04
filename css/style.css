@@ -5,6 +5,14 @@
     --white: #ffffff;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--light-bg);
@@ -63,7 +71,7 @@ body {
     color: var(--dark);
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .lilac {
@@ -109,6 +117,20 @@ body {
 .search-box input:focus {
     border-color: var(--lilac);
     box-shadow: 0 0 0 3px rgba(149, 125, 173, 0.15);
+}
+
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100%, 340px);
+    background: #fff;
+    border: 1px solid #e4def0;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    z-index: 1200;
+    overflow: hidden;
 }
 
 .cart-box {
@@ -375,7 +397,7 @@ body {
     width: 90%;
     margin: 10px 5% 20px;
     border-radius: 50px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-transform: uppercase;
