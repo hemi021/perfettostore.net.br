@@ -364,3 +364,140 @@ body {
 .btn-buy:active { 
     transform: scale(0.95); 
 }
+/* --- BOTÕES DO MENU LATERAL --- */
+.side-nav {
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.menu-title {
+    font-family: 'Playfair Display';
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: var(--light-bg);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.nav-btn i {
+    font-size: 18px;
+    color: var(--lilac);
+    width: 24px;
+    text-align: center;
+}
+
+.nav-btn:hover {
+    background: var(--lilac);
+    color: white;
+    transform: translateX(5px);
+}
+
+.nav-btn:hover i {
+    color: white;
+}
+
+.nav-btn.active {
+    background: var(--lilac);
+    color: white;
+}
+
+.nav-btn.active i {
+    color: white;
+}
+
+.menu-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* --- FAVORITOS NO MENU --- */
+.fav-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.fav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--light-bg);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--dark);
+    transition: 0.3s;
+}
+
+.fav-item:hover {
+    background: var(--lilac);
+    color: white;
+}
+
+.fav-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.fav-item-info {
+    flex: 1;
+}
+
+.fav-item-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.fav-item-price {
+    font-size: 12px;
+    color: var(--lilac);
+    margin: 3px 0 0;
+}
+
+.fav-item:hover .fav-item-price {
+    color: white;
+}
+
+.fav-remove {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.fav-remove:hover {
+    color: #ff4444;
+}
+
+.fav-item:hover .fav-remove {
+    color: #ff6666;
+}
+
+.fav-empty {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    padding: 20px;
+}
