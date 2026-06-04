@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="../img/PS/PS.png" type="image/png">
     <title>Perfetto Store | Shorts</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
@@ -14,42 +15,42 @@
 
 <div id="menu-side" class="side-panel side-panel-left">
     <button class="close-panel" id="close-menu">&times;</button>
-    
+
     <nav class="side-nav">
         <h3 class="menu-title">Categorias</h3>
-        
+
         <a href="../index.html" class="nav-btn">
             <i class="fas fa-home"></i>
             <span>Início</span>
         </a>
-        
+
         <a href="../vestidos/index.html" class="nav-btn">
             <i class="fas fa-female"></i>
             <span>Vestidos</span>
         </a>
-        
+
         <a href="../calcas/index.html" class="nav-btn">
             <i class="fas fa-tshirt"></i>
             <span>Calças</span>
         </a>
-        
+
         <a href="../saias/index.html" class="nav-btn">
             <i class="fas fa-vest"></i>
             <span>Saias</span>
         </a>
-        
+
         <a href="../blusas/index.html" class="nav-btn">
             <i class="fas fa-user-tie"></i>
             <span>Blusas</span>
         </a>
-        
+
         <a href="../conjuntos/index.html" class="nav-btn">
             <i class="fas fa-layer-group"></i>
             <span>Conjuntos</span>
         </a>
-        
+
         <hr class="menu-divider">
-        
+
         <h3 class="menu-title">Meus Favoritos 💜</h3>
         <div id="lista-favoritos" class="fav-container"></div>
     </nav>
@@ -60,12 +61,21 @@
 <header class="main-header">
     <div class="header-container">
         <div class="nav-left">
-            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
-            <div class="logo"><a href="../index.html">Perfetto <span class="lilac">Store</span></a></div>
+            <button id="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="logo">
+                <a href="../index.html">Perfetto <span class="lilac">Store</span></a>
+            </div>
         </div>
+
         <div class="search-box">
             <input type="text" placeholder="Buscar..." id="search-in">
         </div>
+
         <div class="nav-right">
             <div class="cart-box" id="cart-trigger">
                 <span class="cart-icon">🛒</span>
@@ -84,29 +94,30 @@
     </section>
 
     <section class="products-section" id="produtos">
-        <div class="container"> 
+        <div class="container">
             <div class="product-grid">
-                
+
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Shorts Linho High Lilás')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Shorts Linho High Lilás', '../img/shorts1.jpg', 89.90)">
                         <i class="far fa-heart"></i>
                     </button>
-                    
+
                     <a href="../produto.html">
                         <img src="../img/shorts1.jpg" alt="Shorts Linho High Lilás" class="product-img">
                     </a>
-                    
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Shorts Linho High Lilás</h3>
                         </a>
 
                         <div class="color-options">
-                            <span class="color-dot" style="background-color: #D6CADD;"></span>
-                            <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;"></span>
+                            <span class="color-dot" style="background-color: #D6CADD;" title="Lilás"></span>
+                            <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
                         </div>
 
                         <p class="price">R$ 89,90</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
@@ -114,29 +125,33 @@
                             </div>
                             <span>ou 3x de <strong class="parcela-valor">R$ 29,96</strong></span>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Shorts Linho High Lilás', 89.90, '../img/shorts1.jpg', this)">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Shorts Linho High Lilás', 89.90, '../img/shorts1.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Shorts Jeans Lavagem Clara')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Shorts Jeans Lavagem Clara', '../img/shorts2.jpg', 115.00)">
                         <i class="far fa-heart"></i>
                     </button>
 
                     <a href="../produto.html">
                         <img src="../img/shorts2.jpg" alt="Shorts Jeans Lavagem Clara" class="product-img">
                     </a>
-                    
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Shorts Jeans Lavagem Clara</h3>
                         </a>
 
                         <div class="color-options">
-                            <span class="color-dot" style="background-color: #ADD8E6;"></span>
+                            <span class="color-dot" style="background-color: #ADD8E6;" title="Azul claro"></span>
                         </div>
 
                         <p class="price">R$ 115,00</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
@@ -144,30 +159,34 @@
                             </div>
                             <span>ou 3x de <strong class="parcela-valor">R$ 38,33</strong></span>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Shorts Jeans Lavagem Clara', 115.00, '../img/shorts2.jpg', this)">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Shorts Jeans Lavagem Clara', 115.00, '../img/shorts2.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Shorts Alfaiataria Soft')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Shorts Alfaiataria Soft', '../img/shorts3.jpg', 95.00)">
                         <i class="far fa-heart"></i>
                     </button>
 
                     <a href="../produto.html">
                         <img src="../img/shorts3.jpg" alt="Shorts Alfaiataria Soft" class="product-img">
                     </a>
-                    
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Shorts Alfaiataria Soft</h3>
                         </a>
 
                         <div class="color-options">
-                            <span class="color-dot" style="background-color: #000;"></span>
-                            <span class="color-dot" style="background-color: #957DAD;"></span>
+                            <span class="color-dot" style="background-color: #000;" title="Preto"></span>
+                            <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
                         </div>
 
                         <p class="price">R$ 95,00</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
@@ -175,12 +194,15 @@
                             </div>
                             <span>ou 3x de <strong class="parcela-valor">R$ 31,66</strong></span>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Shorts Alfaiataria Soft', 95.00, '../img/shorts3.jpg', this)">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Shorts Alfaiataria Soft', 95.00, '../img/shorts3.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
-            </div> 
-        </div> 
+            </div>
+        </div>
     </section>
 </main>
 
@@ -200,6 +222,7 @@
 <div id="modal-checkout" class="checkout-modal">
     <div class="modal-content">
         <button class="close-modal" id="close-checkout">&times;</button>
+
         <div id="camada-carrinho">
             <div class="checkout-header"><h2>Seu Carrinho 💜</h2></div>
             <div id="resumo-carrinho" style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #957DAD;"></div>

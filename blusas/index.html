@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="../img/PS/PS.png" type="image/png">
     <title>Perfetto Store | Blusas e Croppeds</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
@@ -12,45 +13,44 @@
 </head>
 <body>
 
-<!-- MENU LATERAL CORRIGIDO -->
 <div id="menu-side" class="side-panel side-panel-left">
     <button class="close-panel" id="close-menu">&times;</button>
-    
+
     <nav class="side-nav">
         <h3 class="menu-title">Categorias</h3>
-        
+
         <a href="../index.html" class="nav-btn">
             <i class="fas fa-home"></i>
             <span>Início</span>
         </a>
-        
+
         <a href="../vestidos/index.html" class="nav-btn">
             <i class="fas fa-female"></i>
             <span>Vestidos</span>
         </a>
-        
+
         <a href="../calcas/index.html" class="nav-btn">
             <i class="fas fa-tshirt"></i>
             <span>Calças</span>
         </a>
-        
+
         <a href="../saias/index.html" class="nav-btn">
             <i class="fas fa-vest"></i>
             <span>Saias</span>
         </a>
-        
+
         <a href="../blusas/index.html" class="nav-btn">
             <i class="fas fa-user-tie"></i>
             <span>Blusas</span>
         </a>
-        
+
         <a href="../conjuntos/index.html" class="nav-btn">
             <i class="fas fa-layer-group"></i>
             <span>Conjuntos</span>
         </a>
-        
+
         <hr class="menu-divider">
-        
+
         <h3 class="menu-title">Meus Favoritos 💜</h3>
         <div id="lista-favoritos" class="fav-container"></div>
     </nav>
@@ -61,12 +61,21 @@
 <header class="main-header">
     <div class="header-container">
         <div class="nav-left">
-            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
-            <div class="logo"><a href="../index.html">Perfetto <span class="lilac">Store</span></a></div>
+            <button id="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="logo">
+                <a href="../index.html">Perfetto <span class="lilac">Store</span></a>
+            </div>
         </div>
+
         <div class="search-box">
             <input type="text" placeholder="Buscar..." id="search-in">
         </div>
+
         <div class="nav-right">
             <div class="cart-box" id="cart-trigger">
                 <span class="cart-icon">🛒</span>
@@ -85,64 +94,80 @@
     </section>
 
     <section class="products-section" id="produtos">
-        <div class="container"> 
+        <div class="container">
             <div class="product-grid">
-                
+
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração', '../img/bata.jpg', 59.90)">
                         <i class="far fa-heart"></i>
                     </button>
+
                     <a href="../produto.html">
                         <img src="../img/bata.jpg" alt="Cropped Amarração" class="product-img">
                     </a>
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Cropped Amarração</h3>
                         </a>
+
                         <div class="color-options">
                             <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
                             <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
                             <span class="color-dot" style="background-color: #000;" title="Preto"></span>
                         </div>
+
                         <p class="price">R$ 59,90</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
                                 <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
                             </div>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, '../img/bata.jpg', this)">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, '../img/bata.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Blusa Gola Alta Satin')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Blusa Gola Alta Satin', '../img/blusa2-frente.jpg', 89.90)">
                         <i class="far fa-heart"></i>
                     </button>
+
                     <a href="../produto.html">
                         <img src="../img/blusa2-frente.jpg" alt="Blusa Gola Alta Satin" class="product-img">
                     </a>
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Blusa Gola Alta Satin</h3>
                         </a>
+
                         <div class="color-options">
                             <span class="color-dot" style="background-color: #7a6391;" title="Uva"></span>
                             <span class="color-dot" style="background-color: #333;" title="Grafite"></span>
                         </div>
+
                         <p class="price">R$ 89,90</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
                                 <img src="../img/pagamentos/icon-cartao.png" alt="Cartão" class="icon-cartao">
                             </div>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Blusa Gola Alta Satin', 89.90, '../img/blusa2-frente.jpg', this)">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Blusa Gola Alta Satin', 89.90, '../img/blusa2-frente.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
-            </div> 
-        </div> 
+            </div>
+        </div>
     </section>
 </main>
 

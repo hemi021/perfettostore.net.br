@@ -5,51 +5,52 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="../img/PS/PS.png" type="image/png">
     <title>Perfetto Store | Vestidos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body> 
-<!-- MENU LATERAL CORRIGIDO -->
+<body>
+
 <div id="menu-side" class="side-panel side-panel-left">
     <button class="close-panel" id="close-menu">&times;</button>
-    
+
     <nav class="side-nav">
         <h3 class="menu-title">Categorias</h3>
-        
+
         <a href="../index.html" class="nav-btn">
             <i class="fas fa-home"></i>
             <span>Início</span>
         </a>
-        
+
         <a href="../vestidos/index.html" class="nav-btn">
             <i class="fas fa-female"></i>
             <span>Vestidos</span>
         </a>
-        
+
         <a href="../calcas/index.html" class="nav-btn">
             <i class="fas fa-tshirt"></i>
             <span>Calças</span>
         </a>
-        
+
         <a href="../saias/index.html" class="nav-btn">
             <i class="fas fa-vest"></i>
             <span>Saias</span>
         </a>
-        
+
         <a href="../blusas/index.html" class="nav-btn">
             <i class="fas fa-user-tie"></i>
             <span>Blusas</span>
         </a>
-        
+
         <a href="../conjuntos/index.html" class="nav-btn">
             <i class="fas fa-layer-group"></i>
             <span>Conjuntos</span>
         </a>
-        
+
         <hr class="menu-divider">
-        
+
         <h3 class="menu-title">Meus Favoritos 💜</h3>
         <div id="lista-favoritos" class="fav-container"></div>
     </nav>
@@ -60,12 +61,21 @@
 <header class="main-header">
     <div class="header-container">
         <div class="nav-left">
-            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
-            <div class="logo"><a href="../index.html">Perfetto <span class="lilac">Store</span></a></div>
+            <button id="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="logo">
+                <a href="../index.html">Perfetto <span class="lilac">Store</span></a>
+            </div>
         </div>
+
         <div class="search-box">
             <input type="text" placeholder="Buscar..." id="search-in">
         </div>
+
         <div class="nav-right">
             <div class="cart-box" id="cart-trigger">
                 <span class="cart-icon">🛒</span>
@@ -82,6 +92,7 @@
             <img src="../img/banner/banner2.jpg" class="banner-img" alt="Banner 2">
             <img src="../img/banner/banner3.jpg" class="banner-img" alt="Banner 3">
         </div>
+
         <div class="banner-content">
             <h1>Vestidos Exclusivos</h1>
             <p>Elegância que transparece em cada detalhe.</p>
@@ -96,25 +107,30 @@
     </section>
 
     <section class="products-section" id="produtos">
-        <div class="container"> 
+        <div class="container">
             <div class="product-grid">
-                
+
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin Soft')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin Soft', '../img/roupa2.jpg', 189.90)">
                         <i class="far fa-heart"></i>
                     </button>
+
                     <a href="../produto.html">
                         <img src="../img/roupa2.jpg" alt="Vestido Satin Soft" class="product-img">
                     </a>
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Vestido Satin Soft</h3>
                         </a>
+
                         <div class="color-options">
                             <span class="color-dot" style="background-color: #957DAD;" title="Lilás"></span>
                             <span class="color-dot" style="background-color: #000;" title="Preto"></span>
                         </div>
+
                         <p class="price">R$ 189,90</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
@@ -122,26 +138,34 @@
                             </div>
                             <span>ou 3x de <strong class="parcela-valor">R$ 63,30</strong></span>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin Soft', 189.90, '../img/roupa2.jpg')">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin Soft', 189.90, '../img/roupa2.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Floral Midi')">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Floral Midi', '../img/vestido2-frente.jpg', 210.00)">
                         <i class="far fa-heart"></i>
                     </button>
+
                     <a href="../produto.html">
                         <img src="../img/vestido2-frente.jpg" alt="Vestido Floral Midi" class="product-img">
                     </a>
+
                     <div class="card-content">
                         <a href="../produto.html" style="text-decoration: none; color: inherit;">
                             <h3>Vestido Floral Midi</h3>
                         </a>
+
                         <div class="color-options">
                             <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;" title="Branco"></span>
                             <span class="color-dot" style="background-color: #ffb6c1;" title="Rosa"></span>
                         </div>
+
                         <p class="price">R$ 210,00</p>
+
                         <div class="payment-methods">
                             <div class="payment-icons">
                                 <img src="../img/pagamentos/pixx.jpg" alt="Pix" class="icon-pix">
@@ -149,12 +173,15 @@
                             </div>
                             <span>ou 3x de <strong class="parcela-valor">R$ 70,00</strong></span>
                         </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Floral Midi', 210.00, '../img/vestido2-frente.jpg')">Eu quero</button>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Floral Midi', 210.00, '../img/vestido2-frente.jpg')">
+                            Eu quero
+                        </button>
                     </div>
                 </article>
 
-            </div> 
-        </div> 
+            </div>
+        </div>
     </section>
 </main>
 
@@ -171,8 +198,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50" alt="WhatsApp">
 </a>
 
-<div id="modal-checkout" class="checkout-modal">
-</div>
+<div id="modal-checkout" class="checkout-modal"></div>
 
 <script src="https://sdk.mercadopago.com.br/js/v2"></script>
 <script src="../js/script.js"></script>
