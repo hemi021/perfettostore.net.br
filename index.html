@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
@@ -13,9 +13,9 @@
 </head>
 <body>
 
-<!-- EM TODAS AS PÁGINAS -->
 <div id="menu-side" class="side-panel side-panel-right">
     <button class="close-panel" id="close-menu">&times;</button>
+    
     <nav class="side-nav">
         <h3 class="menu-title">Categorias</h3>
         <a href="index.html">Início</a>
@@ -24,44 +24,31 @@
         <a href="saias/index.html">Saias</a>
         <a href="blusas/index.html">Blusas</a> 
         <a href="conjuntos/index.html">Conjuntos</a>
+
         <hr class="menu-divider">
+
         <h3 class="menu-title">Meus Favoritos 💜</h3>
         <div id="lista-favoritos" class="fav-container"></div>
     </nav>
 </div>
 
+<div id="bg-overlay" class="dark-bg"></div>
+
 <header class="main-header">
-    <div class="header-container header-layout-custom">
-        
+    <div class="header-container">
         <div class="nav-left">
-            <div class="cart-box" onclick="toggleCart()" style="cursor: pointer;">
+            <button id="menu-toggle" class="hamburger"><span></span><span></span><span></span></button>
+            <div class="logo"><a href="index.html">Perfetto <span class="lilac">Store</span></a></div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Buscar..." id="search-in">
+        </div>
+        <div class="nav-right">
+            <div class="cart-box" id="cart-trigger">
                 <span class="cart-icon">🛒</span>
                 <span class="cart-count" id="cart-count">0</span>
             </div>
         </div>
-
-        <div class="nav-center">
-            <div class="logo">
-                <a href="index.html">Perfetto <span class="lilac">Store</span></a>
-            </div>
-            <div class="quick-links">
-                <a href="https://instagram.com/perfettostore.jlle" target="_blank" title="Siga nosso Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://wa.me/5547991778060" target="_blank" title="Chame no WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="nav-right">
-            <button id="menu-toggle" class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-
     </div>
 </header>
 
