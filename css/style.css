@@ -5,6 +5,7 @@
     --white: #ffffff;
 }
 
+
 /* --- CONFIGURAÇÕES GLOBAIS --- */
 body {
     font-family: 'Poppins', sans-serif;
@@ -14,11 +15,13 @@ body {
     overflow-x: hidden;
 }
 
+
 .container { 
     max-width: 1200px; 
     margin: 0 auto; 
     padding: 0 20px; 
 }
+
 
 /* --- HEADER (Carrinho | Logo | Menu) --- */
 .main-header {
@@ -31,6 +34,7 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -40,49 +44,85 @@ body {
     padding: 0 20px;
 }
 
+
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 20px;
 }
 
-.search-box {
-    flex: 1;
-    max-width: 400px;
-    margin: 0 20px;
+
+.nav-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.search-box input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    font-size: 14px;
-    outline: none;
-    transition: 0.3s;
-}
-
-.search-box input:focus {
-    border-color: var(--lilac);
-    box-shadow: 0 0 5px rgba(149, 125, 173, 0.3);
-}
 
 .nav-right {
     display: flex;
     align-items: center;
 }
 
-.logo a {
-    text-decoration: none;
-    color: var(--dark);
-    font-family: 'Playfair Display';
-    font-size: 1.6rem;
-    font-weight: bold;
+
+/* Logo */
+.logo a { 
+    text-decoration: none; 
+    color: var(--dark); 
+    font-family: 'Playfair Display'; 
+    font-size: 1.6rem; 
+    font-weight: bold; 
 }
 
-.lilac {
-    color: var(--lilac);
+.lilac { 
+    color: var(--lilac); 
 }
+
+
+/* Links Sociais no Header - mais claros, embaixo da logo */
+.quick-links { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 8px; 
+}
+
+.quick-links a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #888;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.quick-links a:hover {
+    color: var(--lilac);
+    transform: translateY(-3px);
+}
+
+
+/* --- BOTÕES E ÍCONES DO HEADER --- */
+.cart-box { 
+    transition: 0.3s; 
+    cursor: pointer; 
+    position: relative; 
+}
+
+.cart-box:hover { 
+    transform: scale(1.1); 
+}
+
+.cart-count {
+    background: var(--lilac);
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
 
 .hamburger {
     background: none;
@@ -95,6 +135,7 @@ body {
     transition: 0.3s;
 }
 
+
 .hamburger span {
     display: block;
     width: 25px;
@@ -104,48 +145,11 @@ body {
     transition: 0.3s;
 }
 
-.hamburger:hover span {
-    background-color: var(--lilac);
+
+.hamburger:hover span { 
+    background-color: var(--lilac); 
 }
 
-/* Logo */
-.logo a { 
-    text-decoration: none; 
-    color: var(--dark); 
-    font-family: 'Playfair Display'; 
-    font-size: 1.6rem; 
-    font-weight: bold; 
-}
-.lilac { color: var(--lilac); }
-
-/* Links Sociais no Header */
-.quick-links { display: flex; gap: 15px; margin-top: 5px; }
-.quick-links a {
-    font-size: 18px;
-    text-decoration: none;
-    color: var(--lilac);
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-}
-.quick-links a:hover {
-    color: var(--dark);
-    transform: translateY(-3px);
-}
-
-/* --- BOTÕES E ÍCONES DO HEADER --- */
-.cart-box { transition: 0.3s; cursor: pointer; position: relative; }
-.cart-box:hover { transform: scale(1.1); }
-.cart-count {
-    background: var(--lilac);
-    color: white;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 50%;
-    position: absolute;
-    top: -5px;
-    right: -10px;
-}
 
 .hamburger-menu {
     background: none;
@@ -157,6 +161,7 @@ body {
     padding: 10px;
     transition: 0.3s;
 }
+
 .hamburger-menu span {
     display: block;
     width: 25px;
@@ -165,8 +170,15 @@ body {
     border-radius: 2px;
     transition: 0.3s;
 }
-.hamburger-menu:hover span { background-color: var(--lilac); }
-.hamburger-menu:hover span:nth-child(2) { width: 15px; }
+
+.hamburger-menu:hover span { 
+    background-color: var(--lilac); 
+}
+
+.hamburger-menu:hover span:nth-child(2) { 
+    width: 15px; 
+}
+
 
 /* --- MENU LATERAL --- */
 .side-panel-right {
@@ -180,7 +192,11 @@ body {
     transition: 0.4s;
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
 }
-.side-panel-right.active { right: 0 !important; }
+
+.side-panel-right.active { 
+    right: 0 !important; 
+}
+
 .close-panel {
     background: none;
     border: none;
@@ -191,6 +207,7 @@ body {
     right: 20px;
 }
 
+
 /* --- BANNER --- */
 .banner-container {
     position: relative;
@@ -199,6 +216,7 @@ body {
     overflow: hidden;
     margin-top: 110px;
 }
+
 .banner-img {
     position: absolute;
     top: 0; left: 0;
@@ -208,7 +226,12 @@ body {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
-.banner-img.active { opacity: 1; z-index: 1; }
+
+.banner-img.active { 
+    opacity: 1; 
+    z-index: 1; 
+}
+
 .banner-content {
     position: absolute;
     z-index: 2;
@@ -219,6 +242,7 @@ body {
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
+
 /* --- PRODUTOS --- */
 .product-grid {
     display: grid;
@@ -226,6 +250,7 @@ body {
     gap: 30px;
     padding: 40px 0;
 }
+
 
 .card {
     background: #fff;
@@ -236,9 +261,19 @@ body {
     transition: 0.4s;
     border: 1px solid #eee;
 }
-.card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 
-.product-img { width: 100%; height: 350px; object-fit: cover; }
+.card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+}
+
+
+.product-img { 
+    width: 100%; 
+    height: 350px; 
+    object-fit: cover; 
+}
+
 
 .btn-fav {
     position: absolute;
@@ -256,7 +291,13 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: 0.3s;
 }
-.btn-fav:hover { background: var(--lilac); color: white; transform: rotate(15deg) scale(1.1); }
+
+.btn-fav:hover { 
+    background: var(--lilac); 
+    color: white; 
+    transform: rotate(15deg) scale(1.1); 
+}
+
 
 /* Pagamentos (Tamanho Ajustado) */
 .payment-icons-img {
@@ -266,14 +307,21 @@ body {
     gap: 8px;
     margin: 10px 0;
 }
+
 .payment-icons-img img {
-    width: 32px; /* Ícones pequenos e elegantes */
+    width: 32px;
     height: auto;
     filter: grayscale(100%);
     opacity: 0.5;
     transition: 0.3s;
 }
-.payment-icons-img img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.2); }
+
+.payment-icons-img img:hover { 
+    filter: grayscale(0%); 
+    opacity: 1; 
+    transform: scale(1.2); 
+}
+
 
 /* Botão de Compra */
 .btn-buy {
@@ -290,9 +338,13 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .btn-buy:hover {
     background: #7a6391;
     transform: scale(1.05);
     box-shadow: 0 8px 15px rgba(149, 125, 173, 0.4);
 }
-.btn-buy:active { transform: scale(0.95); }
+
+.btn-buy:active { 
+    transform: scale(0.95); 
+}
