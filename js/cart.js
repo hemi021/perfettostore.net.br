@@ -1,9 +1,23 @@
 function formatarPreco(valor) {
-    return Number(valor).toFixed(2).replace('.', ',');
+    return Number(valor || 0).toFixed(2).replace('.', ',');
 }
 
 function getCarrinho() {
-    return JSON.parse(localStorage.getItem('perfetto_cart')) || [];
+    try {
+        return JSON.parse(localStorage.getItem('perfetto_cart')) || [];
+    } catch (e) {
+        return [];
+    }
+}
+function adicionarAoCarrinho(nome, preco, imagem) {
+    let carrinho = JSON.parse(localStorage.getItem('perfetto_cart')) || [];
+    carrinho.push({
+        nome: nome,
+        preco: Number(preco),
+        imagem: imagem
+    });
+    localStorage.setItem('perfetto_cart', JSON.stringify(carrinho));
+    showPush(`✨ ${nome} adicionado ao carrinho!`);
 }
 
 function salvarCarrinho(carrinho) {
@@ -17,9 +31,9 @@ function renderizarCarrinho() {
     if (!lista) return;
 
     const carrinho = getCarrinho();
-    lista.innerHTML = '';
+    console.log('Carrinho carregado:', carrinho);
 
-    if (carrinho.length === 0) {
+    if (!carrinho.length) {
         lista.innerHTML = `
             <div style="text-align:center; padding: 40px;">
                 <p style="font-size: 1.2rem; color: #666;">Seu carrinho está vazio... 🌸</p>
@@ -34,15 +48,15 @@ function renderizarCarrinho() {
 
     let total = 0;
 
-    carrinho.forEach((item, index) => {
+    lista.innerHTML = carrinho.map((item, index) => {
         const preco = Number(item.preco) || 0;
         total += preco;
 
-        lista.innerHTML += `
+        return `
             <div class="cart-item">
                 <img src="${item.imagem || 'img/PS/PS.png'}" alt="${item.nome}" onerror="this.src='img/PS/PS.png'">
                 <div class="cart-item-info">
-                    <h4>${item.nome}</h4>
+                    <h4>${item.nome || 'Produto'}</h4>
                     <p class="price">R$ ${formatarPreco(preco)}</p>
                     <button class="btn-remove" onclick="removerItem(${index})">
                         <i class="fas fa-trash-alt"></i> Remover
@@ -50,7 +64,7 @@ function renderizarCarrinho() {
                 </div>
             </div>
         `;
-    });
+    }).join('');
 
     if (totalDisplay) {
         totalDisplay.innerText = `R$ ${formatarPreco(total)}`;
@@ -67,7 +81,7 @@ function removerItem(index) {
 function finalizarCompra() {
     const carrinho = getCarrinho();
 
-    if (carrinho.length === 0) {
+    if (!carrinho.length) {
         alert('Adicione produtos antes de finalizar!');
         return;
     }
