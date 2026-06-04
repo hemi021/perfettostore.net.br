@@ -21,7 +21,7 @@ function closeMenuFn() {
 }
 
 if (menuToggle && menuSide) {
-    menuToggle.addEventListener('click', function(e) {
+    menuToggle.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
         openMenu();
@@ -36,7 +36,7 @@ if (overlay) {
     overlay.addEventListener('click', closeMenuFn);
 }
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (!menuSide || !menuToggle) return;
     if (menuSide.classList.contains('active')) {
         if (!menuSide.contains(e.target) && !menuToggle.contains(e.target)) {
@@ -85,7 +85,7 @@ function showPush(msg) {
         max-width: calc(100vw - 30px);
         text-align: center;
     `;
-    toast.innerHTML = msg;
+    toast.textContent = msg;
     document.body.appendChild(toast);
 
     setTimeout(() => {
@@ -102,16 +102,16 @@ function adicionarAoCarrinho(nome, preco, imagem) {
 }
 
 function toggleCart() {
-    window.location.href = 'carrinho.html';
+    window.location.href = '../carrinho.html';
 }
 
-function produtoJaFavorito(nomeProduto) {
+function buscarFavoritoIndex(nomeProduto) {
     return favoritos.findIndex(f => f.nome === nomeProduto);
 }
 
 function toggleFavorito(botao, nomeProduto, imagem = '', preco = 0) {
     const icone = botao.querySelector('i');
-    const index = produtoJaFavorito(nomeProduto);
+    const index = buscarFavoritoIndex(nomeProduto);
 
     if (index === -1) {
         favoritos.push({ nome: nomeProduto, imagem, preco });
@@ -141,7 +141,7 @@ function removerFavorito(nomeProduto, event) {
         event.stopPropagation();
     }
 
-    const index = produtoJaFavorito(nomeProduto);
+    const index = buscarFavoritoIndex(nomeProduto);
     if (index !== -1) {
         favoritos.splice(index, 1);
         salvarFavoritos();
@@ -164,9 +164,9 @@ function carregarFavoritos() {
     favoritos.forEach(item => {
         const favItem = document.createElement('a');
         favItem.className = 'fav-item';
-        favItem.href = 'produto.html';
+        favItem.href = '../produto.html';
         favItem.innerHTML = `
-            <img src="${item.imagem || 'img/placeholder.jpg'}" alt="${item.nome}">
+            <img src="${item.imagem || '../img/placeholder.jpg'}" alt="${item.nome}">
             <div class="fav-item-info">
                 <p class="fav-item-name">${item.nome}</p>
                 <p class="fav-item-price">R$ ${Number(item.preco || 0).toFixed(2).replace('.', ',')}</p>
@@ -179,7 +179,7 @@ function carregarFavoritos() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     atualizarBadge();
     carregarFavoritos();
 });

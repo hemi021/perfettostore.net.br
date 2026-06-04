@@ -95,9 +95,9 @@
 <main style="margin-top: 130px;">
     <section class="banner-container">
         <div class="slider">
-            <img src="img/banner/banner3.jpg" class="banner-img active" alt="Coleção Nova">
-            <img src="img/banner/banner (2).png" class="banner-img" alt="Estilo Perfetto">
-            <img src="img/banner/banner1.png" class="banner-img" alt="Looks Exclusivos">
+            <img src="img/banner/banner-estacao.jpg" class="banner-img active" alt="Estação">
+            <img src="img/banner/banner-fashion.jpg" class="banner-img" alt="Fashion">
+            <img src="img/banner/banner-branco.png" class="banner-img" alt="Looks Exclusivos">
         </div>
 
         <div class="banner-content">
@@ -113,14 +113,14 @@
             <div class="product-grid" id="home-products">
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Cropped Amarração', 'img/blusas/batasonic.jpg', 59.90)">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Bata Sonic', 'img/blusas/blusa-bata-sonic.jpg', 59.90)">
                         <i class="far fa-heart"></i>
                     </button>
                     <a href="produto.html">
-                        <img src="img/blusas/batasonic.jpg" alt="Cropped Amarração" class="product-img">
+                        <img src="img/blusas/blusa-bata-sonic.jpg" alt="Bata Sonic" class="product-img">
                     </a>
                     <div class="card-content">
-                        <h3>Cropped Amarração</h3>
+                        <h3>Bata Sonic</h3>
                         <p class="price">R$ 59,90</p>
 
                         <div class="payment-info">
@@ -134,21 +134,49 @@
                             <span>ou 3x de <strong>R$ 19,96</strong></span>
                         </div>
 
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Cropped Amarração', 59.90, 'img/blusas/batasonic.jpg')">
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Bata Sonic', 59.90, 'img/blusas/blusa-bata-sonic.jpg')">
                             EU QUERO 🛍️
                         </button>
                     </div>
                 </article>
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Vestido Satin Soft', 'img/saias/cotele1.jpg', 189.90)">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Calça Pantalona Elegante', 'img/calcas/calca-pantalona.jpg', 149.90)">
                         <i class="far fa-heart"></i>
                     </button>
                     <a href="produto.html">
-                        <img src="img/saias/cotele1.jpg" alt="Vestido Satin Soft" class="product-img">
+                        <img src="img/calcas/calca-pantalona.jpg" alt="Calça Pantalona Elegante" class="product-img">
                     </a>
                     <div class="card-content">
-                        <h3>Vestido Satin Soft</h3>
+                        <h3>Calça Pantalona Elegante</h3>
+                        <p class="price">R$ 149,90</p>
+
+                        <div class="payment-info">
+                            <div class="payment-icons-img">
+                                <img src="img/pagamentos/pixx.png" alt="Pix">
+                                <img src="img/pagamentos/visa_PNG4.png" alt="Visa">
+                                <img src="img/pagamentos/master-card.png" alt="Mastercard">
+                                <img src="img/pagamentos/elo-png.png" alt="Elo">
+                                <img src="img/pagamentos/paypal.png" alt="Paypal">
+                            </div>
+                            <span>ou 3x de <strong>R$ 49,96</strong></span>
+                        </div>
+
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Calça Pantalona Elegante', 149.90, 'img/calcas/calca-pantalona.jpg')">
+                            EU QUERO 🛍️
+                        </button>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Saia Cinto', 'img/saias/saia-cinto.jpg', 189.90)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="produto.html">
+                        <img src="img/saias/saia-cinto.jpg" alt="Saia Cinto" class="product-img">
+                    </a>
+                    <div class="card-content">
+                        <h3>Saia Cinto</h3>
                         <p class="price">R$ 189,90</p>
 
                         <div class="payment-info">
@@ -162,21 +190,21 @@
                             <span>ou 3x de <strong>R$ 63,30</strong></span>
                         </div>
 
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Vestido Satin Soft', 189.90, 'img/saias/cotele1.jpg')">
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Saia Cinto', 189.90, 'img/saias/saia-cinto.jpg')">
                             EU QUERO 🛍️
                         </button>
                     </div>
                 </article>
 
                 <article class="card">
-                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Linho Premium', 'img/destaque/roupadestaque.jpg', 249.90)">
+                    <button class="btn-fav" onclick="toggleFavorito(this, 'Conjunto Lanzinha', 'img/conjuntos/conjunto-lanzinha.jpg', 249.90)">
                         <i class="far fa-heart"></i>
                     </button>
                     <a href="produto.html">
-                        <img src="img/destaque/roupadestaque.jpg" alt="Conjunto Linho Premium" class="product-img">
+                        <img src="img/conjuntos/conjunto-lanzinha.jpg" alt="Conjunto Lanzinha" class="product-img">
                     </a>
                     <div class="card-content">
-                        <h3>Conjunto Linho Premium</h3>
+                        <h3>Conjunto Lanzinha</h3>
                         <p class="price">R$ 249,90</p>
 
                         <div class="payment-info">
@@ -190,7 +218,7 @@
                             <span>ou 3x de <strong>R$ 83,30</strong></span>
                         </div>
 
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Linho Premium', 249.90, 'img/destaque/roupadestaque.jpg')">
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Conjunto Lanzinha', 249.90, 'img/conjuntos/conjunto-lanzinha.jpg')">
                             EU QUERO 🛍️
                         </button>
                     </div>
